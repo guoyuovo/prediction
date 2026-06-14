@@ -7,11 +7,13 @@
 // 刷新正确性：每次调用都 setData(...) 整表替换注入最新数据；所有移植模块在【调用时】
 // 从 store 读数（非模块顶层 const），故第二次用不同 results 重算会反映新结果。
 
-import { setData } from './store.js';
-import { predictMatch } from './model.js';
+import { setData, mergeData } from './store.js';
+import { predictMatch, getTeam, getCfg } from './model.js';
 import { buildSchedule } from './schedule.js';
 import { buildContext } from './context.js';
 import { buildEloV2 } from './elo-v2.js';
+import { runMonteCarlo, setEngine, resetEngine } from './tournament.js';
+import { loadAdjustments, eloPenaltyFor } from './adjust.js';
 
 /**
  * 计算 72 场预测（+ 可选 v2 滚动 Elo / 回测摘要）。
@@ -104,8 +106,90 @@ export function computePredictions(data) {
   return out;
 }
 
+/**
+ * 计算夺冠/出线概率（复刻 scripts/build-html.mjs 的两段蒙特卡洛）。
+ *
+ * 两段模拟（与 build-html 完全一致）：
+ *   ① 基础：runMonteCarlo(iterations)（默认引擎 = 真实基础 Elo；seed=20260612, sigma=cfg.mc.eloSigma）
+ *      → base 数组（各队 r32..champion）+ baseChampion/baseR32 映射。
+ *   ② v2：注入 v2 滚动 Elo 引擎（getTeamV2 = teamsV2.elo − 伤停惩罚），并把已完赛结果固定
+ *      （knownResults，两朝向都存），runMonteCarlo(iterations, 20260612, cfg.mc.eloSigma, {knownResults})
+ *      → champions 数组（v2 概率 + baseChampion/baseR32）+ 各组出线表 groups。
+ *
+ * @param {object} data 同 computePredictions 的输入（base/groups/schedule2026/modelCfg/matchOdds/...
+ *   results 必填以驱动 v2 与 knownResults；可选 squadAdj=squad-adjustments.json 整体）。
+ * @param {object} opts { iterations }（默认 cfg.mc.iterations = 10000）
+ * @returns {{ iterations, champions: Array, base: Array, groups: object }}
+ *   champions[i] = { team, elo, r32, qf, sf, final, champion, baseChampion, baseR32 }
+ *   base[i]      = { team, elo, r32, r16, qf, sf, final, champion }
+ *   groups[g]    = [{ team, r32, champion, baseR32 }]（按 v2 进 32 排序）
+ */
+export function computeChampions(data, opts = {}) {
+  const {
+    base, groups, schedule2026, modelCfg, matchOdds,
+    weather, venuesGeo, teamXg, results, modelEnsembleCfg, squadAdj,
+  } = data || {};
+
+  // —— 注入数据到 store（键 = src 中 loadJson 入参）——
+  const reg = {
+    'data/teams.json': base,
+    'data/groups.json': groups,
+    'data/schedule-2026.json': schedule2026,
+    'config/model.json': modelCfg,
+    'data/match-odds.json': matchOdds,
+  };
+  if (weather) reg['data/weather.json'] = weather;
+  if (venuesGeo) reg['data/venues-geo.json'] = venuesGeo;
+  if (teamXg) reg['data/team-xg.json'] = teamXg;
+  if (results) reg['data/wc-results.json'] = results;
+  if (modelEnsembleCfg) reg['config/model-ensemble.json'] = modelEnsembleCfg;
+  if (squadAdj) reg['data/manual/squad-adjustments.json'] = squadAdj;
+  setData(reg);
+
+  const cfg = getCfg();
+  const iterations = opts.iterations != null ? opts.iterations : cfg.mc.iterations;
+  const teamsData = base.teams;
+
+  // ① 基础模拟（默认引擎；与 build-html: sim = runMonteCarlo(iterations) 一致）
+  resetEngine();
+  const sim = runMonteCarlo(iterations);
+  const baseMap = Object.fromEntries(sim.results.map((r) => [r.team, r]));
+
+  // ② v2：滚动 Elo + 临场惩罚引擎 + 已完赛固定，重跑整届
+  const v2 = buildEloV2();
+  const teamsV2 = v2.teamsV2;
+  const ADJ = loadAdjustments();
+  // 已完赛结果固定（两朝向都存）
+  const known = new Map();
+  for (const r of (results?.results || [])) {
+    known.set(`${r.home}|${r.away}`, { gh: r.hs, ga: r.as });
+    known.set(`${r.away}|${r.home}`, { gh: r.as, ga: r.hs });
+  }
+  // 模拟用 v2 Elo（扣临场伤停惩罚，整届生效；MC 无单场日期故按整届计 matchDate=null）
+  const getTeamV2 = (name) => ({ name, ...teamsData[name], elo: teamsV2.teams[name].elo - eloPenaltyFor(name, ADJ, null) });
+  setEngine({ getTeam: getTeamV2, predictMatch });
+  const v2sim = runMonteCarlo(iterations, 20260612, cfg.mc.eloSigma, { knownResults: known });
+  resetEngine(); // 还原基础引擎，避免影响后续
+
+  const champions = v2sim.results.map((r) => ({
+    team: r.team, elo: r.elo, r32: r.r32, qf: r.qf, sf: r.sf, final: r.final, champion: r.champion,
+    baseChampion: (baseMap[r.team] || {}).champion ?? 0, baseR32: (baseMap[r.team] || {}).r32 ?? 0,
+  }));
+
+  const groupTablesV2 = {};
+  for (const [g, ts] of Object.entries(groups.groups)) {
+    groupTablesV2[g] = ts.map((t) => v2sim.results.find((r) => r.team === t))
+      .sort((x, y) => y.r32 - x.r32)
+      .map((r) => ({ team: r.team, r32: r.r32, champion: r.champion, baseR32: (baseMap[r.team] || {}).r32 ?? 0 }));
+  }
+
+  return { iterations, champions, base: sim.results, groups: groupTablesV2 };
+}
+
 export { setData } from './store.js';
 export { predictMatch, getTeam, listTeams } from './model.js';
 export { buildSchedule } from './schedule.js';
 export { buildContext } from './context.js';
 export { buildEloV2 } from './elo-v2.js';
+export { runMonteCarlo, setEngine, resetEngine } from './tournament.js';
+export { loadAdjustments, eloPenaltyFor } from './adjust.js';

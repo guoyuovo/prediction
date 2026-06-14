@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { computePredictions } from './index.js';
+import { computePredictions, computeChampions } from './index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');            // d:\test\prediction
@@ -23,6 +23,7 @@ const data = {
   venuesGeo: j(join(ENGINE, 'data', 'venues-geo.json')),
   teamXg: j(join(ENGINE, 'data', 'team-xg.json')),
   results: j(join(ENGINE, 'data', 'wc-results.json')),
+  squadAdj: j(join(ENGINE, 'data', 'manual', 'squad-adjustments.json')),
 };
 
 const expected = j(join(ROOT, 'static', 'data', 'matches.json'));
@@ -90,4 +91,22 @@ if (out.v2Backtest) {
 }
 
 console.log(`\n${pass ? 'PASS' : 'FAIL'} — ${okCount}/${expMatches.length} 场硬字段匹配`);
-process.exit(pass ? 0 : 1);
+
+// —— 夺冠概率（蒙特卡洛）对照 static/data/champions.json ——
+// 复刻 build-html 两段 MC（基础 + v2 已完赛固定/滚动 Elo），seed/sigma/iterations 一致。
+const expChamps = j(join(ROOT, 'static', 'data', 'champions.json')).champions;
+const champOut = computeChampions(data); // 默认 iterations = cfg.mc.iterations
+const gotByTeam = new Map(champOut.champions.map((c) => [c.team, c]));
+const CHAMP_TOL = 0.01;
+let champMaxDiff = 0, champMaxTeam = '', champPass = champOut.champions.length === expChamps.length;
+for (const e of expChamps) {
+  const g = gotByTeam.get(e.team);
+  if (!g) { champPass = false; continue; }
+  const d = Math.abs(e.champion - g.champion);
+  if (d > champMaxDiff) { champMaxDiff = d; champMaxTeam = e.team; }
+  if (d > CHAMP_TOL) champPass = false;
+}
+console.log(`\n夺冠概率：对照 ${expChamps.length} 队 · max|Δ|=${champMaxDiff.toFixed(4)}${champMaxTeam ? ' (@' + champMaxTeam + ')' : ''} · 容差 ±${CHAMP_TOL}`);
+console.log(`${champPass ? 'PASS' : 'FAIL'} — champions 夺冠概率落在容差内`);
+
+process.exit(pass && champPass ? 0 : 1);
