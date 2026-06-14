@@ -1,7 +1,7 @@
 <template>
   <view class="wrap">
     <view class="hero">
-      <view class="between"><text class="t">2026 世界杯</text><text class="pill">更新 {{ meta.date }}</text></view>
+      <view class="between"><text class="t">2026 世界杯</text><text class="pill">更新 {{ updated }}</text></view>
       <text class="s">v2 滚动模型 · 双模型共同推断 · 透明回测</text>
     </view>
 
@@ -71,6 +71,14 @@ const showHist = ref(false)
 const meta = ref({}), champions = ref([]), groups = ref({}), matches = ref([])
 getData().then(d => { meta.value = d.meta; champions.value = (d.champions.champions || []); groups.value = d.champions.groups || {}; matches.value = d.matches.matches || [] })
 
+// 真实更新时间(lastUpdate/fetchedAt 是 UTC，转北京时间显示)；meta.date 只是模型数据基准日，不当更新时间用
+const updated = computed(() => {
+  const iso = meta.value.lastUpdate || meta.value.fetchedAt
+  if (!iso) return meta.value.date || ''
+  const d = new Date(new Date(iso).getTime() + 8 * 3600000)
+  const p = n => String(n).padStart(2, '0')
+  return `${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())} ${p(d.getUTCHours())}:${p(d.getUTCMinutes())}`
+})
 const upcoming = computed(() => matches.value.filter(m => !m.result).sort((a, b) => a.seq - b.seq))
 const history = computed(() => matches.value.filter(m => m.result).sort((a, b) => b.seq - a.seq))
 const maxChamp = computed(() => Math.max(...champions.value.map(c => c.champion), 0.01))
