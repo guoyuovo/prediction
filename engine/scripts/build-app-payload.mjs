@@ -54,8 +54,9 @@ write('dual.json', {
   history: dual.history, future: dual.future,
   backtest: dual.backtest, tune: dual.tune, adjustments: dual.adjustments,
 });
-// 专家方案
-write('experts.json', { plans: experts.plans || [], total: experts.total || 0, fetchedAt: experts._fetchedAt });
+// 专家方案：只保留「有具体内容」的（unlocked 且 content 非空）——锁定/空内容的不展示
+const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim());
+write('experts.json', { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt });
 
 // 合并 payload → co-data 云对象目录（部署即可一次返回全部；后续 compute 可改写 DB）
 const CO = join(APP, 'uniCloud-aliyun/cloudfunctions/co-data');
@@ -66,7 +67,7 @@ const payload = {
   matches: { matches: idx.matches },
   v2: idx.v2 || null,
   dual: { history: dual.history, future: dual.future, backtest: dual.backtest, tune: dual.tune, adjustments: dual.adjustments },
-  experts: { plans: experts.plans || [], total: experts.total || 0, fetchedAt: experts._fetchedAt },
+  experts: { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt },
 };
 if (existsSync(CO)) { writeFileSync(join(CO, 'payload.json'), JSON.stringify(payload)); console.log('  ✓ co-data/payload.json'); }
 
@@ -83,4 +84,4 @@ if (process.env.PUT_PAYLOAD_URL && process.env.PUT_SECRET) {
   } catch (e) { console.log(`  ⚠ 推送 put-payload 失败(忽略，本地数据已生成)：${e.message}`); }
 }
 
-console.log(`✓ 导出完成（${idx.matches.length} 场 · ${(idx.v2 && idx.v2.champions || idx.champions).length} 队 · ${(experts.plans || []).length} 专家方案）`);
+console.log(`✓ 导出完成（${idx.matches.length} 场 · ${(idx.v2 && idx.v2.champions || idx.champions).length} 队 · ${expertPlans.length} 专家方案）`);
