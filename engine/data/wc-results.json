@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-14T10:48:54.222Z",
-  "count": 7,
+  "_fetchedAt": "2026-06-14T11:20:27.490Z",
+  "count": 8,
   "results": [
     {
       "date": "2026-06-11",
@@ -297,6 +297,47 @@
       ],
       "status": "Full Time",
       "espnId": "760418"
+    },
+    {
+      "date": "2026-06-14",
+      "et": "2026-06-14T00:00:00-04:00",
+      "group": "D",
+      "home": "Australia",
+      "away": "Turkey",
+      "hs": 2,
+      "as": 0,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 9,
+          "sot": 4,
+          "poss": 28.4
+        },
+        "away": {
+          "shots": 30,
+          "sot": 8,
+          "poss": 71.6
+        }
+      },
+      "goals": [
+        {
+          "min": "27'",
+          "scorer": "Nestory Irankunda",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "75'",
+          "scorer": "Connor Metcalfe",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760421"
     }
   ]
 }

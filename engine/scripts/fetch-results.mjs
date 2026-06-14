@@ -23,6 +23,7 @@ const ESPN2CANON = {
   'DR Congo': 'DR Congo', 'Congo DR': 'DR Congo', 'DR Congo (Democratic Republic of Congo)': 'DR Congo',
   'Curaçao': 'Curacao', 'Cape Verde Islands': 'Cape Verde', 'Cabo Verde': 'Cape Verde',
   'IR Iran': 'Iran', 'Korea Republic': 'South Korea', 'South Korea': 'South Korea',
+  'Türkiye': 'Turkey', 'Turkiye': 'Turkey', 'Turkey': 'Turkey',
 };
 const stripAccents = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 function toCanon(espnName, canonSet) {

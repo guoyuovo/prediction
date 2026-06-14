@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 7,
-    "accuracy1X2": 0.571,
-    "brierAvg": 0.633,
-    "loglossAvg": 1.043,
-    "scoreHit": 0.286,
-    "dirHit": 0.571,
+    "matches": 8,
+    "accuracy1X2": 0.5,
+    "brierAvg": 0.668,
+    "loglossAvg": 1.093,
+    "scoreHit": 0.25,
+    "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "matches": [
@@ -183,9 +183,40 @@
       "eloHomeAfter": 1524.9,
       "eloAwayBefore": 1794,
       "eloAwayAfter": 1805.1
+    },
+    {
+      "et": "2026-06-14T00:00:00-04:00",
+      "group": "D",
+      "home": "Australia",
+      "away": "Turkey",
+      "hs": 2,
+      "as": 0,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.236,
+      "pDraw": 0.241,
+      "pAway": 0.524,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.916,
+      "logloss": 1.445,
+      "homeAdv": false,
+      "eloDelta": 46.3,
+      "eloHomeBefore": 1839,
+      "eloHomeAfter": 1885.3,
+      "eloAwayBefore": 1849,
+      "eloAwayAfter": 1802.7
     }
   ],
   "eloChanges": [
+    {
+      "team": "Australia",
+      "before": 1839,
+      "after": 1885.3,
+      "delta": 46.3
+    },
     {
       "team": "USA",
       "before": 1780,
@@ -269,6 +300,12 @@
       "before": 1780,
       "after": 1736.5,
       "delta": -43.5
+    },
+    {
+      "team": "Turkey",
+      "before": 1849,
+      "after": 1802.7,
+      "delta": -46.3
     }
   ],
   "timeline": [
@@ -320,6 +357,13 @@
       "label": "Haiti-Scotland",
       "accCum": 0.571,
       "brierCum": 0.633
+    },
+    {
+      "i": 8,
+      "et": "2026-06-14T00:00:00-04:00",
+      "label": "Australia-Turkey",
+      "accCum": 0.5,
+      "brierCum": 0.668
     }
   ],
   "calibration": [
@@ -330,8 +374,8 @@
     },
     {
       "range": "45–55%",
-      "n": 2,
-      "hitRate": 0.5
+      "n": 3,
+      "hitRate": 0.333
     },
     {
       "range": "55–65%",
@@ -344,5 +388,5 @@
       "hitRate": 0.5
     }
   ],
-  "builtAt": "2026-06-14T10:48:54.321Z"
+  "builtAt": "2026-06-14T11:20:27.629Z"
 }
