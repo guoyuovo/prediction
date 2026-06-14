@@ -43,6 +43,9 @@ for (const m of idx.matches) {
     if (c) m.result.pre = { predOutcome: c.predOutcome, predScore: c.predScore, correct: c.correct, scoreHit: c.predScore === `${m.result.hs}-${m.result.as}`, p: [c.pHome, c.pDraw, c.pAway] };
   }
 }
+// 瘦身：前端不读的模型内部字段一律剔除（保留 eg=滚球用、implied=前端用）。约省 32% 体积。
+const DROP = ['move', 'feat', 't007m', 'maxP', 'homeAdv', 'odds', 'oddsSrc', 'egTotal', 'ouTrend'];
+for (const m of idx.matches) for (const k of DROP) delete m[k];
 write('matches.json', { matches: idx.matches });
 // v2 完赛验证（夺冠Δ/出线Δ/校准/时间线/对账/Elo变化/受影响后续）
 write('v2.json', idx.v2 || null);
