@@ -1,0 +1,54 @@
+#!/usr/bin/env node
+// 每日一条龙：赛前刷新输入 → 赛后按赛果迭代 → 重算 + 重建所有看板。
+//   单步失败不中断整链（网络抖动容错），最后给汇总。建议每个比赛日跑 1-2 次。
+// 用法：node scripts/daily.mjs   或   npm run daily
+//   定时：见 README「每日闭环」——可用 OS cron / 计划任务 / Claude /schedule。
+
+import { execSync } from 'node:child_process';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const DIR = dirname(fileURLToPath(import.meta.url));
+const STEPS = [
+  ['赛前·场地海拔(一次性)', 'fetch-elevation.mjs'],
+  ['赛前·官方真实 Elo', 'fetch-elo-official.mjs'],
+  ['赛前·FIFA 积分/身价', 'fetch-fifa-ranking.mjs'],
+  ['赛前·阵容评分 squad', 'build-squad-ratings.mjs'],
+  ['赛前·赔率 ESPN+Bovada', 'fetch-odds.mjs'],
+  ['赛前·赔率 Titan007 多庄', 'fetch-titan007-odds.mjs'],
+  ['赛前·天气', 'fetch-weather.mjs'],
+  ['赛前·伤停探测(兜底)', 'fetch-injuries.mjs'],
+  ['赛后·完赛比分+射门', 'fetch-results.mjs'],
+  ['赛后·滚动 Elo + live 校准', 'build-elo-v2.mjs'],
+  ['赛后·滚动 xG 攻防', 'build-xg-v2.mjs'],
+  ['重算·72 场批量预测', 'batch-predict.mjs'],
+  ['赛后·专家方案(网易红彩)', 'fetch-hongcai.mjs'],
+  ['建页·主看板(含 v2 标签)', 'build-html.mjs'],
+  ['建页·双模型共同推断', 'build-dual-page.mjs'],
+  ['导出·uniapp 前端数据', 'build-app-payload.mjs'],
+];
+
+const t0 = Date.now();
+const results = [];
+console.log(`\n═══ 每日一条龙开始（${new Date().toISOString()}）═══\n`);
+for (const [label, script] of STEPS) {
+  process.stdout.write(`▶ ${label} …`);
+  const s = Date.now();
+  try {
+    execSync(`node "${join(DIR, script)}"`, { stdio: ['ignore', 'pipe', 'pipe'] });
+    console.log(` ✓ (${((Date.now() - s) / 1000).toFixed(1)}s)`);
+    results.push({ label, ok: true });
+  } catch (e) {
+    const msg = (e.stderr?.toString() || e.stdout?.toString() || e.message || '').trim().split('\n').pop();
+    console.log(` ✗ ${msg}`);
+    results.push({ label, ok: false, msg });
+  }
+}
+
+const ok = results.filter((r) => r.ok).length;
+console.log(`\n═══ 完成：${ok}/${results.length} 步成功 · 用时 ${((Date.now() - t0) / 1000).toFixed(0)}s ═══`);
+const failed = results.filter((r) => !r.ok);
+if (failed.length) { console.log('失败步骤（不影响已成功部分）：'); for (const f of failed) console.log(`  ✗ ${f.label} — ${f.msg}`); }
+console.log('看板：output/index.html（含 v2 标签）· output/dual.html（双模型）');
+// 关键建页步骤失败才非零退出
+process.exit(failed.some((f) => /建页/.test(f.label)) ? 1 : 0);

@@ -17,3 +17,10 @@ Thumbs.db
 
 # 本地环境
 *.local
+
+# engine（模型引擎）构建产物 + 回测专用大数据（daily 不需要，可重抓）
+engine/output/*
+!engine/output/.gitkeep
+engine/data/results.csv
+engine/data/clubelo-snapshots.json
+engine/data/*-2024-25.*

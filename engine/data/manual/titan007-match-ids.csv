@@ -1,0 +1,11 @@
+# Titan007 比赛ID（每行一个，纯数字）。可选，用于全 72 场覆盖。
+# fetch-titan007-odds.mjs 会自动抓今日featured比赛（soccer_scheduleid.js），
+# 但只覆盖临近的几场。要拿全部世界杯赔率，把每场的 Titan007 ID 填到这里。
+#
+# 怎么取 ID：打开 titan007.com 该场比赛页，URL 里的数字就是 ID，
+#   例如 http://1x2.titan007.com/oddslist/2906756.htm → 2906756
+# 或欧赔 feed http://1x2d.titan007.com/<ID>.js（含英文队名/联赛，可核对）
+#
+# 以 # 开头的行会被忽略。示例（今日自动抓到的两场）：
+2906756
+2906706
