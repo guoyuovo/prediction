@@ -78,7 +78,7 @@ if (process.env.PUT_PAYLOAD_URL && process.env.PUT_SECRET) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ secret: process.env.PUT_SECRET, payload }),
     });
-    console.log(`  ✓ 推送 put-payload → wc_payload (HTTP ${res.status})`);
+    console.log(`  ✓ 推送 put-payload → 云存储 (HTTP ${res.status})`);
   } catch (e) { console.log(`  ⚠ 推送 put-payload 失败(忽略，本地数据已生成)：${e.message}`); }
 }
 
