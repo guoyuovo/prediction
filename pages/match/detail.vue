@@ -37,7 +37,13 @@
           <text class="small">实时 主 {{ pct(live.p[0]) }} · 平 {{ pct(live.p[1]) }} · 客 {{ pct(live.p[2]) }}</text>
           <text style="font-weight:700;color:#ffcf4a">{{ live.lean }}</text>
         </view>
-        <text class="tiny" style="display:block;margin-top:8rpx;color:#7c8597">大球({{ live.ou.line }}) {{ pct(live.ou.over) }} · {{ live.note }}</text>
+        <view class="lvgrid">
+          <view v-for="o in live.ou" :key="o.line" class="lv"><text class="lvv">{{ pct(o.over) }}</text><text class="lvl">大{{ o.line }}</text></view>
+          <view class="lv"><text class="lvv">{{ pct(live.moreGoals) }}</text><text class="lvl">还有球</text></view>
+          <view class="lv"><text class="lvv">{{ pct(live.nextGoal[0]) }}</text><text class="lvl">下球·主</text></view>
+        </view>
+        <text class="tiny" style="display:block;margin-top:10rpx;color:#7c8597">最可能终场 {{ live.topScores.map(s => s.score).join(' / ') }} · 预期 {{ live.expFinal[0] }}-{{ live.expFinal[1] }}</text>
+        <text class="tiny" style="display:block;margin-top:4rpx;color:#7c8597">{{ live.note }} · 理性购彩 18+</text>
       </view>
       <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">暂不可用（未开赛 / 未关联云空间）。</text>
     </view>
@@ -190,4 +196,8 @@ const goExpert = (p) => uni.navigateTo({ url: '/pages/expert/detail?threadId=' +
 .sg .sv { display: block; font-size: 30rpx; font-weight: 800; }
 .sg .sl { font-size: 20rpx; color: #7c8597; }
 .livebtn { font-size: 24rpx; font-weight: 700; color: #5aa9ff; padding: 8rpx 20rpx; border: 1rpx solid rgba(90,169,255,.4); border-radius: 999rpx; }
+.lvgrid { display: flex; flex-wrap: wrap; gap: 10rpx; margin-top: 14rpx; }
+.lv { flex: 1; min-width: 90rpx; text-align: center; background: rgba(90,169,255,.06); border-radius: 10rpx; padding: 12rpx 6rpx; }
+.lv .lvv { display: block; font-size: 28rpx; font-weight: 800; color: #ffcf4a; }
+.lv .lvl { font-size: 20rpx; color: #7c8597; }
 </style>
