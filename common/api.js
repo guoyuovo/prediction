@@ -1,6 +1,7 @@
-// 数据访问层：优先拉云存储上的 payload.json（CDN，put-payload 上传），
-//   失败 / 未配置时回退随 App 打包的静态 JSON（H5 本地零配置可跑）。
-//   全 App 只取一次（单例缓存），getData/load/getMatch 共用同一份数据。
+// 数据访问层：
+//   · getData() —— 打包静态 JSON 秒开（可选先拉云存储 REMOTE_URL）。单例缓存。
+//   · refresh() —— 客户端重算：浏览器抓 ESPN 完赛 + 跑引擎(预测/滚动Elo/夺冠MC) → 更新数据。
+//     引擎动态导入(不进首屏);失败保留现状。这是"前端自刷新"的主路径(网页端 CORS 可直连 ESPN)。
 import meta from '@/static/data/meta.json'
 import teams from '@/static/data/teams.json'
 import champions from '@/static/data/champions.json'
@@ -36,6 +37,17 @@ function fetchData() {
 }
 
 export function getData() { return fetchData() }
+
+// 客户端重算并更新缓存。页面拿到返回值后重新赋值即可刷新显示。失败返回 null(保留现状)。
+export async function refresh(opts) {
+  try {
+    const bundled = await fetchData()
+    const { recomputeClient } = await import('@/common/engine/client.js')
+    const fresh = await recomputeClient(bundled, opts)
+    if (fresh && fresh.matches && fresh.matches.matches) { _cache = Promise.resolve(fresh); return fresh }
+  } catch (e) { /* 抓取/计算失败 → 保留现状 */ }
+  return null
+}
 export async function load(name) { return (await fetchData())[name] }
 export async function getMatch(seq) {
   const d = await fetchData()

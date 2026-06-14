@@ -1,7 +1,9 @@
 <template>
   <view class="wrap">
     <view class="hero">
-      <view class="between"><text class="t">2026 世界杯</text><text class="pill">更新 {{ updated }}</text></view>
+      <view class="between"><text class="t">2026 世界杯</text>
+        <text class="pill refresh" @click="doRefresh">{{ refreshing ? '更新中…' : '↻ 更新 ' + updated }}</text>
+      </view>
       <text class="s">v2 滚动模型 · 双模型共同推断 · 透明回测</text>
     </view>
 
@@ -60,7 +62,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { getData, nm } from '@/common/api.js'
+import { getData, refresh, nm } from '@/common/api.js'
 import { pct, pct1 } from '@/common/format.js'
 import { flag } from '@/common/flags.js'
 import matchCard from '@/components/match-card.vue'
@@ -69,7 +71,15 @@ const TABS = [{ k: 'match', label: '对阵预测' }, { k: 'champ', label: '夺�
 const tab = ref('match')
 const showHist = ref(false)
 const meta = ref({}), champions = ref([]), groups = ref({}), matches = ref([])
-getData().then(d => { meta.value = d.meta; champions.value = (d.champions.champions || []); groups.value = d.champions.groups || {}; matches.value = d.matches.matches || [] })
+const refreshing = ref(false)
+const apply = (d) => { if (!d) return; meta.value = d.meta; champions.value = (d.champions.champions || []); groups.value = d.champions.groups || {}; matches.value = d.matches.matches || [] }
+getData().then(apply)
+// 客户端重算:抓 ESPN 完赛 + 浏览器跑引擎 → 刷新显示(打包数据已先秒开)
+async function doRefresh() {
+  if (refreshing.value) return
+  refreshing.value = true
+  try { apply(await refresh()) } finally { refreshing.value = false }
+}
 
 // 真实更新时间(lastUpdate/fetchedAt 是 UTC，转北京时间显示)；meta.date 只是模型数据基准日，不当更新时间用
 const updated = computed(() => {
@@ -92,4 +102,5 @@ const goDetail = (m) => uni.navigateTo({ url: '/pages/match/detail?seq=' + m.seq
 .rk.top { color: #ffcf4a; }
 .prog { height: 10rpx; background: #1f2530; border-radius: 999rpx; margin: 12rpx 0 8rpx; overflow: hidden; }
 .prog-f { height: 100%; background: linear-gradient(90deg,#ffcf4a,#ff9d3d); border-radius: 999rpx; }
+.pill.refresh { border: 1rpx solid rgba(78,161,255,.45); color: #4ea1ff; }
 </style>
