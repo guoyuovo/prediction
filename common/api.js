@@ -1,5 +1,5 @@
-// 数据访问层：优先云端 co-data.getAll()（部署并关联云空间后生效），
-//   失败 / 未关联云空间时回退随 App 打包的静态 JSON（H5 本地零配置可跑）。
+// 数据访问层：优先拉云存储上的 payload.json（CDN，put-payload 上传），
+//   失败 / 未配置时回退随 App 打包的静态 JSON（H5 本地零配置可跑）。
 //   全 App 只取一次（单例缓存），getData/load/getMatch 共用同一份数据。
 import meta from '@/static/data/meta.json'
 import teams from '@/static/data/teams.json'
@@ -11,15 +11,25 @@ import experts from '@/static/data/experts.json'
 
 const BUNDLED = { meta, teams, champions, matches, v2, dual, experts }
 
+// ← 部署后填:put-payload 返回的云存储 payload.json 公网地址。留空则只用打包数据。
+const REMOTE_URL = ''
+
+function uniGet(url) {
+  return new Promise((resolve, reject) => {
+    uni.request({ url, timeout: 8000, success: (r) => resolve(r.data), fail: reject })
+  })
+}
+
 let _cache = null
 function fetchData() {
   if (_cache) return _cache
   _cache = (async () => {
-    try {
-      const co = uniCloud.importObject('co-data', { customUI: true })
-      const res = await co.getAll()
-      if (res && res.code === 0 && res.data && res.data.matches) return res.data
-    } catch (e) { /* 未关联云空间 / 网络失败 → 回退打包数据 */ }
+    if (REMOTE_URL) {
+      try {
+        const d = await uniGet(REMOTE_URL + (REMOTE_URL.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000))
+        if (d && d.matches && d.matches.matches) return d
+      } catch (e) { /* 网络失败 → 回退打包数据 */ }
+    }
     return BUNDLED
   })()
   return _cache

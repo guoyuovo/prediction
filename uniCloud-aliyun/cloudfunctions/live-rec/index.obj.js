@@ -19,24 +19,33 @@ const round = (x) => Math.round(x * 1000) / 1000;
 
 function poisson(lambda, k) { let p = Math.exp(-lambda); for (let i = 1; i <= k; i++) p *= lambda / i; return p; }
 
-// 给定当前比分 + 剩余期望进球，卷积出实时 P(主/平/客) 与 大球概率
-function project(gh, ga, lh, la, ouLine) {
-  const N = 8, ph = [], pa = [];
+// 一次剩余进球卷积，导出全部实时指标：胜平负 / 多档大小球 / 还会进球 / 下个进球 / 终场Top比分 / 预期进球
+function analyze(gh, ga, lh, la) {
+  const N = 10, ph = [], pa = [];
   for (let i = 0; i <= N; i++) { ph[i] = poisson(lh, i); pa[i] = poisson(la, i); }
-  let pH = 0, pD = 0, pA = 0, over = 0, tot = 0;
+  let pH = 0, pD = 0, pA = 0, moreGoals = 0;
+  const scoreProb = {}, totalProb = {};
   for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) {
-    const w = ph[i] * pa[j]; tot += w;
+    const w = ph[i] * pa[j];
     const fh = gh + i, fa = ga + j;
     if (fh > fa) pH += w; else if (fh === fa) pD += w; else pA += w;
-    if (gh + ga + i + j > ouLine) over += w;
+    scoreProb[`${fh}-${fa}`] = (scoreProb[`${fh}-${fa}`] || 0) + w;
+    totalProb[fh + fa] = (totalProb[fh + fa] || 0) + w;
+    if (i + j > 0) moreGoals += w;
   }
-  return { p: [pH / tot, pD / tot, pA / tot], over: over / tot };
-}
-
-function leanLabel(p, over) {
-  const dir = p[0] >= p[1] && p[0] >= p[2] ? '倾向主胜' : (p[2] >= p[1] ? '倾向客胜' : '倾向平局');
-  const ou = over >= 0.5 ? '大球' : '小球';
-  return `${dir}·${ou}`;
+  const overFor = (line) => { let o = 0; for (const t in totalProb) if (+t > line) o += totalProb[t]; return o; };
+  const topScores = Object.entries(scoreProb).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([s, p]) => ({ score: s, p: round(p) }));
+  const nh = (lh + la) > 0 ? lh / (lh + la) : 0.5;
+  const p = [round(pH), round(pD), round(pA)];
+  const ou = [1.5, 2.5, 3.5].map((line) => ({ line, over: round(overFor(line)) }));
+  const lean = `${p[0] >= p[1] && p[0] >= p[2] ? '倾向主胜' : (p[2] >= p[1] ? '倾向客胜' : '倾向平局')}·${overFor(2.5) >= 0.5 ? '大球' : '小球'}`;
+  return {
+    p, ou, lean,
+    moreGoals: round(moreGoals),          // 还会不会再进球
+    nextGoal: [round(nh), round(1 - nh)],  // 下个进球归属(主/客)
+    topScores,                             // 最可能终场比分 Top3
+    expFinal: [round(gh + lh), round(ga + la)], // 两队最终预期进球
+  };
 }
 
 function ymd(s) { return (s || '').slice(0, 10).replace(/-/g, ''); }
@@ -93,25 +102,23 @@ module.exports = {
     const reds = [redOf(homeC), redOf(awayC)];
     const minute = parseInt((ev.status && ev.status.displayClock) || '') || Math.round(((ev.status && ev.status.clock) || 0) / 60);
 
-    // 5) 条件泊松(完场则直接定论)
-    let p, over;
-    if (state === 'post') {
-      p = [gh > ga ? 1 : 0, gh === ga ? 1 : 0, gh < ga ? 1 : 0];
-      over = gh + ga > ouLine ? 1 : 0;
-    } else {
-      const f = Math.max(0, Math.min(1, (90 - minute) / 90));
-      let lh = lh0 * f, la = la0 * f;
-      if (reds[0] > 0) lh *= 0.7;          // 主队少人 → 进攻打折
-      if (reds[1] > 0) la *= 0.7;
-      const r = project(gh, ga, lh, la, ouLine);
-      p = r.p; over = r.over;
-    }
+    // 5) 条件泊松：剩余时间比例 × 赛前 λ（红牌打折），导出全套实时指标
+    const f = state === 'post' ? 0 : Math.max(0, Math.min(1, (90 - minute) / 90));
+    let lh = lh0 * f, la = la0 * f;
+    if (reds[0] > 0) lh *= 0.7;            // 主队少人 → 进攻打折
+    if (reds[1] > 0) la *= 0.7;
+    const a = analyze(gh, ga, lh, la);
 
     const rec = {
       seq, updatedAt: Date.now(), state: state || 'unknown', minute,
       score: [gh, ga], redCards: reds,
-      p: p.map(round), ou: { line: ouLine, over: round(over) },
-      lean: leanLabel(p, over), note: '参考·不改赛前预测',
+      p: a.p,                  // 实时胜平负
+      ou: a.ou,                // 多档大小球 [{line,over}]
+      moreGoals: a.moreGoals,  // 还会再进球的概率
+      nextGoal: a.nextGoal,    // 下个进球归属 [主,客]
+      topScores: a.topScores,  // 最可能终场比分 Top3
+      expFinal: a.expFinal,    // 两队最终预期进球
+      lean: a.lean, note: '参考·不改赛前预测',
     };
 
     // 6) 写缓存(留最新)

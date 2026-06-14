@@ -58,8 +58,7 @@ write('dual.json', {
 const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim());
 write('experts.json', { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt });
 
-// 合并 payload → co-data 云对象目录（部署即可一次返回全部；后续 compute 可改写 DB）
-const CO = join(APP, 'uniCloud-aliyun/cloudfunctions/co-data');
+// 合并全量 payload（供推送上云存储；前端直拉云存储 URL）
 const payload = {
   meta: { date: idx.meta.date, iterations: idx.meta.iterations, teams: idx.meta.teams, dualSummary: dual.meta.summary, fetchedAt: dual.meta.fetchedAt, lastUpdate: new Date().toISOString() },
   teams: { zh: idx.zh, profiles: idx.profiles, teams: idx.teams },
@@ -69,9 +68,8 @@ const payload = {
   dual: { history: dual.history, future: dual.future, backtest: dual.backtest, tune: dual.tune, adjustments: dual.adjustments },
   experts: { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt },
 };
-if (existsSync(CO)) { writeFileSync(join(CO, 'payload.json'), JSON.stringify(payload)); console.log('  ✓ co-data/payload.json'); }
 
-// 可选：推送到 uniCloud put-payload，写入 wc_payload（本地跑完自动上云）。
+// 可选：跑完自动推送到 uniCloud put-payload → 上传云存储。
 //   配环境变量 PUT_PAYLOAD_URL(put-payload 的 URL 化地址) + PUT_SECRET(与云函数一致)即生效。
 if (process.env.PUT_PAYLOAD_URL && process.env.PUT_SECRET) {
   try {
