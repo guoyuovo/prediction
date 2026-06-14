@@ -1,0 +1,16 @@
+{
+  "name": "fetch-jingcai",
+  "dependencies": {},
+  "cloudfunction-config": {
+    "concurrency": 1,
+    "memorySize": 256,
+    "timeout": 60,
+    "triggers": [
+      {
+        "name": "jingcaiDaily",
+        "type": "timer",
+        "config": "0 35 9,15,21 * * * *"
+      }
+    ]
+  }
+}

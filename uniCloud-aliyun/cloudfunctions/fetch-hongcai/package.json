@@ -1,0 +1,16 @@
+{
+  "name": "fetch-hongcai",
+  "dependencies": {},
+  "cloudfunction-config": {
+    "concurrency": 1,
+    "memorySize": 256,
+    "timeout": 30,
+    "triggers": [
+      {
+        "name": "hongcaiDaily",
+        "type": "timer",
+        "config": "0 30 9,15,21 * * * *"
+      }
+    ]
+  }
+}
