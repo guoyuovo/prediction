@@ -55,6 +55,17 @@ function shiftDay(yyyymmdd, delta) {
   return `${dt.getUTCFullYear()}${String(dt.getUTCMonth() + 1).padStart(2, '0')}${String(dt.getUTCDate()).padStart(2, '0')}`;
 }
 const redOf = (c) => (c.statistics || []).reduce((n, s) => n + (/redCard/i.test(s.name) ? (+s.displayValue || 0) : 0), 0);
+const dirOf = (p) => (p[0] >= p[1] && p[0] >= p[2] ? 'H' : (p[2] >= p[1] ? 'A' : 'D'));
+
+// 从云存储拉 payload(取赛前 λ + 完赛结果)。配环境变量 PAYLOAD_URL(同前端 REMOTE_URL)。
+const PAYLOAD_URL = process.env.PAYLOAD_URL || '';
+async function getPayload() {
+  if (!PAYLOAD_URL) return null;
+  try {
+    const r = await uniCloud.httpclient.request(PAYLOAD_URL, { method: 'GET', dataType: 'json', timeout: 10000 });
+    return r.data;
+  } catch (e) { return null; }
+}
 
 module.exports = {
   async get(seq) {
@@ -64,14 +75,11 @@ module.exports = {
       if (c.data && c.data[0] && Date.now() - c.data[0].updatedAt < TTL) return { code: 0, cached: true, data: c.data[0] };
     } catch (e) { /* 集合不存在则继续 */ }
 
-    // 2) 读 wc_payload 取该场赛前 λ
-    let match = null;
-    try {
-      const r = await db.collection('wc_payload').orderBy('updatedAt', 'desc').limit(1).get();
-      const ms = (r.data && r.data[0] && r.data[0].payload.matches.matches) || [];
-      match = ms.find((m) => String(m.seq) === String(seq));
-    } catch (e) {}
-    if (!match) return { code: 1, msg: 'payload 无此场，先在本地跑一次 daily 推上来' };
+    // 2) 从云存储 payload 取该场赛前 λ
+    const payload = await getPayload();
+    const ms = (payload && payload.matches && payload.matches.matches) || [];
+    const match = ms.find((m) => String(m.seq) === String(seq));
+    if (!match) return { code: 1, msg: 'payload 未就绪(配置 PAYLOAD_URL)或无此场' };
     const [lh0, la0] = String(match.eg || '0-0').split('-').map(Number);
     const ouLine = (match.ou && match.ou.line) != null ? match.ou.line : 2.5;
 
@@ -127,6 +135,55 @@ module.exports = {
       await db.collection('wc_live_cache').where({ seq, updatedAt: dbCmd.lt(rec.updatedAt) }).remove();
     } catch (e) {}
 
+    // 7) 入库:仅在比赛进行中(state='in')记录推荐快照,供事后核算胜率
+    if (state === 'in') {
+      try {
+        await db.collection('wc_live_log').add({
+          seq, minute, ts: rec.updatedAt, score: rec.score,
+          p: rec.p, dir: dirOf(rec.p),
+          over25: (a.ou.find((o) => o.line === 2.5) || {}).over,
+        });
+      } catch (e) {}
+    }
+
     return { code: 0, cached: false, data: rec };
+  },
+
+  // 滚球推荐胜率核算:把已完赛场次的历史推荐快照 vs 实际结果对账
+  async stats() {
+    const payload = await getPayload();
+    const ms = (payload && payload.matches && payload.matches.matches) || [];
+    const res = {};
+    for (const m of ms) if (m.result) res[m.seq] = { dir: m.result.r, total: (m.result.hs || 0) + (m.result.as || 0) };
+    const finishedSeqs = Object.keys(res).map(Number);
+    if (!finishedSeqs.length) return { code: 0, samples: 0, msg: '暂无已完赛场次' };
+
+    let logs = [];
+    try {
+      const r = await db.collection('wc_live_log').where({ seq: dbCmd.in(finishedSeqs) }).limit(1000).get();
+      logs = r.data || [];
+    } catch (e) {}
+
+    let n = 0, dirHit = 0, ouHit = 0, brier = 0;
+    const phase = { '0-30': { n: 0, h: 0 }, '30-60': { n: 0, h: 0 }, '60-90': { n: 0, h: 0 } };
+    for (const L of logs) {
+      const r = res[L.seq]; if (!r) continue;
+      n++;
+      const dh = L.dir === r.dir; if (dh) dirHit++;
+      const overPred = (L.over25 || 0) >= 0.5, overAct = r.total > 2.5;
+      if (overPred === overAct) ouHit++;
+      const act = [r.dir === 'H' ? 1 : 0, r.dir === 'D' ? 1 : 0, r.dir === 'A' ? 1 : 0];
+      brier += (L.p || [0, 0, 0]).reduce((s, pi, i) => s + (pi - act[i]) ** 2, 0);
+      const ph = L.minute < 30 ? '0-30' : L.minute < 60 ? '30-60' : '60-90';
+      phase[ph].n++; if (dh) phase[ph].h++;
+    }
+    const round = (x) => Math.round(x * 1000) / 1000;
+    return {
+      code: 0, samples: n,
+      dirHitRate: n ? round(dirHit / n) : null,   // 胜平负方向命中率
+      ouHitRate: n ? round(ouHit / n) : null,      // 大小球(2.5)命中率
+      brierAvg: n ? round(brier / n) : null,       // 越低越好(三路盲猜≈0.667)
+      byPhase: phase,                              // 按比赛阶段分桶(越早越难)
+    };
   },
 };
