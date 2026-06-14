@@ -1,0 +1,48 @@
+name: refresh-data
+
+# 定时刷新比赛结果/预测：跑 engine 一条龙 → 提交回仓库。
+#   注意：GH runner 在境外 → ESPN/eloratings(结果·Elo·天气)抓得到；
+#   Titan007 赔率、网易红彩(国内源)大概率被 WAF 拦，daily 容错跳过、用上次的值。
+on:
+  schedule:
+    - cron: '0 */3 * * *'        # 每 3 小时(UTC)。GH 定时为尽力而为，可能延迟数分钟。
+  workflow_dispatch: {}           # 也可在 Actions 页手动触发
+
+permissions:
+  contents: write                 # 允许用内置 GITHUB_TOKEN 推回数据
+
+concurrency:                      # 防止两次刷新叠加
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 跑一条龙(抓+算+导出)
+        working-directory: engine
+        run: node scripts/daily.mjs
+
+      - name: 提交刷新后的数据(含 odds-history 累积)
+        run: |
+          git config user.name  "gh-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add static/data engine/data uniCloud-aliyun/cloudfunctions/co-data/payload.json
+          git diff --cached --quiet || git commit -m "auto: refresh data [skip ci]"
+          git push
+
+      # ── 可选：推送到国内 OSS 供前端读(中国用户用，需配 Secrets) ──
+      # - name: 同步到阿里云 OSS
+      #   env:
+      #     OSS_KEY:    ${{ secrets.OSS_ACCESS_KEY_ID }}
+      #     OSS_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+      #   run: |
+      #     curl -s https://gosspublic.alicdn.com/ossutil/install.sh | bash
+      #     ossutil config -e oss-cn-hangzhou.aliyuncs.com -i "$OSS_KEY" -k "$OSS_SECRET"
+      #     ossutil cp -rf static/data/ oss://your-bucket/data/

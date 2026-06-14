@@ -67,4 +67,17 @@ const payload = {
 };
 if (existsSync(CO)) { writeFileSync(join(CO, 'payload.json'), JSON.stringify(payload)); console.log('  ✓ co-data/payload.json'); }
 
+// 可选：推送到 uniCloud put-payload，写入 wc_payload（本地跑完自动上云）。
+//   配环境变量 PUT_PAYLOAD_URL(put-payload 的 URL 化地址) + PUT_SECRET(与云函数一致)即生效。
+if (process.env.PUT_PAYLOAD_URL && process.env.PUT_SECRET) {
+  try {
+    const res = await fetch(process.env.PUT_PAYLOAD_URL, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ secret: process.env.PUT_SECRET, payload }),
+    });
+    console.log(`  ✓ 推送 put-payload → wc_payload (HTTP ${res.status})`);
+  } catch (e) { console.log(`  ⚠ 推送 put-payload 失败(忽略，本地数据已生成)：${e.message}`); }
+}
+
 console.log(`✓ 导出完成（${idx.matches.length} 场 · ${(idx.v2 && idx.v2.champions || idx.champions).length} 队 · ${(experts.plans || []).length} 专家方案）`);

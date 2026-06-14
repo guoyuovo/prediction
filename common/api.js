@@ -40,5 +40,16 @@ export async function getExperts(home, away) {
   return (d.experts.plans || []).filter(p => p.home === home && p.away === away)
 }
 
+// 滚球实时推荐(手动触发):点击某场 → 调云端 live-rec.get(seq)。
+//   未关联云空间/失败时返回 null,前端按"暂不可用"处理。仅作参考,不改赛前预测。
+export async function getLive(seq) {
+  try {
+    const co = uniCloud.importObject('live-rec', { customUI: true })
+    const res = await co.get(seq)
+    if (res && res.code === 0) return res.data
+    return null
+  } catch (e) { return null }
+}
+
 export const zh = teams.zh
 export const nm = (t) => (teams.zh && teams.zh[t]) || t

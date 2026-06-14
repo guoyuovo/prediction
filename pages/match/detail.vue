@@ -19,6 +19,29 @@
       <text v-if="m.venue" class="tiny" style="margin-top:12rpx;display:block">📍 {{ m.venue }}<text v-if="m.wx"> · 🌤 {{ m.wx.tmax }}°/{{ m.wx.tmin }}° 风{{ m.wx.wind }}</text></text>
     </view>
 
+    <!-- 🔴 滚球实时参考(手动触发,仅未完赛场次) -->
+    <view class="card" v-if="!m.result">
+      <view class="between">
+        <text class="sec-h" style="margin:0">🔴 实时参考<text class="tiny" style="color:#7c8597;margin-left:10rpx">滚球 · 仅供参考</text></text>
+        <text class="livebtn" @click="loadLive">{{ liveLoading ? '加载中…' : (live ? '刷新' : '查看实时推荐') }}</text>
+      </view>
+      <view v-if="live" style="margin-top:16rpx">
+        <view class="between" style="margin-bottom:10rpx">
+          <text class="strong" v-if="live.state==='in'">第 {{ live.minute }}′ · 实时 {{ live.score[0] }}-{{ live.score[1] }}</text>
+          <text class="strong" v-else-if="live.state==='post'">已完场 {{ live.score[0] }}-{{ live.score[1] }}</text>
+          <text class="strong" v-else>尚未开赛 · 赛前基线</text>
+          <text v-if="live.redCards[0]||live.redCards[1]" class="tiny" style="color:#ff6470">🟥 主{{ live.redCards[0] }} 客{{ live.redCards[1] }}</text>
+        </view>
+        <triple-bar :p="live.p" />
+        <view class="between" style="margin-top:10rpx">
+          <text class="small">实时 主 {{ pct(live.p[0]) }} · 平 {{ pct(live.p[1]) }} · 客 {{ pct(live.p[2]) }}</text>
+          <text style="font-weight:700;color:#ffcf4a">{{ live.lean }}</text>
+        </view>
+        <text class="tiny" style="display:block;margin-top:8rpx;color:#7c8597">大球({{ live.ou.line }}) {{ pct(live.ou.over) }} · {{ live.note }}</text>
+      </view>
+      <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">暂不可用（未开赛 / 未关联云空间）。</text>
+    </view>
+
     <!-- 完赛实况 -->
     <view class="card" v-if="m.result">
       <view class="sec-h">完赛实况</view>
@@ -115,13 +138,20 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { getData, nm } from '@/common/api.js'
+import { getData, getLive, nm } from '@/common/api.js'
 import { pct, dirZh, dirColor } from '@/common/format.js'
 import { flag } from '@/common/flags.js'
 import tripleBar from '@/components/triple-bar.vue'
 import predBadge from '@/components/pred-badge.vue'
 
 const m = ref(null), dm = ref(null), plans = ref([])
+const live = ref(null), liveLoading = ref(false), liveTried = ref(false)
+async function loadLive() {
+  if (liveLoading.value || !m.value) return
+  liveLoading.value = true; liveTried.value = true
+  live.value = await getLive(m.value.seq)
+  liveLoading.value = false
+}
 onLoad((q) => {
   getData().then(d => {
     const match = (d.matches.matches || []).find(x => String(x.seq) === String(q.seq)); m.value = match
@@ -159,4 +189,5 @@ const goExpert = (p) => uni.navigateTo({ url: '/pages/expert/detail?threadId=' +
 .sg { flex: 1; text-align: center; }
 .sg .sv { display: block; font-size: 30rpx; font-weight: 800; }
 .sg .sl { font-size: 20rpx; color: #7c8597; }
+.livebtn { font-size: 24rpx; font-weight: 700; color: #5aa9ff; padding: 8rpx 20rpx; border: 1rpx solid rgba(90,169,255,.4); border-radius: 999rpx; }
 </style>
