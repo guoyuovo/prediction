@@ -3,6 +3,10 @@ name: refresh-data
 # 定时刷新：engine 一条龙 → 提交 static/data/payload.json → App 经 REMOTE_URL 直拉，零云函数。
 #   GH runner 在境外 → ESPN/eloratings 可抓；Titan007/红彩 可能被 WAF 拦，沿用上次数值。
 on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/refresh.yml'
   schedule:
     - cron: '0 */3 * * *'        # 每 3 小时(UTC)
   workflow_dispatch: {}
@@ -19,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - uses: actions/setup-node@v4
         with:
