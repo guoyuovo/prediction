@@ -38,7 +38,10 @@ jobs:
         run: |
           git config user.name  "gh-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add static/data/payload.json
+          # 同步提交：App 数据 + 引擎中间数据(回测/滚动Elo/赔率等) + 自动校准后的配置(liveMult)
+          # 这样仓库与线上一致，本地回测用最新数据，且赛果驱动平局校准能逐日累积收敛。
+          # engine/data 中的大文件/瞬时文件已在 .gitignore 排除。
+          git add static/data/payload.json engine/data engine/config/model.json
           git diff --cached --quiet || git commit -m "auto: refresh data [skip ci]"
           git push
 
