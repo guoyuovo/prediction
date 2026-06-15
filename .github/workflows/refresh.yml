@@ -8,7 +8,7 @@ on:
     paths:
       - '.github/workflows/refresh.yml'
   schedule:
-    - cron: '0 */3 * * *'        # 每 3 小时(UTC)
+    - cron: '0 * * * *'          # 每 1 小时(UTC)
   workflow_dispatch: {}
 
 permissions:
