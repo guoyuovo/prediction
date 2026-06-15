@@ -41,4 +41,4 @@ console.log(`✓ 更新 ${updated}/${Object.keys(file.teams).length} 队官方 E
 if (missing.length) console.log('  ⚠ 未匹配（保留原值）：' + missing.join(', '));
 const top = Object.entries(file.teams).sort((a, b) => b[1].elo - a[1].elo).slice(0, 6);
 console.log('  TOP6：' + top.map(([k, v]) => k + ' ' + v.elo).join(' · '));
-console.log('  下一步：node scripts/calibrate.mjs --apply（可选，重新校准）; node scripts/build-html.mjs');
+console.log('  下一步：node scripts/build-html.mjs');

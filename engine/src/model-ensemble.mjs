@@ -45,7 +45,7 @@ function eloSubmodel(H, A, opts) {
   if (HOSTS.has(A.name) && !HOSTS.has(H.name)) d -= CFG.elo.hostBonus;
   // 显式指定主场（如 --neutral false）时额外 +100
   if (opts.neutral === false) d += CFG.elo.homeBonus;
-  // Elo 差尺度校准（calibrate.mjs 拟合所得；默认 1 = 不变）
+  // Elo 差尺度校准（config 历史标定值；默认 1 = 不变）
   d *= CFG.elo.diffScale ?? 1;
 
   // E = 1/(1+10^(-d/400)) ≡ sigmoid(d/400 · ln10)

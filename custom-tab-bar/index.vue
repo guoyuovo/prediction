@@ -46,7 +46,7 @@ export default {
   right: 0;
   z-index: 999;
   display: flex;
-  height: calc(108rpx + env(safe-area-inset-bottom));
+  height: calc(124rpx + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
   background: #181b22;
   border-top: 1rpx solid #252b38;
@@ -59,9 +59,9 @@ export default {
   padding: 16rpx 0 10rpx;
 }
 .tab-text {
-  font-size: 32rpx;
+  font-size: 40rpx;
   color: #8b93a1;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
 }
 .tab-item.on .tab-text {
