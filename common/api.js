@@ -21,7 +21,7 @@ const BUNDLED = { meta, teams, champions, matches, v2, dual, experts }
 
 // HTTP 数据源。GitHub Actions 更新后填 jsDelivr 地址；留空则用打包数据。
 // 示例（GitHub master 分支）：https://cdn.jsdelivr.net/gh/OWNER/REPO@master/static/data/payload.json
-const REMOTE_URL = ''
+const REMOTE_URL = 'https://cdn.jsdelivr.net/gh/guoyuovo/prediction@master/static/data/payload.json'
 
 /**
  * @param {object|null} data
