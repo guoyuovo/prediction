@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 12,
-    "accuracy1X2": 0.5,
-    "brierAvg": 0.582,
-    "loglossAvg": 0.967,
-    "scoreHit": 0.167,
-    "dirHit": 0.5,
+    "matches": 13,
+    "accuracy1X2": 0.462,
+    "brierAvg": 0.627,
+    "loglossAvg": 1.025,
+    "scoreHit": 0.154,
+    "dirHit": 0.462,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "matches": [
@@ -308,6 +308,31 @@
       "eloHomeAfter": 1785.7,
       "eloAwayBefore": 1585,
       "eloAwayAfter": 1554.3
+    },
+    {
+      "et": "2026-06-15T13:00:00-04:00",
+      "group": "H",
+      "home": "Spain",
+      "away": "Cape Verde",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.693,
+      "pDraw": 0.18,
+      "pAway": 0.127,
+      "predScore": "3-0",
+      "scoreHit": false,
+      "brier": 1.169,
+      "logloss": 1.715,
+      "homeAdv": false,
+      "eloDelta": -27.9,
+      "eloHomeBefore": 2157,
+      "eloHomeAfter": 2129.1,
+      "eloAwayBefore": 1578,
+      "eloAwayAfter": 1605.9
     }
   ],
   "eloChanges": [
@@ -334,6 +359,12 @@
       "before": 1755,
       "after": 1785.7,
       "delta": 30.7
+    },
+    {
+      "team": "Cape Verde",
+      "before": 1578,
+      "after": 1605.9,
+      "delta": 27.9
     },
     {
       "team": "Qatar",
@@ -430,6 +461,12 @@
       "before": 1865,
       "after": 1840,
       "delta": -25
+    },
+    {
+      "team": "Spain",
+      "before": 2157,
+      "after": 2129.1,
+      "delta": -27.9
     },
     {
       "team": "Tunisia",
@@ -540,6 +577,13 @@
       "label": "Sweden-Tunisia",
       "accCum": 0.5,
       "brierCum": 0.582
+    },
+    {
+      "i": 13,
+      "et": "2026-06-15T13:00:00-04:00",
+      "label": "Spain-Cape Verde",
+      "accCum": 0.462,
+      "brierCum": 0.627
     }
   ],
   "calibration": [
@@ -560,9 +604,9 @@
     },
     {
       "range": "65–101%",
-      "n": 2,
-      "hitRate": 1
+      "n": 3,
+      "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-15T17:46:54.525Z"
+  "builtAt": "2026-06-15T18:02:21.230Z"
 }

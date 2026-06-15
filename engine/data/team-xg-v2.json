@@ -1,13 +1,13 @@
 {
   "_note": "xG-v2：team-xg.json 起点 + 已完赛 shot-based xG（0.30·射正+0.05·射偏）EWMA(K=0.2) 滚动更新 att/def。仅参赛且有射门数据的队变动；其余沿用基础值。",
   "_source": "ESPN 射门统计（data/wc-results.json stats）",
-  "builtAt": "2026-06-15T17:46:54.559Z",
-  "applied": 12,
+  "builtAt": "2026-06-15T18:02:21.269Z",
+  "applied": 13,
   "skipped": 0,
   "teams": {
     "Spain": {
-      "att": 2.4,
-      "def": 0.61
+      "att": 2.6,
+      "def": 0.5971603053435115
     },
     "Argentina": {
       "att": 2.4,
@@ -182,8 +182,8 @@
       "def": 1.19
     },
     "Cape Verde": {
-      "att": 1.31,
-      "def": 1.18
+      "att": 1.282426229508197,
+      "def": 1.2798333333333332
     },
     "New Zealand": {
       "att": 1.73,
@@ -199,6 +199,17 @@
     }
   },
   "changes": [
+    {
+      "team": "Spain",
+      "att": [
+        2.4,
+        2.6
+      ],
+      "def": [
+        0.61,
+        0.597
+      ]
+    },
     {
       "team": "Brazil",
       "att": [
@@ -439,6 +450,17 @@
       "def": [
         1.03,
         1.09
+      ]
+    },
+    {
+      "team": "Cape Verde",
+      "att": [
+        1.31,
+        1.282
+      ],
+      "def": [
+        1.18,
+        1.28
       ]
     },
     {
