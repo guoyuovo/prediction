@@ -58,7 +58,7 @@ write('dual.json', {
 const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim());
 write('experts.json', { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt });
 
-// 合并全量 payload（供推送上云存储；前端直拉云存储 URL）
+// 合并全量 payload（供 REMOTE_URL / put-payload 推送；与 static/data/*.json 同源）
 const payload = {
   meta: { date: idx.meta.date, iterations: idx.meta.iterations, teams: idx.meta.teams, dualSummary: dual.meta.summary, fetchedAt: dual.meta.fetchedAt, lastUpdate: new Date().toISOString() },
   teams: { zh: idx.zh, profiles: idx.profiles, teams: idx.teams },
@@ -68,6 +68,7 @@ const payload = {
   dual: { history: dual.history, future: dual.future, backtest: dual.backtest, tune: dual.tune, adjustments: dual.adjustments },
   experts: { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt },
 };
+write('payload.json', payload);
 
 // 可选：跑完自动推送到 uniCloud put-payload → 上传云存储。
 //   配环境变量 PUT_PAYLOAD_URL(put-payload 的 URL 化地址) + PUT_SECRET(与云函数一致)即生效。

@@ -68,13 +68,21 @@ function shiftDay(yyyymmdd, delta) {
 const redOf = (c) => (c.statistics || []).reduce((n, s) => n + (/redCard/i.test(s.name) ? (+s.displayValue || 0) : 0), 0);
 const dirOf = (p) => (p[0] >= p[1] && p[0] >= p[2] ? 'H' : (p[2] >= p[1] ? 'A' : 'D'));
 
-// 从云存储拉 payload(取赛前 λ + 完赛结果)。配环境变量 PAYLOAD_URL(同前端 REMOTE_URL)。
-// 前端 hint 为回退：未配 PAYLOAD_URL 时直接用页面已有场次数据。
+// 从云存储拉 payload。优先环境变量 PAYLOAD_URL；否则读 wc_config（put-payload 自动写入）。
 const PAYLOAD_URL = process.env.PAYLOAD_URL || '';
-async function getPayload() {
-  if (!PAYLOAD_URL) return null;
+const CONFIG_ID = 'payload';
+async function getPayloadUrl() {
+  if (PAYLOAD_URL) return PAYLOAD_URL;
   try {
-    const r = await uniCloud.httpclient.request(PAYLOAD_URL, { method: 'GET', dataType: 'json', timeout: 10000 });
+    const cfg = await db.collection('wc_config').doc(CONFIG_ID).get();
+    return (cfg.data && cfg.data.url) || '';
+  } catch (e) { return ''; }
+}
+async function getPayload() {
+  const url = await getPayloadUrl();
+  if (!url) return null;
+  try {
+    const r = await uniCloud.httpclient.request(url, { method: 'GET', dataType: 'json', timeout: 10000 });
     return r.data;
   } catch (e) { return null; }
 }

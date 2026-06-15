@@ -264,7 +264,7 @@ export function preMatchBaseline(match) {
     score: [0, 0],
     redCards: [0, 0],
     a,
-    note: '赛前基线（ESPN/云端均不可用）·参考·不改赛前预测',
+    note: '赛前基线（ESPN 不可用）·参考·不改赛前预测',
   })
 }
 

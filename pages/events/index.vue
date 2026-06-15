@@ -74,11 +74,19 @@ const meta = ref({}), champions = ref([]), groups = ref({}), matches = ref([])
 const refreshing = ref(false)
 const apply = (d) => { if (!d) return; meta.value = d.meta; champions.value = (d.champions.champions || []); groups.value = d.champions.groups || {}; matches.value = d.matches.matches || [] }
 getData().then(apply)
-// 客户端重算:抓 ESPN 完赛 + 浏览器跑引擎 → 刷新显示(打包数据已先秒开)
+// 浏览器本地重算（ESPN + 引擎）；不推云，全员同步靠本机 build-app-payload 推 REMOTE_URL
 async function doRefresh() {
   if (refreshing.value) return
   refreshing.value = true
-  try { apply(await refresh()) } finally { refreshing.value = false }
+  try {
+    const d = await refresh()
+    if (!d) {
+      uni.showToast({ title: '更新失败', icon: 'none' })
+      return
+    }
+    apply(d)
+    uni.showToast({ title: '已更新（仅本页）', icon: 'success' })
+  } finally { refreshing.value = false }
 }
 
 // 真实更新时间(lastUpdate/fetchedAt 是 UTC，转北京时间显示)；meta.date 只是模型数据基准日，不当更新时间用
