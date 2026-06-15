@@ -8,7 +8,7 @@ on:
     paths:
       - '.github/workflows/refresh.yml'
   schedule:
-    - cron: '15,45 * * * *'    # 每小时 UTC 第 15、45 分（北京 = UTC+8，如 08:15/08:45）
+    - cron: '7,37 * * * *'    # 每小时 UTC 第 7、37 分（避开整点拥堵；北京 = UTC+8，如 08:07/08:37）
   workflow_dispatch: {}
 
 permissions:
