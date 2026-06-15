@@ -27,6 +27,7 @@ function readExport(jsonName, htmlName) {
 const idx = readExport('index-data.json', 'index.html');
 const dual = readExport('dual-data.json', 'dual.html');
 const experts = (() => { try { return loadJson('data/expert-plans.json'); } catch { return { plans: [] }; } })();
+const health = (() => { try { return loadJson('data/run-health.json'); } catch { return null; } })();
 
 // 完赛场：合并 v2 赛前样本外预测
 const comp = {};
@@ -51,6 +52,7 @@ const payload = {
     dualSummary: dual.meta.summary,
     fetchedAt: dual.meta.fetchedAt,
     lastUpdate: new Date().toISOString(),
+    health: health ? { failed: health.failed || [], at: health.at } : null,
   },
   teams: { zh: idx.zh, profiles: idx.profiles, teams: idx.teams },
   champions: {

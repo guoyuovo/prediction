@@ -3,10 +3,12 @@
 // 用法：node scripts/daily.mjs   或   npm run daily
 
 import { execSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const DIR = dirname(fileURLToPath(import.meta.url));
+const HEALTH_FILE = join(DIR, '..', 'data', 'run-health.json');
 const STEPS = [
   ['赛前·场地海拔(一次性)', 'fetch-elevation.mjs'],
   ['赛前·官方真实 Elo', 'fetch-elo-official.mjs'],
@@ -45,6 +47,15 @@ for (const [label, script] of STEPS) {
     console.log(` ✗ ${msg}`);
     results.push({ label, ok: false, msg });
   }
+  // 增量写健康度：最后的 build-app-payload 步骤会读它，把"哪几步失败"带进 payload.meta.health
+  try {
+    writeFileSync(HEALTH_FILE, JSON.stringify({
+      at: new Date().toISOString(),
+      failed: results.filter((r) => !r.ok).map((r) => r.label),
+      ok: results.filter((r) => r.ok).length,
+      total: STEPS.length,
+    }));
+  } catch { /* 写健康度失败不影响主流程 */ }
 }
 
 const ok = results.filter((r) => r.ok).length;

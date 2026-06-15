@@ -2,9 +2,10 @@
   <view class="wrap">
     <view class="hero">
       <view class="between"><text class="t">2026 世界杯</text>
-        <text class="pill">{{ updated }}</text>
+        <text class="pill" :class="{ warn: stale }">{{ updated }}{{ stale ? ' · 偏旧' : '' }}</text>
       </view>
       <text class="s">v2 滚动模型 · 双模型共同推断 · 透明回测</text>
+      <text v-if="degraded" class="degraded">⚠ 上次更新有数据源未刷新（{{ health.failed.join('、') }}），相关数值沿用上次</text>
     </view>
 
     <view class="seg">
@@ -79,13 +80,20 @@ const apply = (d) => { if (!d) return; meta.value = d.meta; champions.value = (d
 getData().then(apply)
 
 // 真实更新时间(lastUpdate/fetchedAt 是 UTC，转北京时间显示)；meta.date 只是模型数据基准日，不当更新时间用
+const updatedIso = computed(() => meta.value.lastUpdate || meta.value.fetchedAt || null)
 const updated = computed(() => {
-  const iso = meta.value.lastUpdate || meta.value.fetchedAt
-  if (!iso) return meta.value.date || ''
-  const d = new Date(new Date(iso).getTime() + 8 * 3600000)
+  if (!updatedIso.value) return meta.value.date || ''
+  const d = new Date(new Date(updatedIso.value).getTime() + 8 * 3600000)
   const p = n => String(n).padStart(2, '0')
   return `${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())} ${p(d.getUTCHours())}:${p(d.getUTCMinutes())}`
 })
+// 正常每小时刷新一次，>90 分钟未更新视为偏旧（定时未触发/抓取失败时给用户明确提示）
+const stale = computed(() => {
+  if (!updatedIso.value) return false
+  return (Date.now() - new Date(updatedIso.value).getTime()) / 60000 > 90
+})
+const health = computed(() => meta.value.health || null)
+const degraded = computed(() => !!(health.value && health.value.failed && health.value.failed.length))
 const upcoming = computed(() => matches.value.filter(m => !m.result).sort((a, b) => a.seq - b.seq))
 const history = computed(() => matches.value.filter(m => m.result).sort((a, b) => b.seq - a.seq))
 const maxChamp = computed(() => Math.max(...champions.value.map(c => c.champion), 0.01))
@@ -93,6 +101,8 @@ const goDetail = (m) => uni.navigateTo({ url: '/pages/match/detail?seq=' + m.seq
 </script>
 
 <style scoped>
+.pill.warn { background: rgba(255,159,67,.16); color: #ff9f43; }
+.degraded { display: block; margin-top: 12rpx; font-size: 21rpx; color: #ff9f43; }
 .lead { font-size: 23rpx; color: #7c8597; margin: 4rpx 4rpx 16rpx; }
 .foldhead { display: flex; align-items: center; justify-content: space-between; padding: 24rpx; margin: 8rpx 0 20rpx; background: #14171f; border: 1rpx solid #252b38; border-radius: 18rpx; }
 .rk { width: 48rpx; font-size: 26rpx; color: #7c8597; font-weight: 700; text-align: center; }
