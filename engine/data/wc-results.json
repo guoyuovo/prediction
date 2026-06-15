@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-15T02:25:12.775Z",
-  "count": 11,
+  "_fetchedAt": "2026-06-15T11:06:20.585Z",
+  "count": 12,
   "results": [
     {
       "date": "2026-06-11",
@@ -491,12 +491,12 @@
         "home": {
           "shots": 15,
           "sot": 4,
-          "poss": 48.3
+          "poss": 48.4
         },
         "away": {
           "shots": 12,
           "sot": 1,
-          "poss": 51.7
+          "poss": 51.6
         }
       },
       "goals": [
@@ -510,6 +510,75 @@
       ],
       "status": "Full Time",
       "espnId": "760423"
+    },
+    {
+      "date": "2026-06-14",
+      "et": "2026-06-14T22:00:00-04:00",
+      "group": "F",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "hs": 5,
+      "as": 1,
+      "htHome": 2,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 13,
+          "sot": 7,
+          "poss": 48.7
+        },
+        "away": {
+          "shots": 6,
+          "sot": 2,
+          "poss": 51.3
+        }
+      },
+      "goals": [
+        {
+          "min": "7'",
+          "scorer": "Yasin Ayari",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "30'",
+          "scorer": "Alexander Isak",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "43'",
+          "scorer": "Omar Rekik",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "59'",
+          "scorer": "Viktor Gyökeres",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "84'",
+          "scorer": "Mattias Svanberg",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+6'",
+          "scorer": "Yasin Ayari",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760424"
     }
   ]
 }
