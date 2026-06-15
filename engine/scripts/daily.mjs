@@ -19,6 +19,7 @@ const STEPS = [
   ['赛后·完赛比分+射门', 'fetch-results.mjs'],
   ['赛后·滚动 Elo + live 校准', 'build-elo-v2.mjs'],
   ['赛后·滚动 xG 攻防', 'build-xg-v2.mjs'],
+  ['赛后·按赛果校准平局乘子(样本足够才生效)', 'calibrate-live.mjs'],
   ['重算·72 场批量预测', 'batch-predict.mjs'],
   ['赛后·专家方案(网易红彩)', 'fetch-hongcai.mjs'],
   ['导出·主看板 JSON', 'build-html.mjs --json-only'],

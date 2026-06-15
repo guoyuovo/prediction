@@ -42,6 +42,12 @@ jobs:
           git diff --cached --quiet || git commit -m "auto: refresh data [skip ci]"
           git push
 
+      - name: 刷新 jsDelivr CDN 缓存（否则 App 最长 12h 拿到旧 payload）
+        run: |
+          curl -sf "https://purge.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref_name }}/static/data/payload.json" \
+            && echo "✓ jsDelivr 缓存已刷新" \
+            || echo "⚠ purge 请求失败（数据已提交，缓存最长 12h 后自动过期）"
+
       - name: REMOTE_URL 参考
         run: |
           echo "GitHub jsDelivr（填到 common/api.js REMOTE_URL）："

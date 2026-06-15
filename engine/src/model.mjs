@@ -81,6 +81,14 @@ export function predictMatch(home, away, opts = {}) {
     pAway = (1 - f) * pAway + f * market.a;
   }
 
+  // --- live 校准：赛果驱动的平局乘子（calibrate-live.mjs 按真实赛果标定，默认 1 不改动）---
+  const dm = CFG.draw.liveMult ?? 1;
+  if (dm !== 1) {
+    const nd = clamp(pDraw * dm, 0.02, 0.92);
+    const k = (1 - nd) / (1 - pDraw);
+    pDraw = nd; pHome *= k; pAway *= k;
+  }
+
   // --- 比分（Dixon-Coles 双变量泊松，最大化波胆命中）---
   const sc = CFG.scoreline;
   const { lambdaH, lambdaA } = goalLambdas(H, A, homeAdv, opts.goalScale || 1);
