@@ -62,15 +62,29 @@ export async function getExperts(home, away) {
   return (d.experts.plans || []).filter(p => p.home === home && p.away === away)
 }
 
-// 滚球实时推荐(手动触发):点击某场 → 调云端 live-rec.get(seq)。
-//   未关联云空间/失败时返回 null,前端按"暂不可用"处理。仅作参考,不改赛前预测。
-export async function getLive(seq) {
+// 滚球实时推荐(手动触发):点击某场 → 调云端 live-rec.get(seq, hint)。
+//   云端失败时 H5 直连 ESPN；仍失败才回退赛前基线。
+export async function getLive(seq, match) {
+  const { preMatchBaseline, liveHint, fetchLiveFromEspn } = await import('@/common/live.js')
+  const hint = liveHint(match)
   try {
     const co = uniCloud.importObject('live-rec', { customUI: true })
-    const res = await co.get(seq)
-    if (res && res.code === 0) return res.data
-    return null
-  } catch (e) { return null }
+    const res = await co.get(seq, hint)
+    if (res && res.code === 0) return { data: res.data, error: null }
+  } catch (e) { /* 云端不可用 → 走 ESPN 客户端 */ }
+
+  try {
+    const fromEspn = await fetchLiveFromEspn(match)
+    if (fromEspn) return { data: fromEspn, error: null }
+  } catch (e) { /* ESPN 失败 → 赛前基线 */ }
+
+  if (match && match.eg) {
+    return {
+      data: preMatchBaseline(match),
+      error: '云端与 ESPN 均不可用，以下为赛前基线',
+    }
+  }
+  return { data: null, error: '无法获取实时数据' }
 }
 
 export const zh = teams.zh

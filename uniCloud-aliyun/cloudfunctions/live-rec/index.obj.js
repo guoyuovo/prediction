@@ -7,14 +7,25 @@ const dbCmd = db.command;
 const TTL = 60 * 1000;
 const ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=';
 
-// ESPN 队名 → 本项目规范名(与 fetch-results 一致，含 Türkiye 修复)
+// ESPN 队名 → 本项目规范名(与 fetch-results 一致)
 const ESPN2CANON = {
-  'Türkiye': 'Turkey', 'Turkiye': 'Turkey', 'United States': 'USA', 'IR Iran': 'Iran',
-  'Korea Republic': 'South Korea', 'Czech Republic': 'Czechia', 'Ivory Coast': "Cote d'Ivoire",
-  "Côte d'Ivoire": "Cote d'Ivoire", 'Curaçao': 'Curacao', 'Cabo Verde': 'Cape Verde',
-  'Congo DR': 'DR Congo', 'Bosnia and Herzegovina': 'Bosnia',
+  'United States': 'USA', USA: 'USA',
+  'Bosnia-Herzegovina': 'Bosnia', 'Bosnia and Herzegovina': 'Bosnia', 'Bosnia & Herzegovina': 'Bosnia',
+  'Czech Republic': 'Czechia', Czechia: 'Czechia',
+  "Côte d'Ivoire": "Cote d'Ivoire", 'Ivory Coast': "Cote d'Ivoire",
+  'DR Congo': 'DR Congo', 'Congo DR': 'DR Congo',
+  'Curaçao': 'Curacao', 'Cape Verde Islands': 'Cape Verde', 'Cabo Verde': 'Cape Verde',
+  'IR Iran': 'Iran', 'Korea Republic': 'South Korea',
+  'Türkiye': 'Turkey', Turkiye: 'Turkey',
 };
-const canon = (n) => ESPN2CANON[n] || n;
+const stripAccents = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const canon = (n) => {
+  if (!n) return n;
+  if (ESPN2CANON[n]) return ESPN2CANON[n];
+  const a = stripAccents(n);
+  for (const [k, v] of Object.entries(ESPN2CANON)) if (stripAccents(k) === a) return v;
+  return n;
+};
 const round = (x) => Math.round(x * 1000) / 1000;
 
 function poisson(lambda, k) { let p = Math.exp(-lambda); for (let i = 1; i <= k; i++) p *= lambda / i; return p; }
@@ -58,6 +69,7 @@ const redOf = (c) => (c.statistics || []).reduce((n, s) => n + (/redCard/i.test(
 const dirOf = (p) => (p[0] >= p[1] && p[0] >= p[2] ? 'H' : (p[2] >= p[1] ? 'A' : 'D'));
 
 // 从云存储拉 payload(取赛前 λ + 完赛结果)。配环境变量 PAYLOAD_URL(同前端 REMOTE_URL)。
+// 前端 hint 为回退：未配 PAYLOAD_URL 时直接用页面已有场次数据。
 const PAYLOAD_URL = process.env.PAYLOAD_URL || '';
 async function getPayload() {
   if (!PAYLOAD_URL) return null;
@@ -67,19 +79,50 @@ async function getPayload() {
   } catch (e) { return null; }
 }
 
+/** @param {string|number} seq @param {object|null} payload @param {object|null} hint */
+function resolveMatch(seq, payload, hint) {
+  const ms = (payload && payload.matches && payload.matches.matches) || [];
+  const fromPayload = ms.find((m) => String(m.seq) === String(seq));
+  if (fromPayload) return fromPayload;
+  if (hint && hint.home && hint.away) {
+    return {
+      seq,
+      home: hint.home,
+      away: hint.away,
+      kickoff: hint.kickoff || hint.date,
+      date: hint.date,
+      eg: hint.eg || '0-0',
+      ou: hint.ou,
+    };
+  }
+  return null;
+}
+
+/** ESPN 未收录时返回赛前基线（0-0 + 全场 λ） */
+function preBaseline(match) {
+  const [lh0, la0] = String(match.eg || '0-0').split('-').map(Number);
+  const a = analyze(0, 0, lh0, la0);
+  return {
+    seq: match.seq, updatedAt: Date.now(), state: 'pre', minute: 0,
+    score: [0, 0], redCards: [0, 0],
+    p: a.p, ou: a.ou, moreGoals: a.moreGoals, nextGoal: a.nextGoal,
+    topScores: a.topScores, expFinal: a.expFinal, lean: a.lean,
+    note: '赛前基线（ESPN 暂无该场）·参考·不改赛前预测',
+  };
+}
+
 module.exports = {
-  async get(seq) {
+  async get(seq, hint) {
     // 1) 缓存命中(<60s)直接返回
     try {
       const c = await db.collection('wc_live_cache').where({ seq }).orderBy('updatedAt', 'desc').limit(1).get();
       if (c.data && c.data[0] && Date.now() - c.data[0].updatedAt < TTL) return { code: 0, cached: true, data: c.data[0] };
     } catch (e) { /* 集合不存在则继续 */ }
 
-    // 2) 从云存储 payload 取该场赛前 λ
+    // 2) 从 payload 或前端 hint 取该场赛前 λ
     const payload = await getPayload();
-    const ms = (payload && payload.matches && payload.matches.matches) || [];
-    const match = ms.find((m) => String(m.seq) === String(seq));
-    if (!match) return { code: 1, msg: 'payload 未就绪(配置 PAYLOAD_URL)或无此场' };
+    const match = resolveMatch(seq, payload, hint);
+    if (!match) return { code: 1, msg: '无此场次数据（请刷新页面后重试）' };
     const [lh0, la0] = String(match.eg || '0-0').split('-').map(Number);
     const ouLine = (match.ou && match.ou.line) != null ? match.ou.line : 2.5;
 
@@ -98,7 +141,15 @@ module.exports = {
         if (ev) break;
       } catch (e) { /* 单天失败继续 */ }
     }
-    if (!ev) return { code: 2, msg: '未找到该场 ESPN 数据(可能未列入/未开赛)' };
+    if (!ev) {
+      // ESPN 尚未收录（未开赛/未列入）→ 返回赛前基线，而非直接失败
+      const rec = preBaseline(match);
+      try {
+        await db.collection('wc_live_cache').add(rec);
+        await db.collection('wc_live_cache').where({ seq, updatedAt: dbCmd.lt(rec.updatedAt) }).remove();
+      } catch (e) {}
+      return { code: 0, cached: false, preOnly: true, data: rec };
+    }
 
     // 4) 解析实时状态
     const comp = ev.competitions[0];

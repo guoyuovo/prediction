@@ -45,7 +45,7 @@
         <text class="tiny" style="display:block;margin-top:10rpx;color:#7c8597">最可能终场 {{ live.topScores.map(s => s.score).join(' / ') }} · 预期 {{ live.expFinal[0] }}-{{ live.expFinal[1] }}</text>
         <text class="tiny" style="display:block;margin-top:4rpx;color:#7c8597">{{ live.note }} · 理性购彩 18+</text>
       </view>
-      <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">暂不可用（未开赛 / 未关联云空间）。</text>
+      <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">{{ liveErr || '暂不可用（请确认 live-rec 云函数已部署）' }}</text>
     </view>
 
     <!-- 完赛实况 -->
@@ -151,11 +151,13 @@ import tripleBar from '@/components/triple-bar.vue'
 import predBadge from '@/components/pred-badge.vue'
 
 const m = ref(null), dm = ref(null), plans = ref([])
-const live = ref(null), liveLoading = ref(false), liveTried = ref(false)
+const live = ref(null), liveLoading = ref(false), liveTried = ref(false), liveErr = ref('')
 async function loadLive() {
   if (liveLoading.value || !m.value) return
-  liveLoading.value = true; liveTried.value = true
-  live.value = await getLive(m.value.seq)
+  liveLoading.value = true; liveTried.value = true; liveErr.value = ''
+  const { data, error } = await getLive(m.value.seq, m.value)
+  live.value = data
+  liveErr.value = data ? '' : (error || '暂不可用')
   liveLoading.value = false
 }
 onLoad((q) => {
@@ -164,6 +166,11 @@ onLoad((q) => {
     if (match) {
       dm.value = (d.dual.future || []).find(x => x.home === match.home && x.away === match.away)
       plans.value = (d.experts.plans || []).filter(p => p.home === match.home && p.away === match.away)
+      // 已开赛场次自动拉 ESPN（本地 result 可能尚未更新）
+      if (!match.result) {
+        const kickMs = new Date(String(match.kickoff || match.date).replace(' ', 'T')).getTime()
+        if (kickMs < Date.now()) loadLive()
+      }
     }
   })
 })
