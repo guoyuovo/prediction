@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-15T20:46:57.407Z",
-  "count": 13,
+  "_fetchedAt": "2026-06-15T21:01:48.508Z",
+  "count": 14,
   "results": [
     {
       "date": "2026-06-11",
@@ -605,6 +605,40 @@
       "goals": [],
       "status": "Full Time",
       "espnId": "760428"
+    },
+    {
+      "date": "2026-06-15",
+      "et": "2026-06-15T18:00:00-04:00",
+      "group": "G",
+      "home": "Belgium",
+      "away": "Egypt",
+      "hs": 1,
+      "as": 1,
+      "htHome": 0,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 15,
+          "sot": 3,
+          "poss": 53.5
+        },
+        "away": {
+          "shots": 14,
+          "sot": 3,
+          "poss": 46.5
+        }
+      },
+      "goals": [
+        {
+          "min": "19'",
+          "scorer": "Emam Ashour",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760426"
     }
   ]
 }

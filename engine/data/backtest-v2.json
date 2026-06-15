@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 13,
-    "accuracy1X2": 0.462,
-    "brierAvg": 0.625,
-    "loglossAvg": 1.017,
-    "scoreHit": 0.231,
-    "dirHit": 0.462,
+    "matches": 14,
+    "accuracy1X2": 0.429,
+    "brierAvg": 0.628,
+    "loglossAvg": 1.018,
+    "scoreHit": 0.214,
+    "dirHit": 0.429,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "matches": [
@@ -333,6 +333,31 @@
       "eloHomeAfter": 2101.8,
       "eloAwayBefore": 1606,
       "eloAwayAfter": 1633.2
+    },
+    {
+      "et": "2026-06-15T18:00:00-04:00",
+      "group": "G",
+      "home": "Belgium",
+      "away": "Egypt",
+      "hs": 1,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.452,
+      "pDraw": 0.356,
+      "pAway": 0.192,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.656,
+      "logloss": 1.034,
+      "homeAdv": false,
+      "eloDelta": -15.5,
+      "eloHomeBefore": 1894,
+      "eloHomeAfter": 1878.5,
+      "eloAwayBefore": 1696,
+      "eloAwayAfter": 1711.5
     }
   ],
   "eloChanges": [
@@ -383,6 +408,12 @@
       "before": 1616,
       "after": 1632.3,
       "delta": 16.3
+    },
+    {
+      "team": "Egypt",
+      "before": 1696,
+      "after": 1711.5,
+      "delta": 15.5
     },
     {
       "team": "Morocco",
@@ -443,6 +474,12 @@
       "before": 1978,
       "after": 1966.7,
       "delta": -11.3
+    },
+    {
+      "team": "Belgium",
+      "before": 1894,
+      "after": 1878.5,
+      "delta": -15.5
     },
     {
       "team": "Canada",
@@ -584,6 +621,13 @@
       "label": "Spain-Cape Verde",
       "accCum": 0.462,
       "brierCum": 0.625
+    },
+    {
+      "i": 14,
+      "et": "2026-06-15T18:00:00-04:00",
+      "label": "Belgium-Egypt",
+      "accCum": 0.429,
+      "brierCum": 0.628
     }
   ],
   "calibration": [
@@ -594,8 +638,8 @@
     },
     {
       "range": "45–55%",
-      "n": 5,
-      "hitRate": 0.4
+      "n": 6,
+      "hitRate": 0.333
     },
     {
       "range": "55–65%",
@@ -608,5 +652,5 @@
       "hitRate": 0.5
     }
   ],
-  "builtAt": "2026-06-15T20:46:57.451Z"
+  "builtAt": "2026-06-15T21:01:48.551Z"
 }
