@@ -1,6 +1,6 @@
 {
-  "version": "weighted-logistic-article-2026-06-12",
-  "comment": "对应《2026 世界杯赛事预测 Skill》第一篇文章的模型：预测 = sigmoid(特征 × 权重)。特征=Elo·FIFA·身价·近期状态·阵容评分，外部融合赔率共识。这是主页面(index.html)采用的模型。",
+  "version": "weighted-logistic-feature-led-2026-06-15",
+  "comment": "加权逻辑回归主模型：预测 = sigmoid(特征 × 权重)。特征=Elo·FIFA·身价·近期状态·阵容评分·主场。最终概率 = 0.65·特征模型 + 0.35·去水位市场赔率（特征主导），再叠加赛果驱动的平局校准乘子 draw.liveMult。这是主页面(index.html)采用的模型。",
   "norm": {
     "eloScale": 420,
     "fifaScale": 280,
@@ -22,22 +22,25 @@
     "hostBonus": 60,
     "diffScale": 1
   },
-  "_elo": "Elo 主队优势 +60（文章 3.1）。diffScale 由 calibrate 微调。",
+  "_elo": "Elo 主队优势 +60。diffScale=1（Elo 差不额外缩放）。",
   "draw": {
     "tendency": 1.413,
     "bias": -0.15,
     "base": 0.28,
     "decay": 0.7,
-    "liveMult": 1
+    "liveMult": 1.207
   },
   "_draw": "平局倾向 1.413、平局偏向 -0.15 来自文章主权重表。liveMult=赛果驱动的平局概率乘子，由 calibrate-live.mjs 按世界杯真实赛果标定（样本足够才动），1=不改动。",
-  "oddsFusion": 0.65,
-  "_oddsFusion": "外部赔率共识融合权重 0.35（文章外部特征融合表）：最终 = (1-0.35)·特征模型 + 0.35·去水位赔率隐含。",
+  "oddsFusion": 0.35,
+  "_oddsFusion": "赔率融合权重（=最终公式里市场赔率的系数 f）。最终概率 = (1-f)·特征模型 + f·去水位市场赔率 = 0.65·特征模型 + 0.35·市场赔率（特征主导）。",
   "scale": 2.5,
-  "mc": { "iterations": 10000, "eloSigma": 50 },
+  "mc": {
+    "iterations": 10000,
+    "eloSigma": 50
+  },
   "scoreline": {
     "method": "dixon-coles",
-    "A": 0.0,
+    "A": 0,
     "homeAdv": 0.15,
     "supremacy": 0.8,
     "rho": -0.07,
@@ -59,5 +62,6 @@
     "spread": 0.35
   },
   "_goals": "治本比分（mode=xg）：λ主=att主·def客/leagueAvg、λ客=att客·def主/leagueAvg（data/team-xg.json 对手强度调整的真实攻防），再围绕 contrastCenter 做 contrast 拉开强弱、主场 homeBoost/awayDamp、胶着场 tightDamp 降总进球。base/spread 为缺 xG 时的 mu 反推回退。参数随 att/def(W_REAL=0.5) 重新网格搜索（原文12场一致 11/12）。",
-  "_calibration": "以原文12场校准，MAE 5.98→3.52pp"
+  "_calibration": "特征主导(赔率融合 0.35) + 赛果驱动平局校准(draw.liveMult，见 _liveCalibration)。1X2/比分参数由真实联赛回测拟合，不拟合任何外部文章。",
+  "_liveCalibration": "赛果驱动：11 场样本网格搜平局乘子，logloss 1.0411→0.9849，liveMult 1→1.207（builtAt 2026-06-15T10:51:30.843Z）"
 }

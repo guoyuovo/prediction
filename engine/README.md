@@ -71,7 +71,7 @@ npm run all
 
 | 页面 | 模型 | 命令 |
 | --- | --- | --- |
-| **主页面 `index.html`** | **第一篇文章的加权逻辑回归**：`预测=sigmoid(特征×权重)`，特征=Elo·FIFA·身价·近期状态·阵容评分 + 赔率共识融合(0.35) | `npm run html` |
+| **主页面 `index.html`** | **加权逻辑回归(特征主导)**：`预测=sigmoid(特征×权重)`，特征=Elo·FIFA·身价·近期状态·阵容评分；最终=0.65·特征 + 0.35·市场赔率，再叠加赛果驱动平局校准 | `npm run html` |
 | `ensemble.html` | **第二篇方法论的集成模型**：Elo 35% + xG 25% + 赔率 20% + 蒙特卡洛 20% | `npm run ensemble` |
 
 两套模型的代码（`src/model.mjs` vs `src/model-ensemble.mjs`）、配置（`config/model.json` vs `config/model-ensemble.json`）完全隔离，互不影响。主模型经 `calibrate-live.mjs` 按世界杯真实赛果做实时校准（平局乘子）。

@@ -23,7 +23,7 @@ const ROOT = join(__dirname, '..');
 const P = (p) => join(ROOT, p);
 const load = (p) => JSON.parse(readFileSync(P(p), 'utf-8'));
 
-const MIN_MATCHES = +(process.env.CALIB_MIN || 20); // 样本阈值：少于此不调（防过拟合）
+const MIN_MATCHES = +(process.env.CALIB_MIN || 10); // 样本阈值：少于此不调（防过拟合；收缩闸进一步抑制小样本）
 const FULL_TRUST = 40;                               // 达到此样本量才"全力"采用最优值
 const GRID_LO = 0.7, GRID_HI = 1.4, GRID_STEP = 0.05;
 const ABS_LO = 0.5, ABS_HI = 2.0;                    // 绝对乘子硬边界
