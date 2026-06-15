@@ -45,7 +45,7 @@
         <text class="tiny" style="display:block;margin-top:10rpx;color:#7c8597">最可能终场 {{ live.topScores.map(s => s.score).join(' / ') }} · 预期 {{ live.expFinal[0] }}-{{ live.expFinal[1] }}</text>
         <text class="tiny" style="display:block;margin-top:4rpx;color:#7c8597">{{ live.note }} · 理性购彩 18+</text>
       </view>
-      <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">{{ liveErr || '暂不可用（请确认 live-rec 云函数已部署）' }}</text>
+      <text v-else-if="liveTried && !liveLoading" class="tiny" style="display:block;margin-top:12rpx;color:#7c8597">{{ liveErr || 'ESPN 暂不可用，请稍后重试' }}</text>
     </view>
 
     <!-- 完赛实况 -->

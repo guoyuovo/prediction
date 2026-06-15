@@ -238,6 +238,14 @@ const payload = {
   v2: buildV2Block(),
 };
 
+const jsonOnly = process.argv.includes('--json-only');
+if (jsonOnly) {
+  const outPath = join(ROOT, 'output', 'index-data.json');
+  writeFileSync(outPath, JSON.stringify(payload), 'utf-8');
+  console.log(`✓ index-data.json → ${outPath}（${matches.length} 场 · 跳过 HTML）`);
+  process.exit(0);
+}
+
 const html = renderHtml(payload);
 
 // 自检：①内嵌 JSON 可解析 ②客户端脚本语法正确（防止模板转义把脚本写坏）

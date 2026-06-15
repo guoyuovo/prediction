@@ -163,6 +163,14 @@ const payload = {
   adjustments: activeAdjustments(ADJ),
 };
 
+const jsonOnly = process.argv.includes('--json-only');
+if (jsonOnly) {
+  const outPath = join(ROOT, 'output', 'dual-data.json');
+  writeFileSync(outPath, JSON.stringify(payload), 'utf-8');
+  console.log(`✓ dual-data.json → ${outPath}（历史 ${history.length} / 未来 ${future.length} · 跳过 HTML）`);
+  process.exit(0);
+}
+
 const html = renderHtml(payload);
 // 自检：内嵌 JSON 可解析 + 客户端脚本可编译
 const dataBlock = html.match(/<script id="data"[^>]*>([\s\S]*?)<\/script>/);

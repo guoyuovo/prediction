@@ -32,16 +32,13 @@ jobs:
 
       - name: 跑一条龙(抓+算+导出 payload.json)
         working-directory: engine
-        env:
-          PUT_PAYLOAD_URL: ${{ secrets.PUT_PAYLOAD_URL }}
-          PUT_SECRET: ${{ secrets.PUT_SECRET }}
         run: node scripts/daily.mjs
 
       - name: 提交刷新后的数据
         run: |
           git config user.name  "gh-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add static/data engine/data
+          git add static/data/payload.json
           git diff --cached --quiet || git commit -m "auto: refresh data [skip ci]"
           git push
 
