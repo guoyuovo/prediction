@@ -59,8 +59,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { load, nm } from '@/common/api.js'
+import { setTabBarIndex } from '@/common/tab-bar.js'
 import { pct, dirZh, fix } from '@/common/format.js'
+
+onShow(() => setTabBarIndex(3))
 
 const TABS = [{ k: 'bt', label: '回测表现' }, { k: 'calib', label: 'live校准' }, { k: 'recon', label: '完赛对账' }]
 const tab = ref('bt')

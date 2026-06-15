@@ -17,7 +17,7 @@ page {
   font-family: -apple-system, "SF Pro Text", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 view, scroll-view, text, image { box-sizing: border-box; }
-.wrap { width: 100%; max-width: 100%; padding: 24rpx 28rpx calc(40rpx + env(safe-area-inset-bottom)); }
+.wrap { width: 100%; max-width: 100%; padding: 24rpx 28rpx calc(128rpx + env(safe-area-inset-bottom)); }
 
 /* 文本 */
 .muted { color: #7c8597; }

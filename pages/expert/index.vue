@@ -43,9 +43,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { getData, nm } from '@/common/api.js'
+import { setTabBarIndex } from '@/common/tab-bar.js'
 import { pct, dirZh, dirColor } from '@/common/format.js'
 import { flag } from '@/common/flags.js'
+
+onShow(() => setTabBarIndex(2))
 
 const plans = ref([]); const dualMap = ref({})
 getData().then(d => { plans.value = d.experts.plans || []; for (const f of (d.dual.future || [])) dualMap.value[f.home + '|' + f.away] = f })

@@ -35,7 +35,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { load } from '@/common/api.js'
+import { setTabBarIndex } from '@/common/tab-bar.js'
+
+onShow(() => setTabBarIndex(4))
 const meta = ref({})
 load('meta').then(d => meta.value = d)
 </script>

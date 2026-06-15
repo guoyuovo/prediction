@@ -62,10 +62,14 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { getData, nm } from '@/common/api.js'
+import { setTabBarIndex } from '@/common/tab-bar.js'
 import { pct, pct1 } from '@/common/format.js'
 import { flag } from '@/common/flags.js'
 import matchCard from '@/components/match-card.vue'
+
+onShow(() => setTabBarIndex(0))
 
 const TABS = [{ k: 'match', label: '对阵预测' }, { k: 'champ', label: '夺冠' }, { k: 'group', label: '出线' }]
 const tab = ref('match')

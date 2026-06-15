@@ -27,9 +27,13 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { load, nm } from '@/common/api.js'
+import { setTabBarIndex } from '@/common/tab-bar.js'
 import { dirColor } from '@/common/format.js'
 import { flag } from '@/common/flags.js'
+
+onShow(() => setTabBarIndex(1))
 
 const matches = ref([])
 load('matches').then(d => matches.value = d.matches || [])
