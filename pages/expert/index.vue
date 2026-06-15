@@ -3,7 +3,10 @@
     <view class="hero">
       <view class="between"><text class="t">专家方案</text><text class="pill">网易红彩 · {{ rows.length }}条</text></view>
       <text class="s">世界杯免费方案 · 本站模型 vs 专家 对照</text>
-      <text v-if="stats.cmp" class="s2">方向一致 <text class="hl">{{ stats.same }}/{{ stats.cmp }}</text> 条<text v-if="stats.done">　·　赛后命中 模型 <text class="hl">{{ stats.mHit }}/{{ stats.done }}</text> · 专家 {{ stats.eHit }}/{{ stats.eCmp }}</text></text>
+      <view v-if="stats.cmp" class="s2">
+        <text>方向一致 </text><text class="hl">{{ stats.same }}/{{ stats.cmp }}</text><text> 条</text>
+        <text v-if="stats.done">　·　赛后命中 模型 </text><text v-if="stats.done" class="hl">{{ stats.mHit }}/{{ stats.done }}</text><text v-if="stats.done"> · 专家 {{ stats.eHit }}/{{ stats.eCmp }}</text>
+      </view>
     </view>
 
     <view v-if="!rows.length" class="card"><text class="muted">暂无方案数据。</text></view>
@@ -47,7 +50,10 @@
         <view v-if="r.m && r.m.done" class="cmp-row res">
           <text class="cmp-k">实际结果</text>
           <text class="cmp-dir" style="color:#ffcf4a">{{ r.m.actual }} {{ dirZh(r.m.actualDir) }}</text>
-          <text class="cmp-sc">模型<text :class="r.m.modelHit ? 'ok' : 'no'">{{ r.m.modelHit ? '✓' : '✗' }}</text><text v-if="r.expertHit != null">　专家<text :class="r.expertHit ? 'ok' : 'no'">{{ r.expertHit ? '✓' : '✗' }}</text></text>
+          <view class="cmp-sc">
+            <text>模型</text><text :class="r.m.modelHit ? 'ok' : 'no'">{{ r.m.modelHit ? '✓' : '✗' }}</text>
+            <text v-if="r.expertHit != null">　专家</text><text v-if="r.expertHit != null" :class="r.expertHit ? 'ok' : 'no'">{{ r.expertHit ? '✓' : '✗' }}</text>
+          </view>
         </view>
       </view>
 
