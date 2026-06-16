@@ -16,6 +16,15 @@ const getJson = async (u) => { const r = await fetch(u, { headers: H }); if (!r.
 const zhMap = loadJson('data/team-names-zh.json').names;
 const zh2en = {}; for (const [en, zh] of Object.entries(zhMap)) zh2en[zh] = en;
 
+// 红彩中文队名偶有截断(如"阿尔及利"缺"亚")：先精确查，落空再按【唯一前缀】兜底匹配，
+// 仍不唯一则返回 null（宁缺毋错，避免映射到错误球队）。
+function resolveZh(name) {
+  if (!name) return null;
+  if (zh2en[name]) return zh2en[name];
+  const cands = Object.keys(zh2en).filter((zh) => zh.startsWith(name) || name.startsWith(zh));
+  return cands.length === 1 ? zh2en[cands[0]] : null;
+}
+
 function extractRecommends(ml) {
   const out = [];
   const pull = (plays) => {
@@ -41,7 +50,7 @@ for (const t of wc) {
     threadId: t.threadId, title: t.threadTitle || t.title || '', publishTime: t.publishTime,
     free: t.price === 0, price: t.price, previousPrice: t.previousPrice,
     type: t.xStringOne || (t.matchNum > 1 ? '串关' : '单场'), matchNum: t.matchNum,
-    matchZh: `${m.homeName} vs ${m.guestName}`, home: zh2en[m.homeName] || null, away: zh2en[m.guestName] || null,
+    matchZh: `${m.homeName} vs ${m.guestName}`, home: resolveZh(m.homeName), away: resolveZh(m.guestName),
     matchTime: m.matchTime, matchInfoId: m.matchInfoId,
     expert: { name: (t.expert || {}).nickname || '?', avatar: (t.expert || {}).avatar || '', slogan: (t.expert || {}).slogan || '' },
     link: `https://hongcai.163.com/thread.html?threadId=${t.threadId}`,

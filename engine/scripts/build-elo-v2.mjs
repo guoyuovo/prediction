@@ -113,7 +113,9 @@ const calibration = calBins.map(([lo, hi]) => {
   const hit = sub.filter((m) => m.correct).length;
   return { range: `${(lo * 100).toFixed(0)}–${(hi * 100).toFixed(0)}%`, n: sub.length, hitRate: sub.length ? +(hit / sub.length).toFixed(3) : null };
 });
-writeFileSync(join(ROOT, 'data', 'backtest-v2.json'), JSON.stringify({ summary, matches: log, eloChanges, timeline, calibration, builtAt: v2._v2meta.builtAt }, null, 2), 'utf-8');
+// bakedLiveMult：记录本次烤进 matches[].p* 的平局乘子，供 calibrate-live 准确剥离还原基础预测
+// （避免依赖"calibrate 时的配置值==build 时的配置值"这一隐式耦合）。
+writeFileSync(join(ROOT, 'data', 'backtest-v2.json'), JSON.stringify({ summary, bakedLiveMult: CFG.draw.liveMult ?? 1, matches: log, eloChanges, timeline, calibration, builtAt: v2._v2meta.builtAt }, null, 2), 'utf-8');
 
 console.log(`v2 滚动 Elo：应用 ${log.length} 场已完赛`);
 for (const m of log) console.log(`  ${m.home} ${m.hs}-${m.as} ${m.away}  预测${m.predOutcome}/实际${m.actual} ${m.correct ? '✓' : '✗'}  比分预测${m.predScore}${m.scoreHit ? '✓' : ''}  Δelo ${m.eloDelta >= 0 ? '+' : ''}${m.eloDelta}`);

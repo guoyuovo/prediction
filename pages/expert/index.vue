@@ -122,7 +122,11 @@ const stats = computed(() => {
   return { same, cmp, done, mHit, eHit, eCmp }
 })
 
-const matchName = (p) => (nm(p.home) !== p.home || nm(p.away) !== p.away) ? (nm(p.home) + ' vs ' + nm(p.away)) : p.matchZh
+// 未解析出英文队名时(home/away 为 null)直接回退红彩原始中文，避免显示 "xx vs null"
+const matchName = (p) => {
+  if (!p.home || !p.away) return p.matchZh || ''
+  return (nm(p.home) !== p.home || nm(p.away) !== p.away) ? (nm(p.home) + ' vs ' + nm(p.away)) : p.matchZh
+}
 const firstItems = (p) => (p.recommends[0] && p.recommends[0].items) ? p.recommends[0].items.slice(0, 3) : []
 const goDetail = (p) => uni.navigateTo({ url: '/pages/expert/detail?threadId=' + p.threadId })
 </script>
