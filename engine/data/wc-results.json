@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-16T00:01:28.817Z",
-  "count": 14,
+  "_fetchedAt": "2026-06-16T00:16:56.110Z",
+  "count": 15,
   "results": [
     {
       "date": "2026-06-11",
@@ -639,6 +639,47 @@
       ],
       "status": "Full Time",
       "espnId": "760426"
+    },
+    {
+      "date": "2026-06-15",
+      "et": "2026-06-15T18:00:00-04:00",
+      "group": "H",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "hs": 1,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 7,
+          "sot": 3,
+          "poss": 33.2
+        },
+        "away": {
+          "shots": 27,
+          "sot": 10,
+          "poss": 66.8
+        }
+      },
+      "goals": [
+        {
+          "min": "41'",
+          "scorer": "Abdulelah Al-Amri",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "80'",
+          "scorer": "Maxi Araújo",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760429"
     }
   ]
 }

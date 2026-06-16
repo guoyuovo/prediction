@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 14,
-    "accuracy1X2": 0.429,
+    "matches": 15,
+    "accuracy1X2": 0.4,
     "brierAvg": 0.626,
-    "loglossAvg": 1.012,
-    "scoreHit": 0.214,
-    "dirHit": 0.429,
+    "loglossAvg": 1.01,
+    "scoreHit": 0.2,
+    "dirHit": 0.4,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "matches": [
@@ -358,6 +358,31 @@
       "eloHomeAfter": 1865.5,
       "eloAwayBefore": 1711,
       "eloAwayAfter": 1724.5
+    },
+    {
+      "et": "2026-06-15T18:00:00-04:00",
+      "group": "H",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "hs": 1,
+      "as": 1,
+      "ht": "1-0",
+      "actual": "D",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.167,
+      "pDraw": 0.375,
+      "pAway": 0.458,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.629,
+      "logloss": 0.982,
+      "homeAdv": false,
+      "eloDelta": 19.6,
+      "eloHomeBefore": 1598,
+      "eloHomeAfter": 1617.6,
+      "eloAwayBefore": 1870,
+      "eloAwayAfter": 1850.4
     }
   ],
   "eloChanges": [
@@ -402,6 +427,12 @@
       "before": 1786,
       "after": 1809.7,
       "delta": 23.7
+    },
+    {
+      "team": "Saudi Arabia",
+      "before": 1598,
+      "after": 1617.6,
+      "delta": 19.6
     },
     {
       "team": "Bosnia",
@@ -486,6 +517,12 @@
       "before": 1767,
       "after": 1750.7,
       "delta": -16.3
+    },
+    {
+      "team": "Uruguay",
+      "before": 1870,
+      "after": 1850.4,
+      "delta": -19.6
     },
     {
       "team": "Czechia",
@@ -628,6 +665,13 @@
       "label": "Belgium-Egypt",
       "accCum": 0.429,
       "brierCum": 0.625
+    },
+    {
+      "i": 15,
+      "et": "2026-06-15T18:00:00-04:00",
+      "label": "Saudi Arabia-Uruguay",
+      "accCum": 0.4,
+      "brierCum": 0.626
     }
   ],
   "calibration": [
@@ -638,8 +682,8 @@
     },
     {
       "range": "45–55%",
-      "n": 8,
-      "hitRate": 0.375
+      "n": 9,
+      "hitRate": 0.333
     },
     {
       "range": "55–65%",
@@ -652,5 +696,5 @@
       "hitRate": 1
     }
   ],
-  "builtAt": "2026-06-16T00:01:28.862Z"
+  "builtAt": "2026-06-16T00:16:56.156Z"
 }
