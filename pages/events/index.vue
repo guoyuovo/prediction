@@ -5,6 +5,7 @@
         <text class="pill" :class="{ warn: stale }">{{ updated }}{{ stale ? ' · 偏旧' : '' }}</text>
       </view>
       <text class="s">v2 滚动模型 · 双模型共同推断 · 透明回测</text>
+      <text v-if="offline" class="degraded">⚠ 离线快照 · 未能连上数据服务，当前显示 App 内置数据（可能较旧），请检查网络后重进</text>
       <text v-if="degraded" class="degraded">⚠ 上次更新有数据源未刷新（{{ health.failed.join('、') }}），相关数值沿用上次</text>
     </view>
 
@@ -94,6 +95,8 @@ const stale = computed(() => {
 })
 const health = computed(() => meta.value.health || null)
 const degraded = computed(() => !!(health.value && health.value.failed && health.value.failed.length))
+// 数据来源回退到内置包：显式提示，别让用户把冻结的旧数据误当最新
+const offline = computed(() => meta.value.source === 'bundled')
 const upcoming = computed(() => matches.value.filter(m => !m.result).sort((a, b) => a.seq - b.seq))
 const history = computed(() => matches.value.filter(m => m.result).sort((a, b) => b.seq - a.seq))
 const maxChamp = computed(() => Math.max(...champions.value.map(c => c.champion), 0.01))

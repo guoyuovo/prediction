@@ -41,15 +41,20 @@ jobs:
           # 同步提交：App 数据 + 引擎中间数据(回测/滚动Elo/赔率等) + 自动校准后的配置(liveMult)
           # 这样仓库与线上一致，本地回测用最新数据，且赛果驱动平局校准能逐日累积收敛。
           # engine/data 中的大文件/瞬时文件已在 .gitignore 排除。
-          git add static/data/payload.json engine/data engine/config/model.json
+          # -A 必需：内容寻址会新增/删除 static/data/payload.<hash>.json，需同步暂存删除
+          git add -A static/data engine/data engine/config/model.json
           git diff --cached --quiet || git commit -m "auto: refresh data [skip ci]"
           git push
 
-      - name: 刷新 jsDelivr CDN 缓存（否则 App 最长 12h 拿到旧 payload）
+      - name: 刷新 jsDelivr CDN 缓存（version.json 是唯一可变名指针，必须刷新）
         run: |
-          curl -sf "https://purge.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref_name }}/static/data/payload.json" \
-            && echo "✓ jsDelivr 缓存已刷新" \
-            || echo "⚠ purge 请求失败（数据已提交，缓存最长 12h 后自动过期）"
+          # payload.<hash>.json 内容寻址、路径唯一，无需 purge；只需刷新可变名的 version.json
+          # （兼带刷新 payload.json 给兜底直连路径）。
+          for f in version.json payload.json; do
+            curl -sf "https://purge.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref_name }}/static/data/$f" \
+              && echo "✓ purged $f" \
+              || echo "⚠ purge $f 失败（version 指针带 ?t= cache-buster 兜底，hash 文件本身不吃缓存）"
+          done
 
       - name: REMOTE_URL 参考
         run: |

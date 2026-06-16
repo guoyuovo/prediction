@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // 导出 uniapp 前端 payload.json（读 index-data.json + dual-data.json，零 HTML 依赖）。
 // 用法：先 build-html --json-only + build-dual-page --json-only + fetch-hongcai，再 node scripts/build-app-payload.mjs
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { ROOT, loadJson } from '../src/util.mjs';
 
@@ -44,6 +45,7 @@ for (const m of idx.matches) for (const k of DROP) delete m[k];
 
 const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim());
 
+const lastUpdate = new Date().toISOString();
 const payload = {
   meta: {
     date: idx.meta.date,
@@ -51,7 +53,7 @@ const payload = {
     teams: idx.meta.teams,
     dualSummary: dual.meta.summary,
     fetchedAt: dual.meta.fetchedAt,
-    lastUpdate: new Date().toISOString(),
+    lastUpdate,
     health: health ? { failed: health.failed || [], at: health.at } : null,
   },
   teams: { zh: idx.zh, profiles: idx.profiles, teams: idx.teams },
@@ -72,6 +74,24 @@ const payload = {
   experts: { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt },
 };
 
-const outPath = join(OUT, 'payload.json');
-writeFileSync(outPath, JSON.stringify(payload));
-console.log(`✓ payload.json → ${outPath} (${(JSON.stringify(payload).length / 1024).toFixed(1)}KB · ${idx.matches.length} 场 · ${expertPlans.length} 专家)`);
+const payloadStr = JSON.stringify(payload);
+
+// 内容寻址：文件名随内容(hash)变化。新内容 = 新路径，jsDelivr 对没见过的路径必然回源，
+// 绕开 @master 的「分支→commit 解析缓存」和 12h 边缘缓存——这是「刷新仍拿到旧数据」的根治点。
+// 相同内容在 git 里只存一份 blob，不会撑大仓库历史。
+const hash = createHash('sha256').update(payloadStr).digest('hex').slice(0, 12);
+const hashedName = `payload.${hash}.json`;
+
+// 清理上一版的 hash 文件，工作区只保留「稳定名 + 当前 hash」两份
+for (const f of readdirSync(OUT)) {
+  if (/^payload\.[0-9a-f]{12}\.json$/.test(f) && f !== hashedName) rmSync(join(OUT, f));
+}
+
+// 稳定名：供 App 打包内置(import)、向后兼容、以及拉不到指针时的兜底
+writeFileSync(join(OUT, 'payload.json'), payloadStr);
+// 内容寻址版本：App 经 version.json 指针拉取，保证「拿到的就是这一版」
+writeFileSync(join(OUT, hashedName), payloadStr);
+// 小指针(~120B)：只有它是可变名，App 先拉它(带 cache-buster)再按 file 拉不可变的 payload
+writeFileSync(join(OUT, 'version.json'), JSON.stringify({ file: hashedName, lastUpdate, fetchedAt: dual.meta.fetchedAt }));
+
+console.log(`✓ payload.json + ${hashedName} + version.json → ${OUT} (${(payloadStr.length / 1024).toFixed(1)}KB · ${idx.matches.length} 场 · ${expertPlans.length} 专家)`);
