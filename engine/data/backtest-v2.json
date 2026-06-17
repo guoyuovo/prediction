@@ -3,7 +3,7 @@
     "matches": 20,
     "accuracy1X2": 0.5,
     "brierAvg": 0.604,
-    "loglossAvg": 1.005,
+    "loglossAvg": 1.004,
     "scoreHit": 0.1,
     "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -471,19 +471,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.567,
-      "pDraw": 0.233,
-      "pAway": 0.2,
+      "pHome": 0.57,
+      "pDraw": 0.232,
+      "pAway": 0.198,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 0.282,
-      "logloss": 0.568,
+      "brier": 0.278,
+      "logloss": 0.562,
       "homeAdv": false,
-      "eloDelta": 12.8,
-      "eloHomeBefore": 2115,
-      "eloHomeAfter": 2127.8,
-      "eloAwayBefore": 1772,
-      "eloAwayAfter": 1759.2
+      "eloDelta": 11.2,
+      "eloHomeBefore": 2128,
+      "eloHomeAfter": 2139.2,
+      "eloAwayBefore": 1759,
+      "eloAwayAfter": 1747.8
     },
     {
       "et": "2026-06-17T00:00:00-04:00",
@@ -496,19 +496,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.571,
-      "pDraw": 0.226,
-      "pAway": 0.203,
+      "pHome": 0.578,
+      "pDraw": 0.223,
+      "pAway": 0.199,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.277,
-      "logloss": 0.561,
+      "brier": 0.267,
+      "logloss": 0.547,
       "homeAdv": false,
-      "eloDelta": 26.7,
-      "eloHomeBefore": 1830,
-      "eloHomeAfter": 1856.7,
-      "eloAwayBefore": 1680,
-      "eloAwayAfter": 1653.3
+      "eloDelta": 21.2,
+      "eloHomeBefore": 1857,
+      "eloHomeAfter": 1878.2,
+      "eloAwayBefore": 1653,
+      "eloAwayAfter": 1631.8
     }
   ],
   "eloChanges": [
@@ -543,12 +543,6 @@
       "delta": 27.2
     },
     {
-      "team": "Austria",
-      "before": 1830,
-      "after": 1856.7,
-      "delta": 26.7
-    },
-    {
       "team": "Qatar",
       "before": 1447,
       "after": 1472,
@@ -559,6 +553,12 @@
       "before": 1786,
       "after": 1809.7,
       "delta": 23.7
+    },
+    {
+      "team": "Austria",
+      "before": 1857,
+      "after": 1878.2,
+      "delta": 21.2
     },
     {
       "team": "Saudi Arabia",
@@ -597,16 +597,16 @@
       "delta": 13.2
     },
     {
-      "team": "Argentina",
-      "before": 2115,
-      "after": 2127.8,
-      "delta": 12.8
-    },
-    {
       "team": "Morocco",
       "before": 1840,
       "after": 1851.3,
       "delta": 11.3
+    },
+    {
+      "team": "Argentina",
+      "before": 2128,
+      "after": 2139.2,
+      "delta": 11.2
     },
     {
       "team": "Scotland",
@@ -657,16 +657,16 @@
       "delta": -11.1
     },
     {
+      "team": "Algeria",
+      "before": 1759,
+      "after": 1747.8,
+      "delta": -11.2
+    },
+    {
       "team": "Brazil",
       "before": 1978,
       "after": 1966.7,
       "delta": -11.3
-    },
-    {
-      "team": "Algeria",
-      "before": 1772,
-      "after": 1759.2,
-      "delta": -12.8
     },
     {
       "team": "Iraq",
@@ -705,6 +705,12 @@
       "delta": -19.6
     },
     {
+      "team": "Jordan",
+      "before": 1653,
+      "after": 1631.8,
+      "delta": -21.2
+    },
+    {
       "team": "Czechia",
       "before": 1712,
       "after": 1688.3,
@@ -715,12 +721,6 @@
       "before": 1865,
       "after": 1840,
       "delta": -25
-    },
-    {
-      "team": "Jordan",
-      "before": 1680,
-      "after": 1653.3,
-      "delta": -26.7
     },
     {
       "team": "Spain",
@@ -885,7 +885,7 @@
       "et": "2026-06-16T21:00:00-04:00",
       "label": "Argentina-Algeria",
       "accCum": 0.474,
-      "brierCum": 0.622
+      "brierCum": 0.621
     },
     {
       "i": 20,
@@ -917,5 +917,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-17T10:02:18.508Z"
+  "builtAt": "2026-06-17T10:17:05.524Z"
 }
