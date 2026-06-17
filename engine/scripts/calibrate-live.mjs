@@ -45,6 +45,18 @@ function logloss(rows, g) {
   for (const r of rows) { const q = applyMult(r.p, g); s += -Math.log(Math.max(q[IDX[r.actual]], 1e-9)); }
   return s / rows.length;
 }
+// 胜负(H/A)命中数：实际为 H/A 的场，乘子 g 下 argmax 是否等于实际（平局场不计）。
+// 用于 P2 闸门——只比"参数本身"对胜负命中的影响（同数据对照，免疫赛果波动）。
+function decisiveHit(rows, g) {
+  let hit = 0;
+  for (const r of rows) {
+    if (r.actual === 'D') continue;
+    const q = applyMult(r.p, g);
+    const pred = q[0] >= q[1] && q[0] >= q[2] ? 'H' : q[2] >= q[1] ? 'A' : 'D';
+    if (pred === r.actual) hit++;
+  }
+  return hit;
+}
 
 // —— 读真实赛果样本 ——
 if (!existsSync(P('data/backtest-v2.json'))) {
@@ -84,19 +96,30 @@ const trust = clamp((n - MIN_MATCHES) / (FULL_TRUST - MIN_MATCHES), 0, 1);
 const gAbs = 1 + (best.g - 1) * trust;
 const newMult = +clamp(gAbs, ABS_LO, ABS_HI).toFixed(3); // 绝对写入，不再 × prevMult
 
+// —— P2 闸门：校准不得降低"胜负(H/A)命中"。在【最终上线值】上同数据对照（只比参数本身、
+//    免疫赛果波动）：若 newMult 比当前线上 prevMult 掉胜负命中，则否决本次调整、保留 prevMult。
+//    小样本下收缩已把值压在安全区(故今天不触发)；随样本增多收缩放松、网格最优上移，本闸防止其
+//    越过"掉命中的临界点"静默上线。数据照常刷新，只是不采纳会劣化胜负命中的平局乘子。——
+const decTot = baseRows.filter((r) => r.actual !== 'D').length;
+const decPrev = decisiveHit(baseRows, prevMult);
+const decNew = decisiveHit(baseRows, newMult);
+const vetoed = decNew < decPrev;
+const shipMult = vetoed ? prevMult : newMult;
+
 // —— 透明对照：实际平局率 vs 校准前后预测平局率 ——
 const realDrawRate = rows.filter((r) => r.actual === 'D').length / n;
 const predBefore = rows.reduce((s, r) => s + r.p[1], 0) / n;                        // 当前线上(含 prevMult)
-const predAfter = baseRows.reduce((s, r) => s + applyMult(r.p, newMult)[1], 0) / n; // 绝对乘子作用于基础预测
+const predAfter = baseRows.reduce((s, r) => s + applyMult(r.p, shipMult)[1], 0) / n; // 最终上线乘子作用于基础预测
 
 console.log(`赛果驱动·实时校准（样本 ${n} 场，阈值 ${MIN_MATCHES}，绝对标定）`);
 console.log(`  logloss 基线(g=1) ${base.toFixed(4)} → 绝对最优 g=${best.g}（${best.ll.toFixed(4)}）· 收缩信任 ${trust.toFixed(2)} → 实用绝对 ${gAbs.toFixed(3)}`);
 console.log(`  平局率：实际 ${(realDrawRate * 100).toFixed(1)}% · 校准前预测 ${(predBefore * 100).toFixed(1)}% → 校准后 ${(predAfter * 100).toFixed(1)}%`);
-console.log(`  draw.liveMult：${prevMult} → ${newMult}${DRY ? ' (dry-run，未写入)' : ''}`);
+console.log(`  胜负(H/A)命中闸门：prevMult ${decPrev}/${decTot} vs newMult ${decNew}/${decTot} → ${vetoed ? `否决(掉命中)，保留 ${prevMult}` : '通过'}`);
+console.log(`  draw.liveMult：${prevMult} → ${shipMult}${vetoed ? ` (newMult ${newMult} 被闸门否决)` : ''}${DRY ? ' (dry-run，未写入)' : ''}`);
 
 if (DRY) process.exit(0);
 
-cfg.draw.liveMult = newMult;
-cfg._liveCalibration = `赛果驱动·绝对标定：${n} 场样本在基础预测上网格搜绝对平局乘子，logloss ${base.toFixed(4)}→${best.ll.toFixed(4)}，liveMult ${prevMult}→${newMult}（builtAt ${new Date().toISOString()}）`;
+cfg.draw.liveMult = shipMult;
+cfg._liveCalibration = `赛果驱动·绝对标定：${n} 场网格搜最优(logloss ${base.toFixed(4)}→${best.ll.toFixed(4)})→ newMult ${newMult}；胜负命中闸门 ${decNew}/${decTot} vs 基准 ${decPrev}/${decTot} → ${vetoed ? `否决，保留 ${prevMult}` : '采纳'}，liveMult ${prevMult}→${shipMult}（builtAt ${new Date().toISOString()}）`;
 writeFileSync(P('config/model.json'), JSON.stringify(cfg, null, 2), 'utf-8');
-console.log('✓ 已写入 config/model.json（draw.liveMult）');
+console.log(`✓ 已写入 config/model.json（draw.liveMult=${shipMult}）`);
