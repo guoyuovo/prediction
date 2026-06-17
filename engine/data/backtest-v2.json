@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 17,
-    "accuracy1X2": 0.412,
-    "brierAvg": 0.674,
-    "loglossAvg": 1.106,
-    "scoreHit": 0.118,
-    "dirHit": 0.412,
+    "matches": 18,
+    "accuracy1X2": 0.444,
+    "brierAvg": 0.649,
+    "loglossAvg": 1.072,
+    "scoreHit": 0.111,
+    "dirHit": 0.444,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.187,
@@ -434,6 +434,31 @@
       "eloHomeAfter": 2101.7,
       "eloAwayBefore": 1839,
       "eloAwayAfter": 1821.3
+    },
+    {
+      "et": "2026-06-16T18:00:00-04:00",
+      "group": "I",
+      "home": "Iraq",
+      "away": "Norway",
+      "hs": 1,
+      "as": 4,
+      "ht": "1-2",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.194,
+      "pDraw": 0.19,
+      "pAway": 0.615,
+      "predScore": "0-2",
+      "scoreHit": false,
+      "brier": 0.222,
+      "logloss": 0.486,
+      "homeAdv": false,
+      "eloDelta": -15.3,
+      "eloHomeBefore": 1607,
+      "eloHomeAfter": 1591.7,
+      "eloAwayBefore": 1914,
+      "eloAwayAfter": 1929.3
     }
   ],
   "eloChanges": [
@@ -496,6 +521,12 @@
       "before": 1616,
       "after": 1632.3,
       "delta": 16.3
+    },
+    {
+      "team": "Norway",
+      "before": 1914,
+      "after": 1929.3,
+      "delta": 15.3
     },
     {
       "team": "New Zealand",
@@ -580,6 +611,12 @@
       "before": 1756,
       "after": 1741.8,
       "delta": -14.2
+    },
+    {
+      "team": "Iraq",
+      "before": 1607,
+      "after": 1591.7,
+      "delta": -15.3
     },
     {
       "team": "Canada",
@@ -761,6 +798,13 @@
       "label": "France-Senegal",
       "accCum": 0.412,
       "brierCum": 0.674
+    },
+    {
+      "i": 18,
+      "et": "2026-06-16T18:00:00-04:00",
+      "label": "Iraq-Norway",
+      "accCum": 0.444,
+      "brierCum": 0.649
     }
   ],
   "calibration": [
@@ -776,8 +820,8 @@
     },
     {
       "range": "55–65%",
-      "n": 6,
-      "hitRate": 0.5
+      "n": 7,
+      "hitRate": 0.571
     },
     {
       "range": "65–101%",
@@ -785,5 +829,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-16T23:46:52.011Z"
+  "builtAt": "2026-06-17T00:02:16.759Z"
 }

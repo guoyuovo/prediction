@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-16T23:46:51.976Z",
-  "count": 17,
+  "_fetchedAt": "2026-06-17T00:02:16.711Z",
+  "count": 18,
   "results": [
     {
       "date": "2026-06-11",
@@ -790,6 +790,61 @@
       ],
       "status": "Full Time",
       "espnId": "760432"
+    },
+    {
+      "date": "2026-06-16",
+      "et": "2026-06-16T18:00:00-04:00",
+      "group": "I",
+      "home": "Iraq",
+      "away": "Norway",
+      "hs": 1,
+      "as": 4,
+      "htHome": 1,
+      "htAway": 2,
+      "stats": {
+        "home": {
+          "shots": 11,
+          "sot": 1,
+          "poss": 38.7
+        },
+        "away": {
+          "shots": 13,
+          "sot": 5,
+          "poss": 61.3
+        }
+      },
+      "goals": [
+        {
+          "min": "29'",
+          "scorer": "Erling Haaland",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "39'",
+          "scorer": "Aymen Hussein",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "43'",
+          "scorer": "Erling Haaland",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "76'",
+          "scorer": "Leo Østigard",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760430"
     }
   ]
 }
