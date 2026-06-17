@@ -162,4 +162,30 @@ function bestScoreForOutcome(lh, la, outcome, maxGoals, rho) {
   return `${best.h}-${best.a}`;
 }
 
+/**
+ * 导出 Dixon-Coles 进球分布,供"搏·串关"波胆(比分)/进球数玩法的【模型风味概率】衍生。
+ * 用同一套 DC 引擎(避免在脚本里复刻私有 dcGrid 致逻辑漂移)。返回归一化后的:
+ *   scoreP['h-a'] = 该比分概率(主客朝向 = 传入的 home/away);
+ *   totalP[k]     = 总进球=k 的概率(k=0..7,7=7+封顶);
+ * @param {string|object} home @param {string|object} away
+ * @param {{neutral?:boolean, goalScale?:number}} opts
+ */
+export function goalGrid(home, away, opts = {}) {
+  const H = typeof home === 'string' ? getTeam(home) : home;
+  const A = typeof away === 'string' ? getTeam(away) : away;
+  const neutral = opts.neutral !== false;
+  const homeAdv = !neutral || (HOSTS.has(H.name) && !HOSTS.has(A.name));
+  const sc = CFG.scoreline;
+  const { lambdaH, lambdaA } = goalLambdas(H, A, homeAdv, opts.goalScale || 1);
+  const cells = dcGrid(lambdaH, lambdaA, sc.rho, sc.maxGoals);
+  const norm = cells.reduce((s, c) => s + c.p, 0) || 1;
+  const scoreP = {}; const totalP = new Array(8).fill(0);
+  for (const c of cells) {
+    const p = c.p / norm;
+    scoreP[`${c.h}-${c.a}`] = (scoreP[`${c.h}-${c.a}`] || 0) + p;
+    totalP[Math.min(c.h + c.a, 7)] += p;
+  }
+  return { lambdaH, lambdaA, scoreP, totalP };
+}
+
 export { CFG };

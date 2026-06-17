@@ -1,8 +1,10 @@
 {
-  "_note": "中国竞彩官方比分(CS)固定赔率。仅娱乐展示——抽水~35%,EV 必深负,绝不并入价值串关。覆盖竞彩当期选入场次。",
-  "_source": "webapi.sporttery.cn getMatchCalculatorV1 (poolCode=crs)",
-  "_fetchedAt": "2026-06-17T09:22:35.519Z",
+  "_note": "中国竞彩官方盘口(胜平负/让球/比分/进球数/半全场)。仅娱乐展示——抽水高(比分~35%/进球~25%/半全~25%/胜平负~13%),EV必深负,绝不讲价值。覆盖竞彩当期选入场次。",
+  "_source": "webapi.sporttery.cn getMatchCalculatorV1 (poolCode 分批: had,hhad,crs + ttg,hafu)",
+  "_fetchedAt": "2026-06-17T11:29:29.551Z",
   "count": 12,
+  "ttgCount": 12,
+  "hafuCount": 12,
   "matches": {
     "Portugal vs DR Congo": {
       "matchNum": "周三021",
@@ -18,47 +20,47 @@
       "hhad": {
         "goalLine": "-2",
         "odds": [
-          2.54,
+          2.48,
           4,
-          2.06
+          2.1
         ]
       },
       "cs": [
         {
+          "score": "3-0",
+          "odds": 5.4
+        },
+        {
           "score": "2-0",
-          "odds": 5.1
+          "odds": 5.6
         },
         {
           "score": "1-0",
           "odds": 6.25
         },
         {
-          "score": "3-0",
-          "odds": 6.25
+          "score": "3-1",
+          "odds": 8.25
         },
         {
           "score": "2-1",
-          "odds": 7.5
+          "odds": 9
         },
         {
-          "score": "3-1",
-          "odds": 8.75
+          "score": "4-0",
+          "odds": 10
         },
         {
           "score": "1-1",
           "odds": 11
         },
         {
-          "score": "4-0",
-          "odds": 11
+          "score": "4-1",
+          "odds": 14.5
         },
         {
           "score": "0-0",
           "odds": 15
-        },
-        {
-          "score": "4-1",
-          "odds": 16
         },
         {
           "score": "5-0",
@@ -69,36 +71,36 @@
           "odds": 28
         },
         {
-          "score": "2-2",
-          "odds": 31
-        },
-        {
           "score": "5-1",
-          "odds": 32
+          "odds": 30
         },
         {
-          "score": "1-2",
-          "odds": 35
+          "score": "2-2",
+          "odds": 33
         },
         {
           "score": "3-2",
           "odds": 35
         },
         {
-          "score": "4-2",
-          "odds": 50
+          "score": "1-2",
+          "odds": 41
         },
         {
-          "score": "0-2",
-          "odds": 90
+          "score": "4-2",
+          "odds": 45
         },
         {
           "score": "5-2",
-          "odds": 90
+          "odds": 80
+        },
+        {
+          "score": "0-2",
+          "odds": 100
         },
         {
           "score": "3-3",
-          "odds": 125
+          "odds": 100
         },
         {
           "score": "2-3",
@@ -106,7 +108,7 @@
         },
         {
           "score": "1-3",
-          "odds": 175
+          "odds": 200
         },
         {
           "score": "0-3",
@@ -137,7 +139,91 @@
           "odds": 1000
         }
       ],
-      "csOverround": 1.348
+      "csOverround": 1.355,
+      "csVigPct": 36,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 15
+        },
+        {
+          "goals": "1",
+          "odds": 5.6
+        },
+        {
+          "goals": "2",
+          "odds": 3.9
+        },
+        {
+          "goals": "3",
+          "odds": 3.5
+        },
+        {
+          "goals": "4",
+          "odds": 4.6
+        },
+        {
+          "goals": "5",
+          "odds": 8
+        },
+        {
+          "goals": "6",
+          "odds": 14
+        },
+        {
+          "goals": "7+",
+          "odds": 19
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 1.5
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 25
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 70
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 3.85
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 8.2
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 30
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 27
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 25
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 24
+        }
+      ],
+      "hafuVigPct": 25
     },
     "England vs Croatia": {
       "matchNum": "周三022",
@@ -146,26 +232,26 @@
       "homeZh": "英格兰",
       "awayZh": "克罗地亚",
       "had": [
-        1.52,
-        3.55,
+        1.53,
+        3.5,
         5.27
       ],
       "hhad": {
         "goalLine": "-1",
         "odds": [
-          2.82,
-          3.1,
-          2.21
+          2.9,
+          3.05,
+          2.19
         ]
       },
       "cs": [
         {
-          "score": "1-1",
-          "odds": 5.8
+          "score": "2-1",
+          "odds": 5.7
         },
         {
-          "score": "2-1",
-          "odds": 6
+          "score": "1-1",
+          "odds": 5.8
         },
         {
           "score": "1-0",
@@ -173,7 +259,7 @@
         },
         {
           "score": "2-0",
-          "odds": 7.4
+          "odds": 7.5
         },
         {
           "score": "0-0",
@@ -184,7 +270,7 @@
           "odds": 11.5
         },
         {
-          "score": "3-0",
+          "score": "2-2",
           "odds": 12.5
         },
         {
@@ -192,8 +278,8 @@
           "odds": 13
         },
         {
-          "score": "2-2",
-          "odds": 13
+          "score": "3-0",
+          "odds": 13.5
         },
         {
           "score": "1-2",
@@ -205,10 +291,6 @@
         },
         {
           "score": "0-2",
-          "odds": 29
-        },
-        {
-          "score": "4-0",
           "odds": 30
         },
         {
@@ -216,11 +298,15 @@
           "odds": 34
         },
         {
-          "score": "2-3",
-          "odds": 50
+          "score": "4-0",
+          "odds": 35
         },
         {
           "score": "3-3",
+          "odds": 40
+        },
+        {
+          "score": "2-3",
           "odds": 50
         },
         {
@@ -232,11 +318,11 @@
           "odds": 60
         },
         {
-          "score": "5-0",
-          "odds": 95
+          "score": "0-3",
+          "odds": 100
         },
         {
-          "score": "0-3",
+          "score": "5-0",
           "odds": 100
         },
         {
@@ -272,7 +358,91 @@
           "odds": 1000
         }
       ],
-      "csOverround": 1.388
+      "csOverround": 1.391,
+      "csVigPct": 39,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 10
+        },
+        {
+          "goals": "1",
+          "odds": 4.5
+        },
+        {
+          "goals": "2",
+          "odds": 3.45
+        },
+        {
+          "goals": "3",
+          "odds": 3.3
+        },
+        {
+          "goals": "4",
+          "odds": 5.5
+        },
+        {
+          "goals": "5",
+          "odds": 12
+        },
+        {
+          "goals": "6",
+          "odds": 23
+        },
+        {
+          "goals": "7+",
+          "odds": 33
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 2.55
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 14
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 35
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 3.85
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 5.5
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 11
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 21
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 14
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 9
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Ghana vs Panama": {
       "matchNum": "周三023",
@@ -281,16 +451,16 @@
       "homeZh": "加纳",
       "awayZh": "巴拿马",
       "had": [
-        2.07,
-        3,
-        3.2
+        2.04,
+        3.03,
+        3.23
       ],
       "hhad": {
         "goalLine": "-1",
         "odds": [
-          4.37,
+          4.2,
           3.7,
-          1.59
+          1.61
         ]
       },
       "cs": [
@@ -407,7 +577,91 @@
           "odds": 500
         }
       ],
-      "csOverround": 1.393
+      "csOverround": 1.393,
+      "csVigPct": 39,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 8
+        },
+        {
+          "goals": "1",
+          "odds": 3.8
+        },
+        {
+          "goals": "2",
+          "odds": 3.1
+        },
+        {
+          "goals": "3",
+          "odds": 3.7
+        },
+        {
+          "goals": "4",
+          "odds": 6.8
+        },
+        {
+          "goals": "5",
+          "odds": 15
+        },
+        {
+          "goals": "6",
+          "odds": 29
+        },
+        {
+          "goals": "7+",
+          "odds": 40
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 3.45
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 13
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 27
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4.9
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 4.5
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 7.3
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 23
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 13
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 6
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Uzbekistan vs Colombia": {
       "matchNum": "周三024",
@@ -424,22 +678,22 @@
         "goalLine": "+1",
         "odds": [
           3.4,
-          3.46,
-          1.83
+          3.58,
+          1.8
         ]
       },
       "cs": [
         {
           "score": "0-2",
-          "odds": 5
+          "odds": 4.8
         },
         {
           "score": "0-1",
-          "odds": 5.75
+          "odds": 6
         },
         {
           "score": "1-2",
-          "odds": 6.75
+          "odds": 6.5
         },
         {
           "score": "0-3",
@@ -447,11 +701,11 @@
         },
         {
           "score": "1-3",
-          "odds": 9
+          "odds": 8.75
         },
         {
           "score": "1-1",
-          "odds": 9.25
+          "odds": 9.5
         },
         {
           "score": "0-0",
@@ -459,7 +713,7 @@
         },
         {
           "score": "0-4",
-          "odds": 13
+          "odds": 14
         },
         {
           "score": "1-0",
@@ -474,16 +728,16 @@
           "odds": 25
         },
         {
-          "score": "0-5",
-          "odds": 30
-        },
-        {
           "score": "2-1",
           "odds": 30
         },
         {
           "score": "2-3",
           "odds": 32
+        },
+        {
+          "score": "0-5",
+          "odds": 33
         },
         {
           "score": "1-5",
@@ -499,7 +753,7 @@
         },
         {
           "score": "3-3",
-          "odds": 100
+          "odds": 90
         },
         {
           "score": "3-1",
@@ -542,7 +796,91 @@
           "odds": 1000
         }
       ],
-      "csOverround": 1.377
+      "csOverround": 1.377,
+      "csVigPct": 38,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 12
+        },
+        {
+          "goals": "1",
+          "odds": 5
+        },
+        {
+          "goals": "2",
+          "odds": 3.45
+        },
+        {
+          "goals": "3",
+          "odds": 3.3
+        },
+        {
+          "goals": "4",
+          "odds": 5
+        },
+        {
+          "goals": "5",
+          "odds": 11
+        },
+        {
+          "goals": "6",
+          "odds": 20
+        },
+        {
+          "goals": "7+",
+          "odds": 27
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 18
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 20
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 24
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 20
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 6.45
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 3.65
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 50
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 20
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 1.79
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Czechia vs South Africa": {
       "matchNum": "周四025",
@@ -677,7 +1015,91 @@
           "odds": 600
         }
       ],
-      "csOverround": 1.393
+      "csOverround": 1.393,
+      "csVigPct": 39,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 9.25
+        },
+        {
+          "goals": "1",
+          "odds": 4.25
+        },
+        {
+          "goals": "2",
+          "odds": 3.1
+        },
+        {
+          "goals": "3",
+          "odds": 3.65
+        },
+        {
+          "goals": "4",
+          "odds": 6.2
+        },
+        {
+          "goals": "5",
+          "odds": 12.5
+        },
+        {
+          "goals": "6",
+          "odds": 23
+        },
+        {
+          "goals": "7+",
+          "odds": 34
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 2.7
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 15
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 36
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4.3
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 5
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 9
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 23
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 15
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 7.35
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Switzerland vs Bosnia": {
       "matchNum": "周四026",
@@ -812,7 +1234,91 @@
           "odds": 800
         }
       ],
-      "csOverround": 1.38
+      "csOverround": 1.38,
+      "csVigPct": 38,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 10.5
+        },
+        {
+          "goals": "1",
+          "odds": 4.3
+        },
+        {
+          "goals": "2",
+          "odds": 3.35
+        },
+        {
+          "goals": "3",
+          "odds": 3.55
+        },
+        {
+          "goals": "4",
+          "odds": 5.7
+        },
+        {
+          "goals": "5",
+          "odds": 11
+        },
+        {
+          "goals": "6",
+          "odds": 21
+        },
+        {
+          "goals": "7+",
+          "odds": 31
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 1.9
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 21
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 60
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 3.7
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 5.95
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 15
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 29
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 21
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 13
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Canada vs Qatar": {
       "matchNum": "周四027",
@@ -947,7 +1453,91 @@
           "odds": 800
         }
       ],
-      "csOverround": 1.372
+      "csOverround": 1.372,
+      "csVigPct": 37,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 13
+        },
+        {
+          "goals": "1",
+          "odds": 5.2
+        },
+        {
+          "goals": "2",
+          "odds": 3.4
+        },
+        {
+          "goals": "3",
+          "odds": 3.45
+        },
+        {
+          "goals": "4",
+          "odds": 5.25
+        },
+        {
+          "goals": "5",
+          "odds": 9
+        },
+        {
+          "goals": "6",
+          "odds": 17
+        },
+        {
+          "goals": "7+",
+          "odds": 25
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 1.7
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 23
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 65
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 3.55
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 7.25
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 20
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 28
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 23
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 17
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Mexico vs South Korea": {
       "matchNum": "周四028",
@@ -1082,7 +1672,91 @@
           "odds": 600
         }
       ],
-      "csOverround": 1.394
+      "csOverround": 1.394,
+      "csVigPct": 39,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 8
+        },
+        {
+          "goals": "1",
+          "odds": 4.1
+        },
+        {
+          "goals": "2",
+          "odds": 3
+        },
+        {
+          "goals": "3",
+          "odds": 3.75
+        },
+        {
+          "goals": "4",
+          "odds": 6.55
+        },
+        {
+          "goals": "5",
+          "odds": 14.5
+        },
+        {
+          "goals": "6",
+          "odds": 26
+        },
+        {
+          "goals": "7+",
+          "odds": 40
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 3.05
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 15
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 30
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4.5
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 4.5
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 8.25
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 25
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 15
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 6.5
+        }
+      ],
+      "hafuVigPct": 25
     },
     "USA vs Australia": {
       "matchNum": "周五029",
@@ -1217,7 +1891,91 @@
           "odds": 1000
         }
       ],
-      "csOverround": 1.385
+      "csOverround": 1.385,
+      "csVigPct": 38,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 10.5
+        },
+        {
+          "goals": "1",
+          "odds": 4.5
+        },
+        {
+          "goals": "2",
+          "odds": 3.1
+        },
+        {
+          "goals": "3",
+          "odds": 3.5
+        },
+        {
+          "goals": "4",
+          "odds": 5.9
+        },
+        {
+          "goals": "5",
+          "odds": 11.5
+        },
+        {
+          "goals": "6",
+          "odds": 23
+        },
+        {
+          "goals": "7+",
+          "odds": 35
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 2.15
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 18
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 40
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 5.6
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 12
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 24
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 18
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 10
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Scotland vs Morocco": {
       "matchNum": "周五030",
@@ -1352,7 +2110,91 @@
           "odds": 900
         }
       ],
-      "csOverround": 1.393
+      "csOverround": 1.393,
+      "csVigPct": 39,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 9
+        },
+        {
+          "goals": "1",
+          "odds": 4.2
+        },
+        {
+          "goals": "2",
+          "odds": 3.05
+        },
+        {
+          "goals": "3",
+          "odds": 3.7
+        },
+        {
+          "goals": "4",
+          "odds": 6.25
+        },
+        {
+          "goals": "5",
+          "odds": 13
+        },
+        {
+          "goals": "6",
+          "odds": 24
+        },
+        {
+          "goals": "7+",
+          "odds": 35
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 8.5
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 16
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 23
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 10
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 5.1
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 4.1
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 35
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 16
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 2.5
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Brazil vs Haiti": {
       "matchNum": "周五031",
@@ -1483,7 +2325,91 @@
           "odds": 1000
         }
       ],
-      "csOverround": 1.282
+      "csOverround": 1.282,
+      "csVigPct": 28,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 30
+        },
+        {
+          "goals": "1",
+          "odds": 8.5
+        },
+        {
+          "goals": "2",
+          "odds": 4.9
+        },
+        {
+          "goals": "3",
+          "odds": 3.7
+        },
+        {
+          "goals": "4",
+          "odds": 4.2
+        },
+        {
+          "goals": "5",
+          "odds": 5.8
+        },
+        {
+          "goals": "6",
+          "odds": 8.8
+        },
+        {
+          "goals": "7+",
+          "odds": 9.5
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 1.29
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 30
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 120
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 14.5
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 40
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 28
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 30
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 40
+        }
+      ],
+      "hafuVigPct": 25
     },
     "Turkey vs Paraguay": {
       "matchNum": "周五032",
@@ -1618,7 +2544,91 @@
           "odds": 600
         }
       ],
-      "csOverround": 1.396
+      "csOverround": 1.396,
+      "csVigPct": 40,
+      "ttg": [
+        {
+          "goals": "0",
+          "odds": 9
+        },
+        {
+          "goals": "1",
+          "odds": 4.2
+        },
+        {
+          "goals": "2",
+          "odds": 3
+        },
+        {
+          "goals": "3",
+          "odds": 3.75
+        },
+        {
+          "goals": "4",
+          "odds": 6.25
+        },
+        {
+          "goals": "5",
+          "odds": 13
+        },
+        {
+          "goals": "6",
+          "odds": 25
+        },
+        {
+          "goals": "7+",
+          "odds": 35
+        }
+      ],
+      "ttgVigPct": 25,
+      "hafu": [
+        {
+          "combo": "hh",
+          "label": "半胜全胜",
+          "odds": 3.05
+        },
+        {
+          "combo": "hd",
+          "label": "半胜全平",
+          "odds": 14.5
+        },
+        {
+          "combo": "ha",
+          "label": "半胜全负",
+          "odds": 29
+        },
+        {
+          "combo": "dh",
+          "label": "半平全胜",
+          "odds": 4.7
+        },
+        {
+          "combo": "dd",
+          "label": "半平全平",
+          "odds": 4.8
+        },
+        {
+          "combo": "da",
+          "label": "半平全负",
+          "odds": 7.8
+        },
+        {
+          "combo": "ah",
+          "label": "半负全胜",
+          "odds": 23
+        },
+        {
+          "combo": "ad",
+          "label": "半负全平",
+          "odds": 14.5
+        },
+        {
+          "combo": "aa",
+          "label": "半负全负",
+          "odds": 6.2
+        }
+      ],
+      "hafuVigPct": 25
     }
   }
 }

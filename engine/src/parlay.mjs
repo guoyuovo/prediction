@@ -1,32 +1,54 @@
 // "搏·串关" 选腿 + 组合 — 纯函数,供 build-bo(线上) 与 backtest-parlay(回测) 共用同一逻辑。
-//   定位:娱乐性高赔串关。在【市场认为还有点可能】(去水概率 q ≥ 下限)的结果里,挑【赔率高】的组 2/3/4 关。
+//   定位:娱乐性高赔串关。命中概率/EV 一律用【市场去水概率 q】(回测证明模型在长尾系统性高估,价值腿 0/6 全黑);
+//   模型只当 ⚑lean 风味标签,不进选腿打分、不声称价值。EV 恒为负,如实呈现。数据同源铁律:单腿 q/odds 同源。
 //
-//   ⚠️ 诚实口径(关键,见 memory/parlay-edge-findings 回测实证):
-//   - "可能性"用【市场去水概率 q】,不用我们模型的概率——回测证明模型在长尾(冷门/客胜/平)系统性高估,
-//     用模型概率会选出"自信的幻觉"(价值腿回测 0/6)。市场在尾部比我们准,故用 q 当可能性标尺。
-//   - 展示的命中概率与 EV 全用市场 q 计算 → 每注 EV 恒为负(=被抽水复利吃掉),如实呈现,绝不打绿色正 EV。
-//   - 模型只当【风味标签 lean】:某腿模型比市场更看好就标记一下,但不据此声称价值、不进入选腿打分。
-//   数据同源铁律:单腿 q、odds 必须来自同一市场源。
+//   风险分档(治"为高赔而高赔"):稳搏=温和冷门带、激进=长尾带,两档 q 不重叠;档内按"命中×回报几何平衡分"选腿,
+//   几何平均任一子分趋 0 总分趋 0 → 数学上杜绝"为高赔单边拉满"(老 bug 根因:每场取最高赔=必选 q 最低长尾)。
 
 export const PARLAY_CFG = {
-  Q_FLOOR: 0.08,   // 闸1 市场去水概率下限(排掉纯不可能;这是诚实的"可能性"标尺)
-  ODDS_MIN: 2.20,  // 闸2 赔率下限(才算"搏";同时隐含 q 上限,排大热)
-  POOL_K: 6,       // 候选池上限(按赔率降序取前 K)
-  TIERS: { single: 3, two: 3, three: 2, four: 2 }, // 各档出注数上限
+  POOL_K: 6,                                          // 候选池上限
+  TIERS: { single: 3, two: 3, three: 2, four: 2 },    // 各档出注数上限
+  IND_DISCOUNT: 0.92,                                 // 组合命中率相关性保守折扣 pAdj=∏q·0.92^(关数-1)
 };
 
+export const RISK_BANDS = {
+  steady:     { key: 'steady',     label: '稳搏',   qLo: 0.17, qHi: 0.40, wHit: 0.65 }, // 温和冷门·偏命中(甜点 q≈0.32)
+  aggressive: { key: 'aggressive', label: '激进搏', qLo: 0.06, qHi: 0.17, wHit: 0.35 }, // 长尾大赔·偏回报(甜点 q≈0.10)
+};
+
+const clamp01 = (x) => Math.max(0, Math.min(1, x));
 const SELS = ['H', 'D', 'A'];
 const SEL_ZH = { H: '主胜', D: '平局', A: '客胜' };
 
-// 去水位:1X2 含 vig 隐含概率归一为市场真实概率 q;vig=倒数和(overround)
-export function devig(odds3) {
-  const inv = odds3.map((o) => 1 / o);
-  const vig = inv[0] + inv[1] + inv[2];
+// 去水位:含 vig 隐含概率归一为市场真实概率 q;vig=倒数和(overround)。通用:传 N 个赔率。
+export function devig(odds) {
+  const inv = odds.map((o) => 1 / o);
+  const vig = inv.reduce((a, b) => a + b, 0);
   return { q: inv.map((x) => x / vig), vig };
 }
 
-// 单场 → 候选腿(三选一各一条)。q/odds 同源;modelP 仅作风味,不参与选腿打分。
-//   match: { key, seq, home, away, p:[pH,pD,pA], odds:[oH,oD,oA], src }
+// —— 通用选项(任意玩法的单个结果)打分:只吃市场概率 q ——
+// 落档:只看 q(odds≈1/(q·vig) 与 q 单调,不另设 odds 闸,避免与 q 边界打架——这正是上一版"稳搏推荐为空"的 bug)
+export function inBand(opt, b) { return opt.q >= b.qLo && opt.q < b.qHi; }
+// 几何平衡分:命中分=q 在带内位置、回报分=其补(q 越低赔率越高);score=hit^wHit × ret^(1−wHit),
+//   在 hit=wHit 处取峰(稳搏偏命中→甜点偏高 q,激进偏回报→甜点偏低 q);几何形式使带边缘项→0,杜绝"为高赔单边拉满"。
+export function scoreOption(opt, b) {
+  const hit = clamp01((opt.q - b.qLo) / (b.qHi - b.qLo));
+  const ret = 1 - hit;
+  return +(Math.pow(hit, b.wHit) * Math.pow(ret, 1 - b.wHit)).toFixed(4);
+}
+// 从某玩法的全部选项里,选出该风险档的推荐项(返回 {sel, score} 或 null)
+export function pickRec(options, b) {
+  let best = null;
+  for (const o of options) {
+    if (!inBand(o, b)) continue;
+    const s = scoreOption(o, b);
+    if (!best || s > best.score) best = { sel: o.sel, score: s };
+  }
+  return best;
+}
+
+// 单场 1X2 → 三选一候选腿(系统荐彩/回测用)。q/odds 同源;modelP 仅作风味。
 export function legsOfMatch(match) {
   const { q } = devig(match.odds);
   return SELS.map((sel, i) => {
@@ -34,32 +56,24 @@ export function legsOfMatch(match) {
     return {
       key: match.key, seq: match.seq, home: match.home, away: match.away, src: match.src,
       sel, selZh: SEL_ZH[sel],
-      q: +qi.toFixed(4),          // 市场去水概率 = 诚实命中概率
-      modelP: +modelP.toFixed(4), // 模型概率(仅风味标签用)
-      odds: +odds.toFixed(2),
-      lean: modelP > qi,          // 模型比市场更看好 → 风味标签(不代表价值)
-      evHonest: +(qi * odds - 1).toFixed(4), // 用市场 q 算 → 恒为负(=抽水)
+      q: +qi.toFixed(4), modelP: +modelP.toFixed(4), odds: +odds.toFixed(2),
+      lean: modelP > qi, evHonest: +(qi * odds - 1).toFixed(4),
     };
   });
 }
 
-// 闸:市场可能性下限 + 赔率下限
-export function passesGates(leg) {
-  return leg.q >= PARLAY_CFG.Q_FLOOR && leg.odds >= PARLAY_CFG.ODDS_MIN;
-}
-
-// 候选池:每场至多 1 腿(取该场过闸腿里【赔率最高】=最"搏"的那条,消同场相关/互斥),
-//   全局按赔率降序取前 POOL_K。
-export function selectPool(matches) {
-  const best = new Map();
+// 候选池:每场至多 1 腿,在风险档甜区内按几何平衡分取最高(根治"为高赔而高赔"),全局按分降序取前 POOL_K。
+export function selectPool(matches, { risk = 'steady' } = {}) {
+  const b = RISK_BANDS[risk]; const best = new Map();
   for (const m of matches) {
     for (const leg of legsOfMatch(m)) {
-      if (!passesGates(leg)) continue;
+      if (!inBand(leg, b)) continue;
+      leg._score = scoreOption(leg, b);
       const cur = best.get(m.key);
-      if (!cur || leg.odds > cur.odds) best.set(m.key, leg);
+      if (!cur || leg._score > cur._score) best.set(m.key, leg);
     }
   }
-  return [...best.values()].sort((a, b) => b.odds - a.odds).slice(0, PARLAY_CFG.POOL_K);
+  return [...best.values()].sort((a, c) => c._score - a._score).slice(0, PARLAY_CFG.POOL_K);
 }
 
 function combos(arr, k) {
@@ -70,32 +84,29 @@ function combos(arr, k) {
   return out;
 }
 
-// 组合诚实计算:赔率连乘(=回报倍数 retX,含 vig 复利);命中概率连乘市场 q(独立近似,UI 须注明偏乐观);
-//   EV 用市场 q → 恒为负(串得越多越负)。模型偏爱腿数 leanCount 仅作风味展示。
+// 组合诚实计算:赔率连乘(=回报倍数,含 vig 复利);命中率 p=∏q(裸独立近似)、pAdj=∏q·0.92^(关-1)(保守折扣,UI 主显);
+//   EV=p×odds−1 用裸 p 算 → 恒为负,不靠折扣粉饰。
 function settleParlay(legs, tier, tag) {
   const oddsC = legs.reduce((s, l) => s * l.odds, 1);
-  const pC = legs.reduce((s, l) => s * l.q, 1);
+  const pRaw = legs.reduce((s, l) => s * l.q, 1);
+  const pAdj = pRaw * Math.pow(PARLAY_CFG.IND_DISCOUNT, tier - 1);
   return {
     tier, tag,
     legKeys: legs.map((l) => `${l.key}|${l.sel}`),
     legs: legs.map((l) => ({ key: l.key, seq: l.seq, home: l.home, away: l.away, sel: l.sel, selZh: l.selZh, q: l.q, modelP: l.modelP, odds: l.odds, lean: l.lean })),
-    odds: +oddsC.toFixed(2), // retX 回报倍数
-    p: +pC.toFixed(4),       // 诚实命中概率(市场口径,偏乐观因独立近似)
-    ev: +(pC * oddsC - 1).toFixed(3), // 恒为负
-    leanCount: legs.filter((l) => l.lean).length,
+    odds: +oddsC.toFixed(2), p: +pRaw.toFixed(4), pAdj: +pAdj.toFixed(4),
+    ev: +(pRaw * oddsC - 1).toFixed(3), leanCount: legs.filter((l) => l.lean).length,
   };
 }
 
-// 出注:单关(高赔) + 2/3 关(按市场命中概率挑"最有戏"的) + 4 关(按赔率挑"最大回报"的纯娱乐)。
-//   所有 EV 恒为负——这是诚实结果,UI 如实呈现,不造正期望错觉。
-export function buildParlays(pool) {
+// 系统荐彩自动出注:单关 + 2/3/4 关。稳搏档按命中率(p)优先、激进档按回报(赔率)优先。EV 恒负如实。
+export function buildParlays(pool, { risk = 'steady' } = {}) {
   const c = PARLAY_CFG;
-  const singles = pool.slice(0, c.TIERS.single).map((l) => settleParlay([l], 1, '高赔单'));
-  const tier2 = combos(pool, 2).map((ls) => settleParlay(ls, 2, '双串'))
-    .sort((a, b) => b.p - a.p).slice(0, c.TIERS.two);
-  const tier3 = combos(pool, 3).map((ls) => settleParlay(ls, 3, '三串'))
-    .sort((a, b) => b.p - a.p).slice(0, c.TIERS.three);
-  const tier4 = combos(pool, 4).map((ls) => settleParlay(ls, 4, '搏一搏·纯娱乐'))
-    .sort((a, b) => b.odds - a.odds).slice(0, c.TIERS.four);
+  const cmp = risk === 'aggressive' ? (a, b) => b.odds - a.odds : (a, b) => b.p - a.p;
+  const single = RISK_BANDS[risk] ? RISK_BANDS[risk].label : '搏';
+  const singles = pool.slice(0, c.TIERS.single).map((l) => settleParlay([l], 1, single + '单'));
+  const tier2 = combos(pool, 2).map((ls) => settleParlay(ls, 2, '2串1')).sort(cmp).slice(0, c.TIERS.two);
+  const tier3 = combos(pool, 3).map((ls) => settleParlay(ls, 3, '3串1')).sort(cmp).slice(0, c.TIERS.three);
+  const tier4 = combos(pool, 4).map((ls) => settleParlay(ls, 4, '4串1')).sort(cmp).slice(0, c.TIERS.four);
   return { singles, parlays: [...tier2, ...tier3, ...tier4] };
 }
