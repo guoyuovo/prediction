@@ -29,8 +29,9 @@ function extractRecommends(ml) {
   const out = [];
   const pull = (plays) => {
     for (const pv of (plays || [])) {
-      const items = (pv.itemVoList || []).filter((i) => i.isRecommend).map((i) => ({ name: i.playItemName, odds: i.odds }));
-      if (items.length) out.push({ play: pv.playName, code: pv.playCode, items });
+      // 保留该玩法【全部选项】(胜平负/比分等全盘 + 赔率),标记哪些是专家推荐(前端高亮)
+      const items = (pv.itemVoList || []).map((i) => ({ name: i.playItemName, odds: i.odds, rec: !!i.isRecommend }));
+      if (items.some((i) => i.rec)) out.push({ play: pv.playName, code: pv.playCode, items });
     }
   };
   pull(ml.playVoList); pull(ml.extraRecommendPlays);
