@@ -29,6 +29,8 @@ const idx = readExport('index-data.json', 'index.html');
 const dual = readExport('dual-data.json', 'dual.html');
 const experts = (() => { try { return loadJson('data/expert-plans.json'); } catch { return { plans: [] }; } })();
 const health = (() => { try { return loadJson('data/run-health.json'); } catch { return null; } })();
+// "搏·串关"(娱乐):缺失则降级为 null,前端不渲染该板块
+const bo = (() => { try { return JSON.parse(readFileSync(join(ROOT, 'output', 'bo-data.json'), 'utf-8')); } catch { return null; } })();
 
 // 完赛场：合并 v2 赛前样本外预测
 const comp = {};
@@ -72,6 +74,7 @@ const payload = {
     adjustments: dual.adjustments,
   },
   experts: { plans: expertPlans, total: expertPlans.length, fetchedAt: experts._fetchedAt },
+  bo,
 };
 
 const payloadStr = JSON.stringify(payload);
