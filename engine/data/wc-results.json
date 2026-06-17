@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-17T02:46:50.376Z",
-  "count": 18,
+  "_fetchedAt": "2026-06-17T03:02:00.566Z",
+  "count": 19,
   "results": [
     {
       "date": "2026-06-11",
@@ -845,6 +845,54 @@
       ],
       "status": "Full Time",
       "espnId": "760430"
+    },
+    {
+      "date": "2026-06-16",
+      "et": "2026-06-16T21:00:00-04:00",
+      "group": "J",
+      "home": "Argentina",
+      "away": "Algeria",
+      "hs": 3,
+      "as": 0,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 10,
+          "sot": 6,
+          "poss": 47.8
+        },
+        "away": {
+          "shots": 7,
+          "sot": 1,
+          "poss": 52.2
+        }
+      },
+      "goals": [
+        {
+          "min": "17'",
+          "scorer": "Lionel Messi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "60'",
+          "scorer": "Lionel Messi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "76'",
+          "scorer": "Lionel Messi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760433"
     }
   ]
 }
