@@ -59,10 +59,11 @@ function fetchData() {
   if (_cache) return _cache
   _cache = (async () => {
     const remote = await fetchRemotePayload()
-    // 标记数据来源：remote=线上最新；bundled=离线内置包(发版时冻结，可能较旧)。
-    // 页面据此显示「离线快照」横幅，避免用户把旧的内置数据误当最新。
-    if (remote) return { ...remote, meta: { ...remote.meta, source: 'remote' } }
-    return { ...BUNDLED, meta: { ...BUNDLED.meta, source: 'bundled' } }
+    // 取「线上」与「打包内置」里【更新的一份】:jsDelivr 边缘/指针缓存偶发陈旧(且其 purge 服务有时 503),
+    // 此时刚发版的内置包反而更新 → 用 meta.lastUpdate 比对,避免把过期线上数据当最新。
+    const t = (o) => (o && o.meta && o.meta.lastUpdate ? Date.parse(o.meta.lastUpdate) || 0 : -1)
+    if (remote && t(remote) >= t(BUNDLED)) return { ...remote, meta: { ...remote.meta, source: 'remote' } }
+    return { ...BUNDLED, meta: { ...BUNDLED.meta, source: remote ? 'bundled-fresher' : 'bundled' } }
   })()
   return _cache
 }
