@@ -3,7 +3,7 @@
     "matches": 22,
     "accuracy1X2": 0.5,
     "brierAvg": 0.61,
-    "loglossAvg": 1.009,
+    "loglossAvg": 1.008,
     "scoreHit": 0.091,
     "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -546,19 +546,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.47,
-      "pDraw": 0.285,
-      "pAway": 0.245,
+      "pHome": 0.479,
+      "pDraw": 0.28,
+      "pAway": 0.24,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.422,
-      "logloss": 0.755,
+      "brier": 0.407,
+      "logloss": 0.735,
       "homeAdv": false,
-      "eloDelta": 31,
-      "eloHomeBefore": 2024,
-      "eloHomeAfter": 2055,
-      "eloAwayBefore": 1912,
-      "eloAwayAfter": 1881
+      "eloDelta": 24.2,
+      "eloHomeBefore": 2055,
+      "eloHomeAfter": 2079.2,
+      "eloAwayBefore": 1881,
+      "eloAwayAfter": 1856.8
     }
   ],
   "eloChanges": [
@@ -581,12 +581,6 @@
       "delta": 42
     },
     {
-      "team": "England",
-      "before": 2024,
-      "after": 2055,
-      "delta": 31
-    },
-    {
       "team": "Sweden",
       "before": 1755,
       "after": 1785.7,
@@ -603,6 +597,12 @@
       "before": 1447,
       "after": 1472,
       "delta": 25
+    },
+    {
+      "team": "England",
+      "before": 2055,
+      "after": 2079.2,
+      "delta": 24.2
     },
     {
       "team": "South Korea",
@@ -785,6 +785,12 @@
       "delta": -23.7
     },
     {
+      "team": "Croatia",
+      "before": 1881,
+      "after": 1856.8,
+      "delta": -24.2
+    },
+    {
       "team": "Switzerland",
       "before": 1865,
       "after": 1840,
@@ -801,12 +807,6 @@
       "before": 1585,
       "after": 1554.3,
       "delta": -30.7
-    },
-    {
-      "team": "Croatia",
-      "before": 1912,
-      "after": 1881,
-      "delta": -31
     },
     {
       "team": "Ecuador",
@@ -1005,5 +1005,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-17T22:16:54.666Z"
+  "builtAt": "2026-06-17T22:31:55.813Z"
 }
