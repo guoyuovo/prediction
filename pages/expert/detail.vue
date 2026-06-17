@@ -11,7 +11,10 @@
       </view>
       <view class="row stats" v-if="p.expert.hitRate != null">
         <view class="stat"><text class="v gold">{{ Math.round((p.expert.hitRate || 0) * 100) }}%</text><text class="l">命中率</text></view>
-        <view class="stat"><text class="v">{{ p.expert.recent || '—' }}</text><text class="l">近况</text></view>
+        <view class="stat">
+          <view class="recent"><text v-for="(t, i) in recentTokens" :key="i" :class="t.num ? 'rn' : 'rt'">{{ t.s }}</text></view>
+          <text class="l">近况</text>
+        </view>
         <view class="stat"><text class="v">{{ p.expert.follower ?? '—' }}</text><text class="l">粉丝</text></view>
         <view class="stat"><text class="v">{{ p.expert.maxWin ?? '—' }}</text><text class="l">最高连红</text></view>
       </view>
@@ -33,15 +36,19 @@
     <!-- 标题 -->
     <view class="card"><text class="title">{{ p.title }}</text></view>
 
-    <!-- 推荐选项 -->
-    <view class="card" v-if="p.unlocked && p.recommends.length">
-      <view class="sec-h">专家推荐</view>
-      <view v-for="(r, i) in p.recommends" :key="i" style="margin-bottom:18rpx">
-        <text class="small" style="display:block;margin-bottom:10rpx">{{ r.play }}</text>
+    <!-- 竞彩盘口(全选项 + 专家选中高亮) -->
+    <view class="card" v-if="p.unlocked && marketRows.length">
+      <view class="sec-h">{{ hasBoard ? '竞彩盘口' : '专家推荐' }} <text class="sec-sub">{{ hasBoard ? '绿色=专家推荐' : '专家选中项' }}</text></view>
+      <view v-for="(row, i) in marketRows" :key="i" class="mkt">
+        <view class="between mkt-h">
+          <text class="small">{{ row.play }}<text v-if="row.line" class="tiny"> 让球 {{ row.line }}</text></text>
+          <text v-if="row.vig" class="tiny">抽水 {{ row.vig }}%</text>
+        </view>
         <view class="wrapflex">
-          <view v-for="(it, j) in r.items" :key="j" class="chip rec"><text class="ci-name">{{ it.name }}</text><text class="ci-odds">{{ it.odds }}</text></view>
+          <view v-for="(o, j) in row.outcomes" :key="j" class="chip" :class="{ rec: o.picked }"><text class="ci-name">{{ o.name }}</text><text class="ci-odds">{{ o.odds }}</text></view>
         </view>
       </view>
+      <text v-if="marketRows.some(r => r.cs)" class="tiny" style="display:block;margin-top:10rpx;color:#7c8597">比分为竞彩官方盘口（抽水高，仅参考）。</text>
     </view>
 
     <!-- 正文 -->
@@ -100,6 +107,42 @@ onLoad((q) => {
 })
 const homeZh = computed(() => p.value ? (nm(p.value.home) !== p.value.home ? nm(p.value.home) : p.value.matchZh.split(' vs ')[0]) : '')
 const awayZh = computed(() => p.value ? (nm(p.value.away) !== p.value.away ? nm(p.value.away) : p.value.matchZh.split(' vs ')[1]) : '')
+
+// 近况"近2场中2场"→ 分词:数字醒目、文字小
+const recentTokens = computed(() => {
+  const s = p.value?.expert?.recent || '—'
+  return s.split(/(\d+)/).filter((x) => x !== '').map((x) => ({ s: x, num: /^\d+$/.test(x) }))
+})
+
+// 竞彩全盘口 + 专家选中高亮:胜平负(始终)/让球/比分用竞彩盘,其余按专家推荐原样展示
+const norm = (x) => String(x).replace(/[:：]/g, '-')
+const hasBoard = computed(() => !!(p.value && p.value.markets))
+const marketRows = computed(() => {
+  const pl = p.value
+  if (!pl || !pl.unlocked) return []
+  const mk = pl.markets, recs = pl.recommends || [], rows = [], handled = new Set()
+  const recOf = (kw) => recs.find((r) => (r.play || '').includes(kw))
+  const picks = (r) => new Set((r?.items || []).map((i) => i.name))
+  if (mk && mk.had) { // 胜平负:始终展示
+    const r = recOf('胜平负'); if (r) handled.add(r); const sel = picks(r)
+    rows.push({ play: '胜平负', outcomes: ['主胜', '平', '客胜'].map((n, k) => ({ name: n, odds: mk.had[k], picked: sel.has(n) })) })
+  }
+  const rq = recOf('让球')
+  if (rq && mk && mk.hhad) {
+    handled.add(rq); const sel = picks(rq)
+    rows.push({ play: '让球', line: mk.hhad.goalLine, outcomes: ['主胜', '平', '客胜'].map((n, k) => ({ name: n, odds: mk.hhad.odds[k], picked: sel.has(n) })) })
+  }
+  const bf = recOf('比分')
+  if (bf && mk && mk.cs && mk.cs.length) {
+    handled.add(bf); const sel = new Set((bf.items || []).map((i) => norm(i.name)))
+    rows.push({ play: '比分', cs: true, vig: mk.csVigPct, outcomes: mk.cs.map((c) => ({ name: c.score.replace('-', ':'), odds: c.odds, picked: sel.has(norm(c.score)) })) })
+  }
+  for (const r of recs) { // 其余(大小球/总进球等)无竞彩全盘 → 原样展示=均为选中
+    if (handled.has(r)) continue
+    rows.push({ play: r.play, outcomes: (r.items || []).map((it) => ({ name: it.name, odds: it.odds, picked: true })) })
+  }
+  return rows
+})
 const styledContent = computed(() => p.value ? `<div style="color:#cfd4e0;font-size:28rpx;line-height:1.8">${p.value.content}</div>` : '')
 const openLink = () => {
   // #ifdef H5
@@ -122,4 +165,10 @@ const openLink = () => {
 .mid .vsx { display: block; font-size: 30rpx; font-weight: 800; color: #7c8597; margin-top: 4rpx; }
 .title { font-size: 32rpx; font-weight: 700; line-height: 1.5; }
 .rt { display: block; }
+.recent { display: flex; align-items: baseline; justify-content: center; line-height: 1; }
+.recent .rt { font-size: 22rpx; color: #8b93a1; }
+.recent .rn { font-size: 36rpx; font-weight: 800; color: #ffcf4a; margin: 0 3rpx; }
+.mkt { margin-bottom: 22rpx; }
+.mkt:last-child { margin-bottom: 0; }
+.mkt-h { margin-bottom: 12rpx; }
 </style>

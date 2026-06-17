@@ -11,7 +11,7 @@ import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, loadJson } from '../src/util.mjs';
 
-const URL = 'https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=had,crs&channel=c';
+const URL = 'https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=had,hhad,crs&channel=c';
 const HDR = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124 Safari/537.36', Referer: 'https://www.sporttery.cn/' };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -75,11 +75,15 @@ async function main() {
     const homeCanon = toCanon(m.homeTeamAllName), awayCanon = toCanon(m.awayTeamAllName);
     if (!homeCanon || !awayCanon) { unmatched.push(`${m.homeTeamAllName} vs ${m.awayTeamAllName}`); continue; }
     const { cs, overround } = parseCrs(m.crs);
-    const had = m.had ? [parseFloat(m.had.h), parseFloat(m.had.d), parseFloat(m.had.a)].filter((x) => x > 0) : null;
+    const triple = (x) => (x ? [parseFloat(x.h), parseFloat(x.d), parseFloat(x.a)].map((v) => +v.toFixed(2)) : null);
+    const had = triple(m.had);
+    const hhadOdds = triple(m.hhad);
     out[`${homeCanon} vs ${awayCanon}`] = {
       matchNum: m.matchNumStr || m.matchNum || null,
       homeCanon, awayCanon, homeZh: m.homeTeamAllName, awayZh: m.awayTeamAllName,
-      had: had && had.length === 3 ? had : null,
+      had: had && had.every((x) => x > 0) ? had : null,                 // 胜平负 [主胜,平,客胜]
+      hhad: hhadOdds && hhadOdds.every((x) => x > 0)                     // 让球胜平负
+        ? { goalLine: m.hhad?.goalLine ?? m.hhad?.goalLineValue ?? '', odds: hhadOdds } : null,
       cs, csOverround: overround, // ≈1.35 → 抽水~35%
     };
     csCount++;

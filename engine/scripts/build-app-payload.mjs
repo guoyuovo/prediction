@@ -31,6 +31,14 @@ const experts = (() => { try { return loadJson('data/expert-plans.json'); } catc
 const health = (() => { try { return loadJson('data/run-health.json'); } catch { return null; } })();
 // "搏·串关"(娱乐):缺失则降级为 null,前端不渲染该板块
 const bo = (() => { try { return JSON.parse(readFileSync(join(ROOT, 'output', 'bo-data.json'), 'utf-8')); } catch { return null; } })();
+// 竞彩官方盘口(胜平负/让球/比分),按 jcNum(如"周三021")索引,供专家方案展示全盘 + 高亮选中
+const jcByNum = (() => {
+  try {
+    const j = loadJson('data/jingcai-crs.json').matches; const map = {};
+    for (const v of Object.values(j)) if (v.matchNum) map[v.matchNum] = { had: v.had, hhad: v.hhad, cs: (v.cs || []).filter((c) => /^\d+-\d+$/.test(c.score)).slice(0, 14), csVigPct: Math.round((v.csOverround - 1) * 100) };
+    return map;
+  } catch { return {}; }
+})();
 
 // 完赛场：合并 v2 赛前样本外预测
 const comp = {};
@@ -45,7 +53,8 @@ for (const m of idx.matches) {
 const DROP = ['move', 'feat', 't007m', 'maxP', 'homeAdv', 'odds', 'oddsSrc', 'egTotal', 'ouTrend'];
 for (const m of idx.matches) for (const k of DROP) delete m[k];
 
-const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim());
+const expertPlans = (experts.plans || []).filter((p) => p.unlocked && p.content && p.content.trim())
+  .map((p) => (p.jcNum && jcByNum[p.jcNum]) ? { ...p, markets: jcByNum[p.jcNum] } : p); // 挂竞彩全盘口(有则)
 
 const lastUpdate = new Date().toISOString();
 const payload = {
