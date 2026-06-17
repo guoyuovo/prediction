@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 21,
-    "accuracy1X2": 0.476,
-    "brierAvg": 0.622,
-    "loglossAvg": 1.026,
-    "scoreHit": 0.095,
-    "dirHit": 0.476,
+    "matches": 22,
+    "accuracy1X2": 0.5,
+    "brierAvg": 0.612,
+    "loglossAvg": 1.013,
+    "scoreHit": 0.091,
+    "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.293,
@@ -534,6 +534,31 @@
       "eloHomeAfter": 1946.4,
       "eloAwayBefore": 1674,
       "eloAwayAfter": 1694.6
+    },
+    {
+      "et": "2026-06-17T16:00:00-04:00",
+      "group": "L",
+      "home": "England",
+      "away": "Croatia",
+      "hs": 4,
+      "as": 2,
+      "ht": "2-2",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.474,
+      "pDraw": 0.279,
+      "pAway": 0.247,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.416,
+      "logloss": 0.747,
+      "homeAdv": false,
+      "eloDelta": 31,
+      "eloHomeBefore": 2024,
+      "eloHomeAfter": 2055,
+      "eloAwayBefore": 1912,
+      "eloAwayAfter": 1881
     }
   ],
   "eloChanges": [
@@ -554,6 +579,12 @@
       "before": 1743,
       "after": 1785,
       "delta": 42
+    },
+    {
+      "team": "England",
+      "before": 2024,
+      "after": 2055,
+      "delta": 31
     },
     {
       "team": "Sweden",
@@ -772,6 +803,12 @@
       "delta": -30.7
     },
     {
+      "team": "Croatia",
+      "before": 1912,
+      "after": 1881,
+      "delta": -31
+    },
+    {
       "team": "Ecuador",
       "before": 1890,
       "after": 1848,
@@ -937,6 +974,13 @@
       "label": "Portugal-DR Congo",
       "accCum": 0.476,
       "brierCum": 0.622
+    },
+    {
+      "i": 22,
+      "et": "2026-06-17T16:00:00-04:00",
+      "label": "England-Croatia",
+      "accCum": 0.5,
+      "brierCum": 0.612
     }
   ],
   "calibration": [
@@ -947,8 +991,8 @@
     },
     {
       "range": "45–55%",
-      "n": 6,
-      "hitRate": 0.5
+      "n": 7,
+      "hitRate": 0.571
     },
     {
       "range": "55–65%",
@@ -961,5 +1005,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-17T21:46:57.502Z"
+  "builtAt": "2026-06-17T22:02:03.977Z"
 }

@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-17T21:46:57.455Z",
-  "count": 21,
+  "_fetchedAt": "2026-06-17T22:02:03.934Z",
+  "count": 22,
   "results": [
     {
       "date": "2026-06-11",
@@ -982,6 +982,75 @@
       ],
       "status": "Full Time",
       "espnId": "760435"
+    },
+    {
+      "date": "2026-06-17",
+      "et": "2026-06-17T16:00:00-04:00",
+      "group": "L",
+      "home": "England",
+      "away": "Croatia",
+      "hs": 4,
+      "as": 2,
+      "htHome": 2,
+      "htAway": 2,
+      "stats": {
+        "home": {
+          "shots": 22,
+          "sot": 11,
+          "poss": 51.7
+        },
+        "away": {
+          "shots": 10,
+          "sot": 5,
+          "poss": 48.3
+        }
+      },
+      "goals": [
+        {
+          "min": "12'",
+          "scorer": "Harry Kane",
+          "own": false,
+          "pen": true,
+          "side": "home"
+        },
+        {
+          "min": "36'",
+          "scorer": "Martin Baturina",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "42'",
+          "scorer": "Harry Kane",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "45'+5'",
+          "scorer": "Petar Musa",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "47'",
+          "scorer": "Jude Bellingham",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "85'",
+          "scorer": "Marcus Rashford",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760437"
     }
   ]
 }
