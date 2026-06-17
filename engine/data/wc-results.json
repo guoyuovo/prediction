@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-17T06:02:21.095Z",
-  "count": 19,
+  "_fetchedAt": "2026-06-17T06:16:54.773Z",
+  "count": 20,
   "results": [
     {
       "date": "2026-06-11",
@@ -893,6 +893,54 @@
       ],
       "status": "Full Time",
       "espnId": "760433"
+    },
+    {
+      "date": "2026-06-17",
+      "et": "2026-06-17T00:00:00-04:00",
+      "group": "J",
+      "home": "Austria",
+      "away": "Jordan",
+      "hs": 3,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 11,
+          "sot": 4,
+          "poss": 63.2
+        },
+        "away": {
+          "shots": 11,
+          "sot": 4,
+          "poss": 36.8
+        }
+      },
+      "goals": [
+        {
+          "min": "21'",
+          "scorer": "Romano Schmid",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "50'",
+          "scorer": "Ali Olwan",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "90'+12'",
+          "scorer": "Marko Arnautovic",
+          "own": false,
+          "pen": true,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760431"
     }
   ]
 }

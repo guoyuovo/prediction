@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 19,
-    "accuracy1X2": 0.474,
-    "brierAvg": 0.624,
-    "loglossAvg": 1.033,
-    "scoreHit": 0.105,
-    "dirHit": 0.474,
+    "matches": 20,
+    "accuracy1X2": 0.5,
+    "brierAvg": 0.606,
+    "loglossAvg": 1.009,
+    "scoreHit": 0.1,
+    "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.24,
@@ -484,6 +484,31 @@
       "eloHomeAfter": 2127.8,
       "eloAwayBefore": 1772,
       "eloAwayAfter": 1759.2
+    },
+    {
+      "et": "2026-06-17T00:00:00-04:00",
+      "group": "J",
+      "home": "Austria",
+      "away": "Jordan",
+      "hs": 3,
+      "as": 1,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.574,
+      "pDraw": 0.221,
+      "pAway": 0.205,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.272,
+      "logloss": 0.555,
+      "homeAdv": false,
+      "eloDelta": 26.7,
+      "eloHomeBefore": 1830,
+      "eloHomeAfter": 1856.7,
+      "eloAwayBefore": 1680,
+      "eloAwayAfter": 1653.3
     }
   ],
   "eloChanges": [
@@ -516,6 +541,12 @@
       "before": 1606,
       "after": 1633.2,
       "delta": 27.2
+    },
+    {
+      "team": "Austria",
+      "before": 1830,
+      "after": 1856.7,
+      "delta": 26.7
     },
     {
       "team": "Qatar",
@@ -686,6 +717,12 @@
       "delta": -25
     },
     {
+      "team": "Jordan",
+      "before": 1680,
+      "after": 1653.3,
+      "delta": -26.7
+    },
+    {
       "team": "Spain",
       "before": 2129,
       "after": 2101.8,
@@ -849,6 +886,13 @@
       "label": "Argentina-Algeria",
       "accCum": 0.474,
       "brierCum": 0.624
+    },
+    {
+      "i": 20,
+      "et": "2026-06-17T00:00:00-04:00",
+      "label": "Austria-Jordan",
+      "accCum": 0.5,
+      "brierCum": 0.606
     }
   ],
   "calibration": [
@@ -864,8 +908,8 @@
     },
     {
       "range": "55–65%",
-      "n": 6,
-      "hitRate": 0.5
+      "n": 7,
+      "hitRate": 0.571
     },
     {
       "range": "65–101%",
@@ -873,5 +917,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-17T06:02:21.136Z"
+  "builtAt": "2026-06-17T06:16:54.817Z"
 }
