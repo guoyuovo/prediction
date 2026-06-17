@@ -102,4 +102,12 @@ view, scroll-view, text, image { box-sizing: border-box; }
 .hero .between { gap: 16rpx; }
 .hero .pill { flex-shrink: 0; white-space: nowrap; }
 .between { min-width: 0; }
+
+/* H5 底部 tabBar 字号放大：H5 渲染的是 uni-app 内置 tabBar(custom-tab-bar 组件在 H5 不注入),
+   其文字默认仅 10px,故全局覆盖 .uni-tabbar__label。!important 压过框架内置样式。 */
+/* #ifdef H5 */
+.uni-tabbar__label { font-size: 16px !important; line-height: 1.3 !important; }
+.uni-tabbar__item.uni-tabbar__item--active .uni-tabbar__label { font-weight: 700; }
+.uni-tabbar { height: 58px !important; }
+/* #endif */
 </style>

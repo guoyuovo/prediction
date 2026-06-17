@@ -59,7 +59,7 @@ export default {
   padding: 16rpx 0 10rpx;
 }
 .tab-text {
-  font-size: 54rpx;
+  font-size: 40rpx;
   color: #8b93a1;
   font-weight: 600;
   line-height: 1.2;
