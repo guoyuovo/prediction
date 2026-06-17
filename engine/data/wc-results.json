@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-17T18:46:53.346Z",
-  "count": 20,
+  "_fetchedAt": "2026-06-17T19:01:59.983Z",
+  "count": 21,
   "results": [
     {
       "date": "2026-06-11",
@@ -941,6 +941,47 @@
       ],
       "status": "Full Time",
       "espnId": "760431"
+    },
+    {
+      "date": "2026-06-17",
+      "et": "2026-06-17T13:00:00-04:00",
+      "group": "K",
+      "home": "Portugal",
+      "away": "DR Congo",
+      "hs": 1,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 7,
+          "sot": 1,
+          "poss": 75.4
+        },
+        "away": {
+          "shots": 8,
+          "sot": 2,
+          "poss": 24.6
+        }
+      },
+      "goals": [
+        {
+          "min": "6'",
+          "scorer": "João Neves",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "45'+5'",
+          "scorer": "Yoane Wissa",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760435"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 20,
-    "accuracy1X2": 0.5,
-    "brierAvg": 0.604,
-    "loglossAvg": 1.004,
-    "scoreHit": 0.1,
-    "dirHit": 0.5,
+    "matches": 21,
+    "accuracy1X2": 0.476,
+    "brierAvg": 0.624,
+    "loglossAvg": 1.031,
+    "scoreHit": 0.095,
+    "dirHit": 0.476,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.267,
@@ -509,6 +509,31 @@
       "eloHomeAfter": 1878.2,
       "eloAwayBefore": 1653,
       "eloAwayAfter": 1631.8
+    },
+    {
+      "et": "2026-06-17T13:00:00-04:00",
+      "group": "K",
+      "home": "Portugal",
+      "away": "DR Congo",
+      "hs": 1,
+      "as": 1,
+      "ht": "1-1",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.613,
+      "pDraw": 0.206,
+      "pAway": 0.181,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 1.04,
+      "logloss": 1.581,
+      "homeAdv": false,
+      "eloDelta": -22.5,
+      "eloHomeBefore": 1989,
+      "eloHomeAfter": 1966.5,
+      "eloAwayBefore": 1652,
+      "eloAwayAfter": 1674.5
     }
   ],
   "eloChanges": [
@@ -553,6 +578,12 @@
       "before": 1786,
       "after": 1809.7,
       "delta": 23.7
+    },
+    {
+      "team": "DR Congo",
+      "before": 1652,
+      "after": 1674.5,
+      "delta": 22.5
     },
     {
       "team": "Austria",
@@ -709,6 +740,12 @@
       "before": 1653,
       "after": 1631.8,
       "delta": -21.2
+    },
+    {
+      "team": "Portugal",
+      "before": 1989,
+      "after": 1966.5,
+      "delta": -22.5
     },
     {
       "team": "Czechia",
@@ -893,6 +930,13 @@
       "label": "Austria-Jordan",
       "accCum": 0.5,
       "brierCum": 0.604
+    },
+    {
+      "i": 21,
+      "et": "2026-06-17T13:00:00-04:00",
+      "label": "Portugal-DR Congo",
+      "accCum": 0.476,
+      "brierCum": 0.625
     }
   ],
   "calibration": [
@@ -908,8 +952,8 @@
     },
     {
       "range": "55–65%",
-      "n": 7,
-      "hitRate": 0.571
+      "n": 8,
+      "hitRate": 0.5
     },
     {
       "range": "65–101%",
@@ -917,5 +961,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-17T18:46:53.382Z"
+  "builtAt": "2026-06-17T19:02:00.029Z"
 }
