@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-18T17:46:53.667Z",
-  "count": 24,
+  "_fetchedAt": "2026-06-18T18:02:17.456Z",
+  "count": 25,
   "results": [
     {
       "date": "2026-06-11",
@@ -1140,6 +1140,47 @@
       ],
       "status": "Full Time",
       "espnId": "760436"
+    },
+    {
+      "date": "2026-06-18",
+      "et": "2026-06-18T12:00:00-04:00",
+      "group": "A",
+      "home": "Czechia",
+      "away": "South Africa",
+      "hs": 1,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 14,
+          "sot": 3,
+          "poss": 38.2
+        },
+        "away": {
+          "shots": 17,
+          "sot": 4,
+          "poss": 61.8
+        }
+      },
+      "goals": [
+        {
+          "min": "6'",
+          "scorer": "Michal Sadílek",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "83'",
+          "scorer": "Teboho Mokoena",
+          "own": false,
+          "pen": true,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760438"
     }
   ]
 }

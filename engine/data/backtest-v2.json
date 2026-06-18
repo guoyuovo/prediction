@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 24,
-    "accuracy1X2": 0.5,
-    "brierAvg": 0.597,
-    "loglossAvg": 0.99,
-    "scoreHit": 0.083,
-    "dirHit": 0.5,
+    "matches": 25,
+    "accuracy1X2": 0.48,
+    "brierAvg": 0.603,
+    "loglossAvg": 0.999,
+    "scoreHit": 0.08,
+    "dirHit": 0.48,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -609,6 +609,31 @@
       "eloHomeAfter": 1684.4,
       "eloAwayBefore": 1998,
       "eloAwayAfter": 2011.6
+    },
+    {
+      "et": "2026-06-18T12:00:00-04:00",
+      "group": "A",
+      "home": "Czechia",
+      "away": "South Africa",
+      "hs": 1,
+      "as": 1,
+      "ht": "1-0",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.454,
+      "pDraw": 0.296,
+      "pAway": 0.25,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.764,
+      "logloss": 1.218,
+      "homeAdv": false,
+      "eloDelta": -14.6,
+      "eloHomeBefore": 1688.3,
+      "eloHomeAfter": 1673.7,
+      "eloAwayBefore": 1504,
+      "eloAwayAfter": 1518.6
     }
   ],
   "eloChanges": [
@@ -739,6 +764,12 @@
       "delta": 11.1
     },
     {
+      "team": "South Africa",
+      "before": 1511,
+      "after": 1518.6,
+      "delta": 7.6
+    },
+    {
       "team": "Mexico",
       "before": 1881,
       "after": 1888,
@@ -767,12 +798,6 @@
       "before": 1427,
       "after": 1420.6,
       "delta": -6.4
-    },
-    {
-      "team": "South Africa",
-      "before": 1511,
-      "after": 1504,
-      "delta": -7
     },
     {
       "team": "Haiti",
@@ -847,12 +872,6 @@
       "delta": -21.2
     },
     {
-      "team": "Czechia",
-      "before": 1712,
-      "after": 1688.3,
-      "delta": -23.7
-    },
-    {
       "team": "Croatia",
       "before": 1881,
       "after": 1856.8,
@@ -875,6 +894,12 @@
       "before": 1585,
       "after": 1554.3,
       "delta": -30.7
+    },
+    {
+      "team": "Czechia",
+      "before": 1712,
+      "after": 1673.7,
+      "delta": -38.3
     },
     {
       "team": "Panama",
@@ -1069,6 +1094,13 @@
       "label": "Uzbekistan-Colombia",
       "accCum": 0.5,
       "brierCum": 0.597
+    },
+    {
+      "i": 25,
+      "et": "2026-06-18T12:00:00-04:00",
+      "label": "Czechia-South Africa",
+      "accCum": 0.48,
+      "brierCum": 0.603
     }
   ],
   "calibration": [
@@ -1079,8 +1111,8 @@
     },
     {
       "range": "45–55%",
-      "n": 7,
-      "hitRate": 0.571
+      "n": 8,
+      "hitRate": 0.5
     },
     {
       "range": "55–65%",
@@ -1093,5 +1125,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-18T17:46:53.711Z"
+  "builtAt": "2026-06-18T18:02:17.499Z"
 }
