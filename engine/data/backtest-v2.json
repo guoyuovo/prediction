@@ -2,8 +2,8 @@
   "summary": {
     "matches": 24,
     "accuracy1X2": 0.5,
-    "brierAvg": 0.598,
-    "loglossAvg": 0.991,
+    "brierAvg": 0.597,
+    "loglossAvg": 0.99,
     "scoreHit": 0.083,
     "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -571,19 +571,19 @@
       "actual": "H",
       "predOutcome": "A",
       "correct": false,
-      "pHome": 0.318,
-      "pDraw": 0.313,
-      "pAway": 0.369,
+      "pHome": 0.324,
+      "pDraw": 0.321,
+      "pAway": 0.355,
       "predScore": "0-1",
       "scoreHit": false,
-      "brier": 0.699,
-      "logloss": 1.146,
+      "brier": 0.686,
+      "logloss": 1.127,
       "homeAdv": false,
-      "eloDelta": 46.8,
-      "eloHomeBefore": 1510,
-      "eloHomeAfter": 1556.8,
-      "eloAwayBefore": 1730,
-      "eloAwayAfter": 1683.2
+      "eloDelta": 40.4,
+      "eloHomeBefore": 1557,
+      "eloHomeAfter": 1597.4,
+      "eloAwayBefore": 1683,
+      "eloAwayAfter": 1642.6
     },
     {
       "et": "2026-06-17T22:00:00-04:00",
@@ -596,28 +596,22 @@
       "actual": "A",
       "predOutcome": "A",
       "correct": true,
-      "pHome": 0.19,
-      "pDraw": 0.233,
-      "pAway": 0.577,
-      "predScore": "0-1",
+      "pHome": 0.188,
+      "pDraw": 0.231,
+      "pAway": 0.581,
+      "predScore": "0-2",
       "scoreHit": false,
-      "brier": 0.269,
-      "logloss": 0.55,
+      "brier": 0.264,
+      "logloss": 0.543,
       "homeAdv": false,
-      "eloDelta": -15.9,
-      "eloHomeBefore": 1714,
-      "eloHomeAfter": 1698.1,
-      "eloAwayBefore": 1982,
-      "eloAwayAfter": 1997.9
+      "eloDelta": -13.6,
+      "eloHomeBefore": 1698,
+      "eloHomeAfter": 1684.4,
+      "eloAwayBefore": 1998,
+      "eloAwayAfter": 2011.6
     }
   ],
   "eloChanges": [
-    {
-      "team": "Ghana",
-      "before": 1510,
-      "after": 1556.8,
-      "delta": 46.8
-    },
     {
       "team": "Australia",
       "before": 1839,
@@ -635,6 +629,12 @@
       "before": 1743,
       "after": 1785,
       "delta": 42
+    },
+    {
+      "team": "Ghana",
+      "before": 1557,
+      "after": 1597.4,
+      "delta": 40.4
     },
     {
       "team": "Sweden",
@@ -697,16 +697,16 @@
       "delta": 16.3
     },
     {
-      "team": "Colombia",
-      "before": 1982,
-      "after": 1997.9,
-      "delta": 15.9
-    },
-    {
       "team": "New Zealand",
       "before": 1578,
       "after": 1592.2,
       "delta": 14.2
+    },
+    {
+      "team": "Colombia",
+      "before": 1998,
+      "after": 2011.6,
+      "delta": 13.6
     },
     {
       "team": "Egypt",
@@ -805,16 +805,16 @@
       "delta": -13.5
     },
     {
+      "team": "Uzbekistan",
+      "before": 1698,
+      "after": 1684.4,
+      "delta": -13.6
+    },
+    {
       "team": "Iran",
       "before": 1756,
       "after": 1741.8,
       "delta": -14.2
-    },
-    {
-      "team": "Uzbekistan",
-      "before": 1714,
-      "after": 1698.1,
-      "delta": -15.9
     },
     {
       "team": "Canada",
@@ -877,6 +877,12 @@
       "delta": -30.7
     },
     {
+      "team": "Panama",
+      "before": 1683,
+      "after": 1642.6,
+      "delta": -40.4
+    },
+    {
       "team": "Ecuador",
       "before": 1890,
       "after": 1848,
@@ -893,12 +899,6 @@
       "before": 1849,
       "after": 1802.7,
       "delta": -46.3
-    },
-    {
-      "team": "Panama",
-      "before": 1730,
-      "after": 1683.2,
-      "delta": -46.8
     }
   ],
   "timeline": [
@@ -1061,14 +1061,14 @@
       "et": "2026-06-17T19:00:00-04:00",
       "label": "Ghana-Panama",
       "accCum": 0.478,
-      "brierCum": 0.612
+      "brierCum": 0.611
     },
     {
       "i": 24,
       "et": "2026-06-17T22:00:00-04:00",
       "label": "Uzbekistan-Colombia",
       "accCum": 0.5,
-      "brierCum": 0.598
+      "brierCum": 0.597
     }
   ],
   "calibration": [
@@ -1093,5 +1093,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-18T09:32:06.964Z"
+  "builtAt": "2026-06-18T09:45:04.935Z"
 }
