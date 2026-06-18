@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 25,
-    "accuracy1X2": 0.48,
-    "brierAvg": 0.603,
-    "loglossAvg": 0.999,
-    "scoreHit": 0.08,
-    "dirHit": 0.48,
+    "matches": 26,
+    "accuracy1X2": 0.5,
+    "brierAvg": 0.594,
+    "loglossAvg": 0.986,
+    "scoreHit": 0.077,
+    "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -634,6 +634,31 @@
       "eloHomeAfter": 1661.1,
       "eloAwayBefore": 1519.4,
       "eloAwayAfter": 1531.9
+    },
+    {
+      "et": "2026-06-18T15:00:00-04:00",
+      "group": "B",
+      "home": "Switzerland",
+      "away": "Bosnia",
+      "hs": 4,
+      "as": 1,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.51,
+      "pDraw": 0.267,
+      "pAway": 0.223,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.362,
+      "logloss": 0.674,
+      "homeAdv": false,
+      "eloDelta": 24.4,
+      "eloHomeBefore": 1840,
+      "eloHomeAfter": 1864.4,
+      "eloAwayBefore": 1632.3,
+      "eloAwayAfter": 1607.9
     }
   ],
   "eloChanges": [
@@ -716,12 +741,6 @@
       "delta": 17.7
     },
     {
-      "team": "Bosnia",
-      "before": 1616,
-      "after": 1632.3,
-      "delta": 16.3
-    },
-    {
       "team": "New Zealand",
       "before": 1578,
       "after": 1592.2,
@@ -788,6 +807,12 @@
       "delta": 2.9
     },
     {
+      "team": "Switzerland",
+      "before": 1865,
+      "after": 1864.4,
+      "delta": -0.6
+    },
+    {
       "team": "Netherlands",
       "before": 1944,
       "after": 1941.1,
@@ -798,6 +823,12 @@
       "before": 1427,
       "after": 1420.6,
       "delta": -6.4
+    },
+    {
+      "team": "Bosnia",
+      "before": 1616,
+      "after": 1607.9,
+      "delta": -8.1
     },
     {
       "team": "Haiti",
@@ -876,12 +907,6 @@
       "before": 1881,
       "after": 1856.8,
       "delta": -24.2
-    },
-    {
-      "team": "Switzerland",
-      "before": 1865,
-      "after": 1840,
-      "delta": -25
     },
     {
       "team": "Spain",
@@ -1101,6 +1126,13 @@
       "label": "Czechia-South Africa",
       "accCum": 0.48,
       "brierCum": 0.603
+    },
+    {
+      "i": 26,
+      "et": "2026-06-18T15:00:00-04:00",
+      "label": "Switzerland-Bosnia",
+      "accCum": 0.5,
+      "brierCum": 0.594
     }
   ],
   "calibration": [
@@ -1111,8 +1143,8 @@
     },
     {
       "range": "45–55%",
-      "n": 7,
-      "hitRate": 0.571
+      "n": 8,
+      "hitRate": 0.625
     },
     {
       "range": "55–65%",
@@ -1125,5 +1157,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-18T20:46:52.476Z"
+  "builtAt": "2026-06-18T21:02:02.526Z"
 }
