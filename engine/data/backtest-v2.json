@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 22,
-    "accuracy1X2": 0.5,
-    "brierAvg": 0.61,
-    "loglossAvg": 1.008,
-    "scoreHit": 0.091,
-    "dirHit": 0.5,
+    "matches": 23,
+    "accuracy1X2": 0.478,
+    "brierAvg": 0.613,
+    "loglossAvg": 1.014,
+    "scoreHit": 0.087,
+    "dirHit": 0.478,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.32,
@@ -559,9 +559,40 @@
       "eloHomeAfter": 2079.2,
       "eloAwayBefore": 1881,
       "eloAwayAfter": 1856.8
+    },
+    {
+      "et": "2026-06-17T19:00:00-04:00",
+      "group": "L",
+      "home": "Ghana",
+      "away": "Panama",
+      "hs": 1,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.321,
+      "pDraw": 0.307,
+      "pAway": 0.372,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.694,
+      "logloss": 1.137,
+      "homeAdv": false,
+      "eloDelta": 46.8,
+      "eloHomeBefore": 1510,
+      "eloHomeAfter": 1556.8,
+      "eloAwayBefore": 1730,
+      "eloAwayAfter": 1683.2
     }
   ],
   "eloChanges": [
+    {
+      "team": "Ghana",
+      "before": 1510,
+      "after": 1556.8,
+      "delta": 46.8
+    },
     {
       "team": "Australia",
       "before": 1839,
@@ -825,6 +856,12 @@
       "before": 1849,
       "after": 1802.7,
       "delta": -46.3
+    },
+    {
+      "team": "Panama",
+      "before": 1730,
+      "after": 1683.2,
+      "delta": -46.8
     }
   ],
   "timeline": [
@@ -981,13 +1018,20 @@
       "label": "England-Croatia",
       "accCum": 0.5,
       "brierCum": 0.61
+    },
+    {
+      "i": 23,
+      "et": "2026-06-17T19:00:00-04:00",
+      "label": "Ghana-Panama",
+      "accCum": 0.478,
+      "brierCum": 0.613
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 6,
-      "hitRate": 0.333
+      "n": 7,
+      "hitRate": 0.286
     },
     {
       "range": "45–55%",
@@ -1005,5 +1049,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-18T01:02:27.978Z"
+  "builtAt": "2026-06-18T01:16:50.320Z"
 }
