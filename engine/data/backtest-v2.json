@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 23,
-    "accuracy1X2": 0.478,
-    "brierAvg": 0.612,
-    "loglossAvg": 1.01,
-    "scoreHit": 0.087,
-    "dirHit": 0.478,
+    "matches": 24,
+    "accuracy1X2": 0.5,
+    "brierAvg": 0.598,
+    "loglossAvg": 0.991,
+    "scoreHit": 0.083,
+    "dirHit": 0.5,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -584,6 +584,31 @@
       "eloHomeAfter": 1556.8,
       "eloAwayBefore": 1730,
       "eloAwayAfter": 1683.2
+    },
+    {
+      "et": "2026-06-17T22:00:00-04:00",
+      "group": "K",
+      "home": "Uzbekistan",
+      "away": "Colombia",
+      "hs": 1,
+      "as": 3,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.19,
+      "pDraw": 0.233,
+      "pAway": 0.577,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.269,
+      "logloss": 0.55,
+      "homeAdv": false,
+      "eloDelta": -15.9,
+      "eloHomeBefore": 1714,
+      "eloHomeAfter": 1698.1,
+      "eloAwayBefore": 1982,
+      "eloAwayAfter": 1997.9
     }
   ],
   "eloChanges": [
@@ -670,6 +695,12 @@
       "before": 1616,
       "after": 1632.3,
       "delta": 16.3
+    },
+    {
+      "team": "Colombia",
+      "before": 1982,
+      "after": 1997.9,
+      "delta": 15.9
     },
     {
       "team": "New Zealand",
@@ -778,6 +809,12 @@
       "before": 1756,
       "after": 1741.8,
       "delta": -14.2
+    },
+    {
+      "team": "Uzbekistan",
+      "before": 1714,
+      "after": 1698.1,
+      "delta": -15.9
     },
     {
       "team": "Canada",
@@ -1025,6 +1062,13 @@
       "label": "Ghana-Panama",
       "accCum": 0.478,
       "brierCum": 0.612
+    },
+    {
+      "i": 24,
+      "et": "2026-06-17T22:00:00-04:00",
+      "label": "Uzbekistan-Colombia",
+      "accCum": 0.5,
+      "brierCum": 0.598
     }
   ],
   "calibration": [
@@ -1040,8 +1084,8 @@
     },
     {
       "range": "55–65%",
-      "n": 6,
-      "hitRate": 0.5
+      "n": 7,
+      "hitRate": 0.571
     },
     {
       "range": "65–101%",
@@ -1049,5 +1093,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-18T04:02:08.147Z"
+  "builtAt": "2026-06-18T04:16:51.735Z"
 }
