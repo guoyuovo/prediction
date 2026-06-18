@@ -31,7 +31,8 @@ function buildCandidate(base, play, vigPct, marketOdds, modelPof) {
     const qi = q[i];
     return {
       sel: o.sel, selZh: o.selZh, q: +qi.toFixed(4), odds: o.odds,
-      modelP: mp != null ? +mp.toFixed(4) : null, lean: mp != null && mp > qi,
+      // 平局(had 的 D)不挂 ⚑:模型对平局无区分度,modelP>q 是底噪伪信号(详见 parlay.mjs legsOfMatch)
+      modelP: mp != null ? +mp.toFixed(4) : null, lean: mp != null && mp > qi && o.sel !== 'D',
       bands: { steady: inBand({ q: qi, odds: o.odds }, RISK_BANDS.steady), aggressive: inBand({ q: qi, odds: o.odds }, RISK_BANDS.aggressive) },
     };
   });

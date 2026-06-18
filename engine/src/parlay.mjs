@@ -57,7 +57,9 @@ export function legsOfMatch(match) {
       key: match.key, seq: match.seq, home: match.home, away: match.away, src: match.src,
       sel, selZh: SEL_ZH[sel],
       q: +qi.toFixed(4), modelP: +modelP.toFixed(4), odds: +odds.toFixed(2),
-      lean: modelP > qi, evHonest: +(qi * odds - 1).toFixed(4),
+      // 平局(D)不挂 ⚑:实测模型对平局零区分度(完赛 0/9,真打平场 pDraw 均值≈全样本均值,平局从不当 argmax),
+      //   "modelP>q" 只是平局底噪偏高(悬殊局尤甚)的伪信号,非真 edge。仅 H/A 保留风味 lean。
+      lean: sel !== 'D' && modelP > qi, evHonest: +(qi * odds - 1).toFixed(4),
     };
   });
 }
