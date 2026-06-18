@@ -1,6 +1,6 @@
 <template>
   <view class="wrap">
-    <view class="hero"><text class="t">回测 · 验证</text><text class="s">真实联赛回测 · 本届 live 校准 · 完赛对账</text></view>
+    <view class="hero"><text class="s">真实联赛回测 · 本届 live 校准 · 完赛对账</text></view>
 
     <view class="seg">
       <text v-for="t in TABS" :key="t.k" class="seg-item" :class="{ on: tab === t.k }" @click="tab = t.k">{{ t.label }}</text>
@@ -42,10 +42,20 @@
 
     <!-- 完赛对账 -->
     <view v-if="tab === 'recon'">
+      <view class="card" v-if="reconStats">
+        <view class="sec-h">已完赛命中率 <text class="sec-sub">{{ reconStats.n }} 场</text></view>
+        <view class="accrow">
+          <view class="acc"><text class="accv green">{{ pct(reconStats.spfAcc) }}</text><text class="accl">胜负 {{ reconStats.spfHit }}/{{ reconStats.n }}</text></view>
+          <view class="acc"><text class="accv gold">{{ pct(reconStats.scoreAcc) }}</text><text class="accl">比分 {{ reconStats.scoreHits }}/{{ reconStats.n }}</text></view>
+        </view>
+      </view>
       <view class="card" v-if="v2 && v2.completed">
         <view class="sec-h">完赛逐场对账 <text class="sec-sub">赛前 vs 实际</text></view>
         <view class="reconrow" v-for="(m, i) in v2.completed" :key="i">
-          <view class="between"><text class="strong">{{ nm(m.home) }} {{ m.hs }}-{{ m.as }} {{ nm(m.away) }}</text><text :class="m.correct ? 'green' : 'red'" style="font-weight:700">{{ m.correct ? '✓' : '✗' }}</text></view>
+          <view class="between">
+            <text class="strong">{{ nm(m.home) }} {{ m.hs }}-{{ m.as }} {{ nm(m.away) }}</text>
+            <view class="marks"><text class="mk" :class="m.correct ? 'green' : 'red'">胜负{{ m.correct ? '✓' : '✗' }}</text><text class="mk" :class="m.scoreHit ? 'green' : 'red'">比分{{ m.scoreHit ? '✓' : '✗' }}</text></view>
+          </view>
           <text class="tiny">预测{{ dirZh(m.predOutcome) }}/实际{{ dirZh(m.actual) }} · 比分预测{{ m.predScore }} · ΔElo{{ m.eloDelta >= 0 ? '+' : '' }}{{ m.eloDelta }}</text>
         </view>
       </view>
@@ -75,6 +85,14 @@ const btRows = computed(() => {
   const s = bt.value && bt.value.summary
   return s ? [{ k: '① 多因子', m: s.weighted }, { k: '② xG', m: s.xg }, { k: '③ 综合', m: s.dual }] : []
 })
+// 完赛对账汇总：胜负命中率 + 比分命中率
+const reconStats = computed(() => {
+  const c = (v2.value && v2.value.completed) || []
+  if (!c.length) return null
+  const spfHit = c.filter(m => m.correct).length
+  const scoreHits = c.filter(m => m.scoreHit).length
+  return { n: c.length, spfHit, scoreHits, spfAcc: spfHit / c.length, scoreAcc: scoreHits / c.length }
+})
 </script>
 
 <style scoped>
@@ -85,4 +103,10 @@ const btRows = computed(() => {
 .mline:last-child { border-bottom: none; }
 .reconrow { padding: 16rpx 0; border-bottom: 1rpx solid #20262f; }
 .reconrow:last-child { border-bottom: none; }
+.accrow { display: flex; gap: 16rpx; }
+.acc { flex: 1; text-align: center; background: #14171f; border: 1rpx solid #232a36; border-radius: 14rpx; padding: 18rpx 0; }
+.accv { display: block; font-size: 40rpx; font-weight: 800; }
+.accl { font-size: 21rpx; color: #7c8597; margin-top: 4rpx; }
+.marks { display: flex; gap: 14rpx; flex-shrink: 0; }
+.mk { font-size: 23rpx; font-weight: 700; }
 </style>

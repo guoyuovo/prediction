@@ -1,7 +1,7 @@
 <template>
   <view class="wrap">
     <view class="hero">
-      <view class="between"><text class="t">2026 世界杯</text>
+      <view class="between">
         <text class="pill" :class="{ warn: stale }">{{ updated }}{{ stale ? ' · 偏旧' : '' }}</text>
       </view>
       <text class="s">v2 滚动模型 · 双模型共同推断 · 透明回测</text>

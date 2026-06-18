@@ -1,7 +1,7 @@
 <template>
   <view class="wrap">
     <view class="hero">
-      <view class="between"><text class="t">专家方案</text><text class="pill">网易红彩 · {{ rows.length }}条</text></view>
+      <view class="between"><text class="pill">网易红彩 · {{ rows.length }}条</text></view>
       <text class="s">世界杯免费方案 · 本站模型 vs 专家 对照</text>
       <view v-if="stats.cmp" class="s2">
         <text>方向一致 </text><text class="hl">{{ stats.same }}/{{ stats.cmp }}</text><text> 条</text>
@@ -58,7 +58,7 @@
       </view>
 
       <view v-if="r.p.unlocked && r.p.recommends.length" class="wrapflex" style="margin-top:14rpx">
-        <view v-for="(it, j) in firstItems(r.p)" :key="j" class="chip rec" style="margin-bottom:0"><text class="ci-name">{{ it.name }}</text><text class="ci-odds">{{ it.odds }}</text></view>
+        <view v-for="(it, j) in firstItems(r.p)" :key="j" class="chip" :class="{ rec: it.rec, dim: !it.rec }" style="margin-bottom:0"><text class="ci-name">{{ it.name }}</text><text class="ci-odds">{{ it.odds }}</text><text v-if="it.rec" class="ci-pick"> ✓</text></view>
       </view>
     </view>
 
@@ -148,4 +148,8 @@ const goDetail = (p) => uni.navigateTo({ url: '/pages/expert/detail?threadId=' +
 .cmp-sc { margin-left: auto; font-size: 24rpx; color: #c7ccd6; font-weight: 600; }
 .cmp-sc .ok { color: #36c275; font-weight: 700; }
 .cmp-sc .no { color: #ff6b6b; font-weight: 700; }
+/* 未被专家选中的赔率项置灰，仅 rec 项保留绿色高亮 */
+.chip.dim { opacity: .42; }
+.chip.dim .ci-odds { color: #9aa3b4; }
+.ci-pick { color: #36c275; font-weight: 700; margin-left: 8rpx; font-size: 24rpx; }
 </style>

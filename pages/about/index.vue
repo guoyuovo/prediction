@@ -1,6 +1,6 @@
 <template>
   <view class="wrap">
-    <view class="hero"><text class="t">关于</text><text class="s">方法论 · 指标 · 数据源 · 诚实声明</text></view>
+    <view class="hero"><text class="s">方法论 · 指标 · 数据源 · 诚实声明</text></view>
 
     <view class="card">
       <view class="sec-h">模型说明</view>

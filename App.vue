@@ -17,7 +17,12 @@ page {
   font-family: -apple-system, "SF Pro Text", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 view, scroll-view, text, image { box-sizing: border-box; }
-.wrap { width: 100%; max-width: 100%; padding: 24rpx 28rpx calc(128rpx + env(safe-area-inset-bottom)); }
+/* H5：内置 tabBar 已通过 uni-placeholder 给 tab 页预留底部高度，详情页无 tabBar，故 .wrap 只保留常规底部间距，避免双重留白 */
+.wrap { width: 100%; max-width: 100%; padding: 24rpx 28rpx 40rpx; }
+/* 非 H5：custom-tab-bar 为 fixed 覆盖层、不占位，tab 页需手动留出其高度 */
+/* #ifndef H5 */
+.wrap { padding-bottom: calc(128rpx + env(safe-area-inset-bottom)); }
+/* #endif */
 
 /* 文本 */
 .muted { color: #7c8597; }

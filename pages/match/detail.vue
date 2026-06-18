@@ -19,6 +19,21 @@
       <text v-if="m.venue" class="tiny" style="margin-top:12rpx;display:block">📍 {{ m.venue }}<text v-if="m.wx"> · 🌤 {{ m.wx.tmax }}°/{{ m.wx.tmin }}° 风{{ m.wx.wind }}</text></text>
     </view>
 
+    <!-- 专家方案(有方案时置于实时参考之上) -->
+    <view class="card" v-if="plans.length">
+      <view class="sec-h">专家方案 <text class="sec-sub">网易红彩</text></view>
+      <view v-for="p in plans" :key="p.threadId" class="between lrow" @click="goExpert(p)">
+        <view class="row" style="flex:1;min-width:0">
+          <image v-if="p.expert.avatar" :src="p.expert.avatar" class="avatar sm" mode="aspectFill" />
+          <view style="margin-left:14rpx;flex:1;min-width:0">
+            <view class="row"><text class="strong">{{ p.expert.name }}</text><text v-if="p.unlocked" class="pill" style="margin-left:10rpx;background:rgba(47,208,123,.16);color:#2fd07b">完整</text></view>
+            <text class="tiny" style="display:block">{{ p.title }}</text>
+          </view>
+        </view>
+        <text class="accent">›</text>
+      </view>
+    </view>
+
     <!-- 🔴 滚球实时参考(手动触发,仅未完赛场次) -->
     <view class="card" v-if="!m.result">
       <view class="between">
@@ -120,21 +135,6 @@
     <view class="card" v-if="m.drivers && m.drivers.length">
       <view class="sec-h">模型驱动因素</view>
       <view v-for="(d, i) in m.drivers" :key="i" class="small" style="padding:6rpx 0">· {{ d }}</view>
-    </view>
-
-    <!-- 专家方案 -->
-    <view class="card" v-if="plans.length">
-      <view class="sec-h">专家方案 <text class="sec-sub">网易红彩</text></view>
-      <view v-for="p in plans" :key="p.threadId" class="between lrow" @click="goExpert(p)">
-        <view class="row" style="flex:1;min-width:0">
-          <image v-if="p.expert.avatar" :src="p.expert.avatar" class="avatar sm" mode="aspectFill" />
-          <view style="margin-left:14rpx;flex:1;min-width:0">
-            <view class="row"><text class="strong">{{ p.expert.name }}</text><text v-if="p.unlocked" class="pill" style="margin-left:10rpx;background:rgba(47,208,123,.16);color:#2fd07b">完整</text></view>
-            <text class="tiny" style="display:block">{{ p.title }}</text>
-          </view>
-        </view>
-        <text class="accent">›</text>
-      </view>
     </view>
 
     <view class="disclaimer">统计模型推演，仅供学术研究与娱乐参考，非投注建议。专家方案来自第三方，观点仅供参考。理性购彩，量力而行，未满 18 周岁禁止参与。</view>
