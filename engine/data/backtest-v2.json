@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 27,
-    "accuracy1X2": 0.519,
-    "brierAvg": 0.577,
-    "loglossAvg": 0.963,
-    "scoreHit": 0.074,
-    "dirHit": 0.519,
+    "matches": 28,
+    "accuracy1X2": 0.536,
+    "brierAvg": 0.567,
+    "loglossAvg": 0.95,
+    "scoreHit": 0.107,
+    "dirHit": 0.536,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -684,6 +684,31 @@
       "eloHomeAfter": 1773.5,
       "eloAwayBefore": 1462.8,
       "eloAwayAfter": 1448.3
+    },
+    {
+      "et": "2026-06-18T23:00:00-04:00",
+      "group": "A",
+      "home": "Mexico",
+      "away": "South Korea",
+      "hs": 1,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.55,
+      "pDraw": 0.256,
+      "pAway": 0.194,
+      "predScore": "1-0",
+      "scoreHit": true,
+      "brier": 0.306,
+      "logloss": 0.598,
+      "homeAdv": true,
+      "eloDelta": 18.5,
+      "eloHomeBefore": 1888.6,
+      "eloHomeAfter": 1907.1,
+      "eloAwayBefore": 1808.4,
+      "eloAwayAfter": 1789.9
     }
   ],
   "eloChanges": [
@@ -724,16 +749,16 @@
       "delta": 27.2
     },
     {
+      "team": "Mexico",
+      "before": 1881,
+      "after": 1907.1,
+      "delta": 26.1
+    },
+    {
       "team": "England",
       "before": 2055,
       "after": 2079.2,
       "delta": 24.2
-    },
-    {
-      "team": "South Korea",
-      "before": 1786,
-      "after": 1808.4,
-      "delta": 22.4
     },
     {
       "team": "Austria",
@@ -808,12 +833,6 @@
       "delta": 11.1
     },
     {
-      "team": "Mexico",
-      "before": 1881,
-      "after": 1888.6,
-      "delta": 7.6
-    },
-    {
       "team": "Germany",
       "before": 1939,
       "after": 1945.4,
@@ -824,6 +843,12 @@
       "before": 1527,
       "after": 1531.9,
       "delta": 4.9
+    },
+    {
+      "team": "South Korea",
+      "before": 1786,
+      "after": 1789.9,
+      "delta": 3.9
     },
     {
       "team": "Japan",
@@ -1165,6 +1190,13 @@
       "label": "Canada-Qatar",
       "accCum": 0.519,
       "brierCum": 0.577
+    },
+    {
+      "i": 28,
+      "et": "2026-06-18T23:00:00-04:00",
+      "label": "Mexico-South Korea",
+      "accCum": 0.536,
+      "brierCum": 0.567
     }
   ],
   "calibration": [
@@ -1180,8 +1212,8 @@
     },
     {
       "range": "55–65%",
-      "n": 7,
-      "hitRate": 0.571
+      "n": 8,
+      "hitRate": 0.625
     },
     {
       "range": "65–101%",
@@ -1189,5 +1221,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-19T02:46:50.747Z"
+  "builtAt": "2026-06-19T03:02:01.995Z"
 }

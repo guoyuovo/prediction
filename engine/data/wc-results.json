@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-19T02:46:50.703Z",
-  "count": 27,
+  "_fetchedAt": "2026-06-19T03:02:01.948Z",
+  "count": 28,
   "results": [
     {
       "date": "2026-06-11",
@@ -1305,6 +1305,40 @@
       ],
       "status": "Full Time",
       "espnId": "760440"
+    },
+    {
+      "date": "2026-06-18",
+      "et": "2026-06-18T23:00:00-04:00",
+      "group": "A",
+      "home": "Mexico",
+      "away": "South Korea",
+      "hs": 1,
+      "as": 0,
+      "htHome": 0,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 8,
+          "sot": 4,
+          "poss": 42.4
+        },
+        "away": {
+          "shots": 9,
+          "sot": 2,
+          "poss": 57.6
+        }
+      },
+      "goals": [
+        {
+          "min": "50'",
+          "scorer": "Luis Romo",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760441"
     }
   ]
 }
