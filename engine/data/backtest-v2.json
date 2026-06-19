@@ -3,7 +3,7 @@
     "matches": 29,
     "accuracy1X2": 0.552,
     "brierAvg": 0.557,
-    "loglossAvg": 0.936,
+    "loglossAvg": 0.935,
     "scoreHit": 0.103,
     "dirHit": 0.552,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -96,19 +96,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.543,
-      "pDraw": 0.256,
-      "pAway": 0.201,
+      "pHome": 0.548,
+      "pDraw": 0.254,
+      "pAway": 0.198,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.315,
-      "logloss": 0.61,
+      "brier": 0.308,
+      "logloss": 0.601,
       "homeAdv": true,
-      "eloDelta": 43.5,
-      "eloHomeBefore": 1780,
-      "eloHomeAfter": 1823.5,
+      "eloDelta": 37.8,
+      "eloHomeBefore": 1820,
+      "eloHomeAfter": 1857.8,
       "eloAwayBefore": 1780,
-      "eloAwayAfter": 1736.5
+      "eloAwayAfter": 1742.2
     },
     {
       "et": "2026-06-13T15:00:00-04:00",
@@ -196,19 +196,19 @@
       "actual": "H",
       "predOutcome": "A",
       "correct": false,
-      "pHome": 0.252,
-      "pDraw": 0.302,
-      "pAway": 0.446,
+      "pHome": 0.25,
+      "pDraw": 0.298,
+      "pAway": 0.452,
       "predScore": "0-1",
       "scoreHit": false,
-      "brier": 0.849,
-      "logloss": 1.376,
+      "brier": 0.857,
+      "logloss": 1.388,
       "homeAdv": false,
-      "eloDelta": 46.3,
-      "eloHomeBefore": 1839,
-      "eloHomeAfter": 1885.3,
+      "eloDelta": 51.4,
+      "eloHomeBefore": 1799,
+      "eloHomeAfter": 1850.4,
       "eloAwayBefore": 1849,
-      "eloAwayAfter": 1802.7
+      "eloAwayAfter": 1797.6
     },
     {
       "et": "2026-06-14T13:00:00-04:00",
@@ -721,27 +721,27 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.583,
-      "pDraw": 0.231,
-      "pAway": 0.186,
+      "pHome": 0.592,
+      "pDraw": 0.227,
+      "pAway": 0.181,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.262,
-      "logloss": 0.54,
+      "brier": 0.251,
+      "logloss": 0.524,
       "homeAdv": true,
-      "eloDelta": 45.2,
-      "eloHomeBefore": 1823.5,
-      "eloHomeAfter": 1868.7,
-      "eloAwayBefore": 1885.3,
-      "eloAwayAfter": 1840.1
+      "eloDelta": 36.4,
+      "eloHomeBefore": 1857.8,
+      "eloHomeAfter": 1894.2,
+      "eloAwayBefore": 1850.4,
+      "eloAwayAfter": 1814
     }
   ],
   "eloChanges": [
     {
       "team": "USA",
-      "before": 1780,
-      "after": 1868.7,
-      "delta": 88.7
+      "before": 1820,
+      "after": 1894.2,
+      "delta": 74.2
     },
     {
       "team": "Cote d'Ivoire",
@@ -802,6 +802,12 @@
       "before": 2084,
       "after": 2101.7,
       "delta": 17.7
+    },
+    {
+      "team": "Australia",
+      "before": 1799,
+      "after": 1814,
+      "delta": 15
     },
     {
       "team": "New Zealand",
@@ -874,12 +880,6 @@
       "before": 1910,
       "after": 1912.9,
       "delta": 2.9
-    },
-    {
-      "team": "Australia",
-      "before": 1839,
-      "after": 1840.1,
-      "delta": 1.1
     },
     {
       "team": "Bosnia",
@@ -1002,6 +1002,12 @@
       "delta": -36
     },
     {
+      "team": "Paraguay",
+      "before": 1780,
+      "after": 1742.2,
+      "delta": -37.8
+    },
+    {
       "team": "Panama",
       "before": 1683,
       "after": 1642.6,
@@ -1014,16 +1020,10 @@
       "delta": -42
     },
     {
-      "team": "Paraguay",
-      "before": 1780,
-      "after": 1736.5,
-      "delta": -43.5
-    },
-    {
       "team": "Turkey",
       "before": 1849,
-      "after": 1802.7,
-      "delta": -46.3
+      "after": 1797.6,
+      "delta": -51.4
     }
   ],
   "timeline": [
@@ -1053,28 +1053,28 @@
       "et": "2026-06-12T21:00:00-04:00",
       "label": "USA-Paraguay",
       "accCum": 0.75,
-      "brierCum": 0.514
+      "brierCum": 0.512
     },
     {
       "i": 5,
       "et": "2026-06-13T15:00:00-04:00",
       "label": "Qatar-Switzerland",
       "accCum": 0.6,
-      "brierCum": 0.627
+      "brierCum": 0.625
     },
     {
       "i": 6,
       "et": "2026-06-13T18:00:00-04:00",
       "label": "Brazil-Morocco",
       "accCum": 0.5,
-      "brierCum": 0.641
+      "brierCum": 0.64
     },
     {
       "i": 7,
       "et": "2026-06-13T21:00:00-04:00",
       "label": "Haiti-Scotland",
       "accCum": 0.571,
-      "brierCum": 0.597
+      "brierCum": 0.596
     },
     {
       "i": 8,
@@ -1234,13 +1234,13 @@
   "calibration": [
     {
       "range": "0–45%",
-      "n": 8,
-      "hitRate": 0.25
+      "n": 7,
+      "hitRate": 0.286
     },
     {
       "range": "45–55%",
-      "n": 8,
-      "hitRate": 0.625
+      "n": 9,
+      "hitRate": 0.556
     },
     {
       "range": "55–65%",
@@ -1253,5 +1253,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-19T22:31:57.897Z"
+  "builtAt": "2026-06-19T22:46:51.177Z"
 }
