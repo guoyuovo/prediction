@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 28,
-    "accuracy1X2": 0.536,
-    "brierAvg": 0.567,
-    "loglossAvg": 0.95,
-    "scoreHit": 0.107,
-    "dirHit": 0.536,
+    "matches": 29,
+    "accuracy1X2": 0.552,
+    "brierAvg": 0.557,
+    "loglossAvg": 0.936,
+    "scoreHit": 0.103,
+    "dirHit": 0.552,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -709,20 +709,39 @@
       "eloHomeAfter": 1919.5,
       "eloAwayBefore": 1794.6,
       "eloAwayAfter": 1778.1
+    },
+    {
+      "et": "2026-06-19T15:00:00-04:00",
+      "group": "D",
+      "home": "USA",
+      "away": "Australia",
+      "hs": 2,
+      "as": 0,
+      "ht": "2-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.583,
+      "pDraw": 0.231,
+      "pAway": 0.186,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.262,
+      "logloss": 0.54,
+      "homeAdv": true,
+      "eloDelta": 45.2,
+      "eloHomeBefore": 1823.5,
+      "eloHomeAfter": 1868.7,
+      "eloAwayBefore": 1885.3,
+      "eloAwayAfter": 1840.1
     }
   ],
   "eloChanges": [
     {
-      "team": "Australia",
-      "before": 1839,
-      "after": 1885.3,
-      "delta": 46.3
-    },
-    {
       "team": "USA",
       "before": 1780,
-      "after": 1823.5,
-      "delta": 43.5
+      "after": 1868.7,
+      "delta": 88.7
     },
     {
       "team": "Cote d'Ivoire",
@@ -855,6 +874,12 @@
       "before": 1910,
       "after": 1912.9,
       "delta": 2.9
+    },
+    {
+      "team": "Australia",
+      "before": 1839,
+      "after": 1840.1,
+      "delta": 1.1
     },
     {
       "team": "Bosnia",
@@ -1197,6 +1222,13 @@
       "label": "Mexico-South Korea",
       "accCum": 0.536,
       "brierCum": 0.567
+    },
+    {
+      "i": 29,
+      "et": "2026-06-19T15:00:00-04:00",
+      "label": "USA-Australia",
+      "accCum": 0.552,
+      "brierCum": 0.557
     }
   ],
   "calibration": [
@@ -1212,8 +1244,8 @@
     },
     {
       "range": "55–65%",
-      "n": 8,
-      "hitRate": 0.625
+      "n": 9,
+      "hitRate": 0.667
     },
     {
       "range": "65–101%",
@@ -1221,5 +1253,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-19T21:02:11.982Z"
+  "builtAt": "2026-06-19T21:16:43.294Z"
 }
