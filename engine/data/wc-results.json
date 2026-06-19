@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-19T00:02:04.011Z",
-  "count": 26,
+  "_fetchedAt": "2026-06-19T00:15:03.426Z",
+  "count": 27,
   "results": [
     {
       "date": "2026-06-11",
@@ -1243,6 +1243,68 @@
       ],
       "status": "Full Time",
       "espnId": "760439"
+    },
+    {
+      "date": "2026-06-18",
+      "et": "2026-06-18T18:00:00-04:00",
+      "group": "B",
+      "home": "Canada",
+      "away": "Qatar",
+      "hs": 6,
+      "as": 0,
+      "htHome": 3,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 32,
+          "sot": 10,
+          "poss": 78.8
+        },
+        "away": {
+          "shots": 2,
+          "sot": 0,
+          "poss": 21.2
+        }
+      },
+      "goals": [
+        {
+          "min": "16'",
+          "scorer": "Cyle Larin",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "29'",
+          "scorer": "Jonathan David",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "45'+3'",
+          "scorer": "Jonathan David",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "64'",
+          "scorer": "Nathan Saliba",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+2'",
+          "scorer": "Jonathan David",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760440"
     }
   ]
 }
