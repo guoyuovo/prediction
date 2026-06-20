@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 32,
-    "accuracy1X2": 0.563,
-    "brierAvg": 0.546,
-    "loglossAvg": 0.922,
-    "scoreHit": 0.125,
-    "dirHit": 0.563,
+    "matches": 33,
+    "accuracy1X2": 0.576,
+    "brierAvg": 0.541,
+    "loglossAvg": 0.915,
+    "scoreHit": 0.121,
+    "dirHit": 0.576,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -809,6 +809,31 @@
       "eloHomeAfter": 1736.8,
       "eloAwayBefore": 1773.1,
       "eloAwayAfter": 1802.5
+    },
+    {
+      "et": "2026-06-20T13:00:00-04:00",
+      "group": "F",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "hs": 5,
+      "as": 1,
+      "ht": "2-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.5,
+      "pDraw": 0.266,
+      "pAway": 0.234,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.376,
+      "logloss": 0.693,
+      "homeAdv": false,
+      "eloDelta": 32.6,
+      "eloHomeBefore": 1941.1,
+      "eloHomeAfter": 1973.7,
+      "eloAwayBefore": 1785.7,
+      "eloAwayAfter": 1753.1
     }
   ],
   "eloChanges": [
@@ -837,10 +862,10 @@
       "delta": 31.9
     },
     {
-      "team": "Sweden",
-      "before": 1755,
-      "after": 1785.7,
-      "delta": 30.7
+      "team": "Netherlands",
+      "before": 1944,
+      "after": 1973.7,
+      "delta": 29.7
     },
     {
       "team": "Cape Verde",
@@ -951,16 +976,16 @@
       "delta": 2.9
     },
     {
+      "team": "Sweden",
+      "before": 1755,
+      "after": 1753.1,
+      "delta": -1.9
+    },
+    {
       "team": "Bosnia",
       "before": 1596,
       "after": 1593.4,
       "delta": -2.6
-    },
-    {
-      "team": "Netherlands",
-      "before": 1944,
-      "after": 1941.1,
-      "delta": -2.9
     },
     {
       "team": "Brazil",
@@ -1325,6 +1350,13 @@
       "label": "Turkey-Paraguay",
       "accCum": 0.563,
       "brierCum": 0.546
+    },
+    {
+      "i": 33,
+      "et": "2026-06-20T13:00:00-04:00",
+      "label": "Netherlands-Sweden",
+      "accCum": 0.576,
+      "brierCum": 0.541
     }
   ],
   "calibration": [
@@ -1335,8 +1367,8 @@
     },
     {
       "range": "45–55%",
-      "n": 9,
-      "hitRate": 0.667
+      "n": 10,
+      "hitRate": 0.7
     },
     {
       "range": "55–65%",
@@ -1349,5 +1381,5 @@
       "hitRate": 0.8
     }
   ],
-  "builtAt": "2026-06-20T18:47:01.004Z"
+  "builtAt": "2026-06-20T18:59:54.250Z"
 }
