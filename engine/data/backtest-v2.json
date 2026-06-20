@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 31,
-    "accuracy1X2": 0.581,
-    "brierAvg": 0.538,
-    "loglossAvg": 0.91,
-    "scoreHit": 0.129,
-    "dirHit": 0.581,
+    "matches": 32,
+    "accuracy1X2": 0.563,
+    "brierAvg": 0.546,
+    "loglossAvg": 0.923,
+    "scoreHit": 0.125,
+    "dirHit": 0.563,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -784,6 +784,31 @@
       "eloHomeAfter": 1976.2,
       "eloAwayBefore": 1523.5,
       "eloAwayAfter": 1516
+    },
+    {
+      "et": "2026-06-20T00:00:00-04:00",
+      "group": "D",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "hs": 0,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.42,
+      "pDraw": 0.311,
+      "pAway": 0.269,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.808,
+      "logloss": 1.313,
+      "homeAdv": false,
+      "eloDelta": -34.7,
+      "eloHomeBefore": 1797.6,
+      "eloHomeAfter": 1762.9,
+      "eloAwayBefore": 1742.2,
+      "eloAwayAfter": 1776.9
     }
   ],
   "eloChanges": [
@@ -944,6 +969,12 @@
       "delta": -2.9
     },
     {
+      "team": "Paraguay",
+      "before": 1780,
+      "after": 1776.9,
+      "delta": -3.1
+    },
+    {
       "team": "Canada",
       "before": 1777,
       "after": 1773.5,
@@ -1052,12 +1083,6 @@
       "delta": -36
     },
     {
-      "team": "Paraguay",
-      "before": 1780,
-      "after": 1742.2,
-      "delta": -37.8
-    },
-    {
       "team": "Panama",
       "before": 1683,
       "after": 1642.6,
@@ -1072,8 +1097,8 @@
     {
       "team": "Turkey",
       "before": 1849,
-      "after": 1797.6,
-      "delta": -51.4
+      "after": 1762.9,
+      "delta": -86.1
     }
   ],
   "timeline": [
@@ -1293,13 +1318,20 @@
       "label": "Brazil-Haiti",
       "accCum": 0.581,
       "brierCum": 0.538
+    },
+    {
+      "i": 32,
+      "et": "2026-06-20T00:00:00-04:00",
+      "label": "Turkey-Paraguay",
+      "accCum": 0.563,
+      "brierCum": 0.546
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 8,
-      "hitRate": 0.25
+      "n": 9,
+      "hitRate": 0.222
     },
     {
       "range": "45–55%",
@@ -1317,5 +1349,5 @@
       "hitRate": 0.8
     }
   ],
-  "builtAt": "2026-06-20T05:02:11.441Z"
+  "builtAt": "2026-06-20T05:16:57.580Z"
 }
