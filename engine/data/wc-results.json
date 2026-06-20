@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-20T21:46:47.324Z",
-  "count": 33,
+  "_fetchedAt": "2026-06-20T22:02:08.052Z",
+  "count": 34,
   "results": [
     {
       "date": "2026-06-11",
@@ -1558,6 +1558,54 @@
       ],
       "status": "Full Time",
       "espnId": "760447"
+    },
+    {
+      "date": "2026-06-20",
+      "et": "2026-06-20T16:00:00-04:00",
+      "group": "E",
+      "home": "Germany",
+      "away": "Cote d'Ivoire",
+      "hs": 2,
+      "as": 1,
+      "htHome": 0,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 16,
+          "sot": 7,
+          "poss": 59.4
+        },
+        "away": {
+          "shots": 9,
+          "sot": 2,
+          "poss": 40.6
+        }
+      },
+      "goals": [
+        {
+          "min": "30'",
+          "scorer": "Franck Kessié",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "68'",
+          "scorer": "Deniz Undav",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+4'",
+          "scorer": "Deniz Undav",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760448"
     }
   ]
 }

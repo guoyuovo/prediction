@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 33,
-    "accuracy1X2": 0.576,
-    "brierAvg": 0.541,
-    "loglossAvg": 0.915,
-    "scoreHit": 0.121,
-    "dirHit": 0.576,
+    "matches": 34,
+    "accuracy1X2": 0.588,
+    "brierAvg": 0.535,
+    "loglossAvg": 0.907,
+    "scoreHit": 0.118,
+    "dirHit": 0.588,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -221,13 +221,13 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.739,
+      "pHome": 0.74,
       "pDraw": 0.136,
-      "pAway": 0.125,
+      "pAway": 0.124,
       "predScore": "3-0",
       "scoreHit": false,
-      "brier": 0.103,
-      "logloss": 0.303,
+      "brier": 0.101,
+      "logloss": 0.301,
       "homeAdv": false,
       "eloDelta": 6.4,
       "eloHomeBefore": 1939,
@@ -271,13 +271,13 @@
       "actual": "H",
       "predOutcome": "A",
       "correct": false,
-      "pHome": 0.295,
-      "pDraw": 0.351,
-      "pAway": 0.354,
+      "pHome": 0.294,
+      "pDraw": 0.349,
+      "pAway": 0.357,
       "predScore": "0-1",
       "scoreHit": false,
-      "brier": 0.745,
-      "logloss": 1.22,
+      "brier": 0.748,
+      "logloss": 1.225,
       "homeAdv": false,
       "eloDelta": 42,
       "eloHomeBefore": 1743,
@@ -834,6 +834,31 @@
       "eloHomeAfter": 1973.7,
       "eloAwayBefore": 1785.7,
       "eloAwayAfter": 1753.1
+    },
+    {
+      "et": "2026-06-20T16:00:00-04:00",
+      "group": "E",
+      "home": "Germany",
+      "away": "Cote d'Ivoire",
+      "hs": 2,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.528,
+      "pDraw": 0.252,
+      "pAway": 0.22,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.335,
+      "logloss": 0.639,
+      "homeAdv": false,
+      "eloDelta": 17.1,
+      "eloHomeBefore": 1945.4,
+      "eloHomeAfter": 1962.5,
+      "eloAwayBefore": 1785,
+      "eloAwayAfter": 1767.9
     }
   ],
   "eloChanges": [
@@ -842,12 +867,6 @@
       "before": 1820,
       "after": 1898.1,
       "delta": 78.1
-    },
-    {
-      "team": "Cote d'Ivoire",
-      "before": 1743,
-      "after": 1785,
-      "delta": 42
     },
     {
       "team": "Ghana",
@@ -874,10 +893,22 @@
       "delta": 27.2
     },
     {
+      "team": "Cote d'Ivoire",
+      "before": 1743,
+      "after": 1767.9,
+      "delta": 24.9
+    },
+    {
       "team": "England",
       "before": 2055,
       "after": 2079.2,
       "delta": 24.2
+    },
+    {
+      "team": "Germany",
+      "before": 1939,
+      "after": 1962.5,
+      "delta": 23.5
     },
     {
       "team": "Mexico",
@@ -956,12 +987,6 @@
       "before": 1771,
       "after": 1778.1,
       "delta": 7.1
-    },
-    {
-      "team": "Germany",
-      "before": 1939,
-      "after": 1945.4,
-      "delta": 6.4
     },
     {
       "team": "South Africa",
@@ -1216,7 +1241,7 @@
       "et": "2026-06-15T13:00:00-04:00",
       "label": "Spain-Cape Verde",
       "accCum": 0.462,
-      "brierCum": 0.637
+      "brierCum": 0.638
     },
     {
       "i": 14,
@@ -1251,14 +1276,14 @@
       "et": "2026-06-16T18:00:00-04:00",
       "label": "Iraq-Norway",
       "accCum": 0.444,
-      "brierCum": 0.634
+      "brierCum": 0.635
     },
     {
       "i": 19,
       "et": "2026-06-16T21:00:00-04:00",
       "label": "Argentina-Algeria",
       "accCum": 0.474,
-      "brierCum": 0.616
+      "brierCum": 0.617
     },
     {
       "i": 20,
@@ -1300,7 +1325,7 @@
       "et": "2026-06-18T12:00:00-04:00",
       "label": "Czechia-South Africa",
       "accCum": 0.48,
-      "brierCum": 0.604
+      "brierCum": 0.605
     },
     {
       "i": 26,
@@ -1314,7 +1339,7 @@
       "et": "2026-06-18T18:00:00-04:00",
       "label": "Canada-Qatar",
       "accCum": 0.519,
-      "brierCum": 0.577
+      "brierCum": 0.578
     },
     {
       "i": 28,
@@ -1357,6 +1382,13 @@
       "label": "Netherlands-Sweden",
       "accCum": 0.576,
       "brierCum": 0.541
+    },
+    {
+      "i": 34,
+      "et": "2026-06-20T16:00:00-04:00",
+      "label": "Germany-Cote d'Ivoire",
+      "accCum": 0.588,
+      "brierCum": 0.535
     }
   ],
   "calibration": [
@@ -1367,8 +1399,8 @@
     },
     {
       "range": "45–55%",
-      "n": 10,
-      "hitRate": 0.7
+      "n": 11,
+      "hitRate": 0.727
     },
     {
       "range": "55–65%",
@@ -1381,5 +1413,5 @@
       "hitRate": 0.8
     }
   ],
-  "builtAt": "2026-06-20T21:46:47.371Z"
+  "builtAt": "2026-06-20T22:02:08.100Z"
 }
