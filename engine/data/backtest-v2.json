@@ -2,8 +2,8 @@
   "summary": {
     "matches": 30,
     "accuracy1X2": 0.567,
-    "brierAvg": 0.552,
-    "loglossAvg": 0.929,
+    "brierAvg": 0.551,
+    "loglossAvg": 0.928,
     "scoreHit": 0.133,
     "dirHit": 0.567,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -146,19 +146,19 @@
       "actual": "D",
       "predOutcome": "H",
       "correct": false,
-      "pHome": 0.421,
-      "pDraw": 0.316,
-      "pAway": 0.263,
+      "pHome": 0.417,
+      "pDraw": 0.318,
+      "pAway": 0.264,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.714,
-      "logloss": 1.152,
+      "brier": 0.708,
+      "logloss": 1.144,
       "homeAdv": false,
-      "eloDelta": -11.3,
+      "eloDelta": -9.3,
       "eloHomeBefore": 1978,
-      "eloHomeAfter": 1966.7,
-      "eloAwayBefore": 1840,
-      "eloAwayAfter": 1851.3
+      "eloHomeAfter": 1968.7,
+      "eloAwayBefore": 1866,
+      "eloAwayAfter": 1875.3
     },
     {
       "et": "2026-06-13T21:00:00-04:00",
@@ -171,19 +171,19 @@
       "actual": "A",
       "predOutcome": "A",
       "correct": true,
-      "pHome": 0.218,
-      "pDraw": 0.252,
-      "pAway": 0.529,
+      "pHome": 0.22,
+      "pDraw": 0.254,
+      "pAway": 0.526,
       "predScore": "0-1",
       "scoreHit": true,
-      "brier": 0.333,
-      "logloss": 0.636,
+      "brier": 0.338,
+      "logloss": 0.643,
       "homeAdv": false,
-      "eloDelta": -11.1,
+      "eloDelta": -12.5,
       "eloHomeBefore": 1536,
-      "eloHomeAfter": 1524.9,
-      "eloAwayBefore": 1794,
-      "eloAwayAfter": 1805.1
+      "eloHomeAfter": 1523.5,
+      "eloAwayBefore": 1768,
+      "eloAwayAfter": 1780.5
     },
     {
       "et": "2026-06-14T00:00:00-04:00",
@@ -746,19 +746,19 @@
       "actual": "A",
       "predOutcome": "A",
       "correct": true,
-      "pHome": 0.235,
-      "pDraw": 0.288,
-      "pAway": 0.477,
+      "pHome": 0.231,
+      "pDraw": 0.285,
+      "pAway": 0.485,
       "predScore": "0-1",
       "scoreHit": true,
-      "brier": 0.412,
-      "logloss": 0.74,
+      "brier": 0.4,
+      "logloss": 0.725,
       "homeAdv": false,
-      "eloDelta": -26,
-      "eloHomeBefore": 1805.1,
-      "eloHomeAfter": 1779.1,
-      "eloAwayBefore": 1851.3,
-      "eloAwayAfter": 1877.3
+      "eloDelta": -22,
+      "eloHomeBefore": 1780.5,
+      "eloHomeAfter": 1758.5,
+      "eloAwayBefore": 1875.3,
+      "eloAwayAfter": 1897.3
     }
   ],
   "eloChanges": [
@@ -782,9 +782,9 @@
     },
     {
       "team": "Morocco",
-      "before": 1840,
-      "after": 1877.3,
-      "delta": 37.3
+      "before": 1866,
+      "after": 1897.3,
+      "delta": 31.3
     },
     {
       "team": "Sweden",
@@ -931,10 +931,16 @@
       "delta": -6.4
     },
     {
-      "team": "Haiti",
-      "before": 1536,
-      "after": 1524.9,
-      "delta": -11.1
+      "team": "Brazil",
+      "before": 1978,
+      "after": 1968.7,
+      "delta": -9.3
+    },
+    {
+      "team": "Scotland",
+      "before": 1768,
+      "after": 1758.5,
+      "delta": -9.5
     },
     {
       "team": "Algeria",
@@ -943,10 +949,10 @@
       "delta": -11.2
     },
     {
-      "team": "Brazil",
-      "before": 1978,
-      "after": 1966.7,
-      "delta": -11.3
+      "team": "Haiti",
+      "before": 1536,
+      "after": 1523.5,
+      "delta": -12.5
     },
     {
       "team": "Iraq",
@@ -971,12 +977,6 @@
       "before": 1756,
       "after": 1741.8,
       "delta": -14.2
-    },
-    {
-      "team": "Scotland",
-      "before": 1794,
-      "after": 1779.1,
-      "delta": -14.9
     },
     {
       "team": "Senegal",
@@ -1092,7 +1092,7 @@
       "et": "2026-06-13T18:00:00-04:00",
       "label": "Brazil-Morocco",
       "accCum": 0.5,
-      "brierCum": 0.64
+      "brierCum": 0.639
     },
     {
       "i": 7,
@@ -1260,7 +1260,7 @@
       "et": "2026-06-19T18:00:00-04:00",
       "label": "Scotland-Morocco",
       "accCum": 0.567,
-      "brierCum": 0.552
+      "brierCum": 0.551
     }
   ],
   "calibration": [
@@ -1285,5 +1285,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-20T00:01:47.800Z"
+  "builtAt": "2026-06-20T00:16:52.731Z"
 }
