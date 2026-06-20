@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 30,
-    "accuracy1X2": 0.567,
-    "brierAvg": 0.551,
-    "loglossAvg": 0.928,
-    "scoreHit": 0.133,
-    "dirHit": 0.567,
+    "matches": 31,
+    "accuracy1X2": 0.581,
+    "brierAvg": 0.538,
+    "loglossAvg": 0.91,
+    "scoreHit": 0.129,
+    "dirHit": 0.581,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -759,6 +759,31 @@
       "eloHomeAfter": 1758.5,
       "eloAwayBefore": 1875.3,
       "eloAwayAfter": 1897.3
+    },
+    {
+      "et": "2026-06-19T21:00:00-04:00",
+      "group": "C",
+      "home": "Brazil",
+      "away": "Haiti",
+      "hs": 3,
+      "as": 0,
+      "ht": "3-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.697,
+      "pDraw": 0.162,
+      "pAway": 0.142,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 0.138,
+      "logloss": 0.362,
+      "homeAdv": false,
+      "eloDelta": 7.5,
+      "eloHomeBefore": 1968.7,
+      "eloHomeAfter": 1976.2,
+      "eloAwayBefore": 1523.5,
+      "eloAwayAfter": 1516
     }
   ],
   "eloChanges": [
@@ -901,6 +926,12 @@
       "delta": 2.9
     },
     {
+      "team": "Brazil",
+      "before": 1978,
+      "after": 1976.2,
+      "delta": -1.8
+    },
+    {
       "team": "Bosnia",
       "before": 1596,
       "after": 1593.4,
@@ -931,12 +962,6 @@
       "delta": -6.4
     },
     {
-      "team": "Brazil",
-      "before": 1978,
-      "after": 1968.7,
-      "delta": -9.3
-    },
-    {
       "team": "Scotland",
       "before": 1768,
       "after": 1758.5,
@@ -947,12 +972,6 @@
       "before": 1759,
       "after": 1747.8,
       "delta": -11.2
-    },
-    {
-      "team": "Haiti",
-      "before": 1536,
-      "after": 1523.5,
-      "delta": -12.5
     },
     {
       "team": "Iraq",
@@ -989,6 +1008,12 @@
       "before": 1870,
       "after": 1850.4,
       "delta": -19.6
+    },
+    {
+      "team": "Haiti",
+      "before": 1536,
+      "after": 1516,
+      "delta": -20
     },
     {
       "team": "Portugal",
@@ -1261,6 +1286,13 @@
       "label": "Scotland-Morocco",
       "accCum": 0.567,
       "brierCum": 0.551
+    },
+    {
+      "i": 31,
+      "et": "2026-06-19T21:00:00-04:00",
+      "label": "Brazil-Haiti",
+      "accCum": 0.581,
+      "brierCum": 0.538
     }
   ],
   "calibration": [
@@ -1281,9 +1313,9 @@
     },
     {
       "range": "65–101%",
-      "n": 4,
-      "hitRate": 0.75
+      "n": 5,
+      "hitRate": 0.8
     }
   ],
-  "builtAt": "2026-06-20T02:16:53.361Z"
+  "builtAt": "2026-06-20T02:31:54.495Z"
 }

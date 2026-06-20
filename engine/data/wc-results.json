@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-20T02:16:53.313Z",
-  "count": 30,
+  "_fetchedAt": "2026-06-20T02:31:54.449Z",
+  "count": 31,
   "results": [
     {
       "date": "2026-06-11",
@@ -1407,6 +1407,54 @@
       ],
       "status": "Full Time",
       "espnId": "760445"
+    },
+    {
+      "date": "2026-06-19",
+      "et": "2026-06-19T21:00:00-04:00",
+      "group": "C",
+      "home": "Brazil",
+      "away": "Haiti",
+      "hs": 3,
+      "as": 0,
+      "htHome": 3,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 8,
+          "sot": 5,
+          "poss": 56.5
+        },
+        "away": {
+          "shots": 8,
+          "sot": 3,
+          "poss": 43.5
+        }
+      },
+      "goals": [
+        {
+          "min": "23'",
+          "scorer": "Matheus Cunha",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "36'",
+          "scorer": "Matheus Cunha",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "45'+3'",
+          "scorer": "Vinícius Júnior",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760444"
     }
   ]
 }
