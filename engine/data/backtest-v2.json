@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 29,
-    "accuracy1X2": 0.552,
-    "brierAvg": 0.557,
-    "loglossAvg": 0.935,
-    "scoreHit": 0.103,
-    "dirHit": 0.552,
+    "matches": 30,
+    "accuracy1X2": 0.567,
+    "brierAvg": 0.552,
+    "loglossAvg": 0.929,
+    "scoreHit": 0.133,
+    "dirHit": 0.567,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -734,6 +734,31 @@
       "eloHomeAfter": 1894.2,
       "eloAwayBefore": 1850.4,
       "eloAwayAfter": 1814
+    },
+    {
+      "et": "2026-06-19T18:00:00-04:00",
+      "group": "C",
+      "home": "Scotland",
+      "away": "Morocco",
+      "hs": 0,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.235,
+      "pDraw": 0.288,
+      "pAway": 0.477,
+      "predScore": "0-1",
+      "scoreHit": true,
+      "brier": 0.412,
+      "logloss": 0.74,
+      "homeAdv": false,
+      "eloDelta": -26,
+      "eloHomeBefore": 1805.1,
+      "eloHomeAfter": 1779.1,
+      "eloAwayBefore": 1851.3,
+      "eloAwayAfter": 1877.3
     }
   ],
   "eloChanges": [
@@ -754,6 +779,12 @@
       "before": 1557,
       "after": 1597.4,
       "delta": 40.4
+    },
+    {
+      "team": "Morocco",
+      "before": 1840,
+      "after": 1877.3,
+      "delta": 37.3
     },
     {
       "team": "Sweden",
@@ -834,12 +865,6 @@
       "delta": 13.2
     },
     {
-      "team": "Morocco",
-      "before": 1840,
-      "after": 1851.3,
-      "delta": 11.3
-    },
-    {
       "team": "Qatar",
       "before": 1437,
       "after": 1448.3,
@@ -850,12 +875,6 @@
       "before": 2128,
       "after": 2139.2,
       "delta": 11.2
-    },
-    {
-      "team": "Scotland",
-      "before": 1794,
-      "after": 1805.1,
-      "delta": 11.1
     },
     {
       "team": "South Korea",
@@ -952,6 +971,12 @@
       "before": 1756,
       "after": 1741.8,
       "delta": -14.2
+    },
+    {
+      "team": "Scotland",
+      "before": 1794,
+      "after": 1779.1,
+      "delta": -14.9
     },
     {
       "team": "Senegal",
@@ -1229,6 +1254,13 @@
       "label": "USA-Australia",
       "accCum": 0.552,
       "brierCum": 0.557
+    },
+    {
+      "i": 30,
+      "et": "2026-06-19T18:00:00-04:00",
+      "label": "Scotland-Morocco",
+      "accCum": 0.567,
+      "brierCum": 0.552
     }
   ],
   "calibration": [
@@ -1239,8 +1271,8 @@
     },
     {
       "range": "45–55%",
-      "n": 9,
-      "hitRate": 0.556
+      "n": 10,
+      "hitRate": 0.6
     },
     {
       "range": "55–65%",
@@ -1253,5 +1285,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-19T23:46:12.976Z"
+  "builtAt": "2026-06-20T00:01:47.800Z"
 }
