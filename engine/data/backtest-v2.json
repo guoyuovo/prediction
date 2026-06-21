@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 35,
-    "accuracy1X2": 0.571,
-    "brierAvg": 0.552,
-    "loglossAvg": 0.929,
-    "scoreHit": 0.114,
-    "dirHit": 0.571,
+    "matches": 36,
+    "accuracy1X2": 0.583,
+    "brierAvg": 0.544,
+    "loglossAvg": 0.919,
+    "scoreHit": 0.111,
+    "dirHit": 0.583,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -884,6 +884,31 @@
       "eloHomeAfter": 1821.7,
       "eloAwayBefore": 1421.1,
       "eloAwayAfter": 1446.3
+    },
+    {
+      "et": "2026-06-21T00:00:00-04:00",
+      "group": "F",
+      "home": "Tunisia",
+      "away": "Japan",
+      "hs": 0,
+      "as": 4,
+      "ht": "0-2",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.187,
+      "pDraw": 0.24,
+      "pAway": 0.573,
+      "predScore": "0-2",
+      "scoreHit": false,
+      "brier": 0.275,
+      "logloss": 0.557,
+      "homeAdv": false,
+      "eloDelta": -12.3,
+      "eloHomeBefore": 1550.5,
+      "eloHomeAfter": 1538.2,
+      "eloAwayBefore": 1915.3,
+      "eloAwayAfter": 1927.6
     }
   ],
   "eloChanges": [
@@ -972,6 +997,12 @@
       "delta": 17.7
     },
     {
+      "team": "Japan",
+      "before": 1910,
+      "after": 1927.6,
+      "delta": 17.6
+    },
+    {
       "team": "New Zealand",
       "before": 1578,
       "after": 1592.2,
@@ -1030,12 +1061,6 @@
       "before": 1527,
       "after": 1532.4,
       "delta": 5.4
-    },
-    {
-      "team": "Japan",
-      "before": 1910,
-      "after": 1915.3,
-      "delta": 5.3
     },
     {
       "team": "Bosnia",
@@ -1146,12 +1171,6 @@
       "delta": -27.2
     },
     {
-      "team": "Tunisia",
-      "before": 1585,
-      "after": 1550.5,
-      "delta": -34.5
-    },
-    {
       "team": "Czechia",
       "before": 1696,
       "after": 1660,
@@ -1162,6 +1181,12 @@
       "before": 1683,
       "after": 1642.6,
       "delta": -40.4
+    },
+    {
+      "team": "Tunisia",
+      "before": 1585,
+      "after": 1538.2,
+      "delta": -46.8
     },
     {
       "team": "Ecuador",
@@ -1421,6 +1446,13 @@
       "label": "Ecuador-Curacao",
       "accCum": 0.571,
       "brierCum": 0.552
+    },
+    {
+      "i": 36,
+      "et": "2026-06-21T00:00:00-04:00",
+      "label": "Tunisia-Japan",
+      "accCum": 0.583,
+      "brierCum": 0.544
     }
   ],
   "calibration": [
@@ -1436,8 +1468,8 @@
     },
     {
       "range": "55–65%",
-      "n": 9,
-      "hitRate": 0.667
+      "n": 10,
+      "hitRate": 0.7
     },
     {
       "range": "65–101%",
@@ -1445,5 +1477,5 @@
       "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-21T05:47:01.715Z"
+  "builtAt": "2026-06-21T06:02:10.876Z"
 }
