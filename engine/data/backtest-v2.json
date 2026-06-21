@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 36,
-    "accuracy1X2": 0.583,
-    "brierAvg": 0.543,
-    "loglossAvg": 0.918,
-    "scoreHit": 0.111,
-    "dirHit": 0.583,
+    "matches": 37,
+    "accuracy1X2": 0.595,
+    "brierAvg": 0.532,
+    "loglossAvg": 0.903,
+    "scoreHit": 0.108,
+    "dirHit": 0.595,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -909,6 +909,31 @@
       "eloHomeAfter": 1526.9,
       "eloAwayBefore": 1929,
       "eloAwayAfter": 1939.7
+    },
+    {
+      "et": "2026-06-21T12:00:00-04:00",
+      "group": "H",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "hs": 4,
+      "as": 0,
+      "ht": "3-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.706,
+      "pDraw": 0.158,
+      "pAway": 0.136,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 0.13,
+      "logloss": 0.348,
+      "homeAdv": false,
+      "eloDelta": 6.5,
+      "eloHomeBefore": 2101.8,
+      "eloHomeAfter": 2108.3,
+      "eloAwayBefore": 1617.6,
+      "eloAwayAfter": 1611.1
     }
   ],
   "eloChanges": [
@@ -979,12 +1004,6 @@
       "delta": 20.6
     },
     {
-      "team": "Saudi Arabia",
-      "before": 1598,
-      "after": 1617.6,
-      "delta": 19.6
-    },
-    {
       "team": "France",
       "before": 2084,
       "after": 2101.7,
@@ -1025,6 +1044,12 @@
       "before": 1929,
       "after": 1942.2,
       "delta": 13.2
+    },
+    {
+      "team": "Saudi Arabia",
+      "before": 1598,
+      "after": 1611.1,
+      "delta": 13.1
     },
     {
       "team": "Australia",
@@ -1153,6 +1178,12 @@
       "delta": -20.6
     },
     {
+      "team": "Spain",
+      "before": 2129,
+      "after": 2108.3,
+      "delta": -20.7
+    },
+    {
       "team": "Jordan",
       "before": 1653,
       "after": 1631.8,
@@ -1163,12 +1194,6 @@
       "before": 1881,
       "after": 1856.8,
       "delta": -24.2
-    },
-    {
-      "team": "Spain",
-      "before": 2129,
-      "after": 2101.8,
-      "delta": -27.2
     },
     {
       "team": "Czechia",
@@ -1453,6 +1478,13 @@
       "label": "Tunisia-Japan",
       "accCum": 0.583,
       "brierCum": 0.543
+    },
+    {
+      "i": 37,
+      "et": "2026-06-21T12:00:00-04:00",
+      "label": "Spain-Saudi Arabia",
+      "accCum": 0.595,
+      "brierCum": 0.532
     }
   ],
   "calibration": [
@@ -1473,9 +1505,9 @@
     },
     {
       "range": "65–101%",
-      "n": 6,
-      "hitRate": 0.667
+      "n": 7,
+      "hitRate": 0.714
     }
   ],
-  "builtAt": "2026-06-21T17:46:54.978Z"
+  "builtAt": "2026-06-21T18:02:08.059Z"
 }

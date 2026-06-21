@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-21T17:46:54.928Z",
-  "count": 36,
+  "_fetchedAt": "2026-06-21T18:02:08.012Z",
+  "count": 37,
   "results": [
     {
       "date": "2026-06-11",
@@ -1687,6 +1687,54 @@
       ],
       "status": "Full Time",
       "espnId": "760449"
+    },
+    {
+      "date": "2026-06-21",
+      "et": "2026-06-21T12:00:00-04:00",
+      "group": "H",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "hs": 4,
+      "as": 0,
+      "htHome": 3,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 21,
+          "sot": 8,
+          "poss": 67.1
+        },
+        "away": {
+          "shots": 3,
+          "sot": 1,
+          "poss": 32.9
+        }
+      },
+      "goals": [
+        {
+          "min": "10'",
+          "scorer": "Lamine Yamal",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "21'",
+          "scorer": "Mikel Oyarzabal",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "24'",
+          "scorer": "Mikel Oyarzabal",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760453"
     }
   ]
 }
