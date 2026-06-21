@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 34,
-    "accuracy1X2": 0.588,
-    "brierAvg": 0.535,
-    "loglossAvg": 0.907,
-    "scoreHit": 0.118,
-    "dirHit": 0.588,
+    "matches": 35,
+    "accuracy1X2": 0.571,
+    "brierAvg": 0.552,
+    "loglossAvg": 0.93,
+    "scoreHit": 0.114,
+    "dirHit": 0.571,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -859,6 +859,31 @@
       "eloHomeAfter": 1975,
       "eloAwayBefore": 1771.1,
       "eloAwayAfter": 1756
+    },
+    {
+      "et": "2026-06-20T20:00:00-04:00",
+      "group": "E",
+      "home": "Ecuador",
+      "away": "Curacao",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.658,
+      "pDraw": 0.183,
+      "pAway": 0.159,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 1.125,
+      "logloss": 1.698,
+      "homeAdv": false,
+      "eloDelta": -25.2,
+      "eloHomeBefore": 1846.9,
+      "eloHomeAfter": 1821.7,
+      "eloAwayBefore": 1421.1,
+      "eloAwayAfter": 1446.3
     }
   ],
   "eloChanges": [
@@ -933,6 +958,12 @@
       "before": 1598,
       "after": 1617.6,
       "delta": 19.6
+    },
+    {
+      "team": "Curacao",
+      "before": 1427,
+      "after": 1446.3,
+      "delta": 19.3
     },
     {
       "team": "France",
@@ -1029,12 +1060,6 @@
       "before": 1885,
       "after": 1879.8,
       "delta": -5.2
-    },
-    {
-      "team": "Curacao",
-      "before": 1427,
-      "after": 1421.1,
-      "delta": -5.9
     },
     {
       "team": "Scotland",
@@ -1141,8 +1166,8 @@
     {
       "team": "Ecuador",
       "before": 1890,
-      "after": 1846.9,
-      "delta": -43.1
+      "after": 1821.7,
+      "delta": -68.3
     },
     {
       "team": "Turkey",
@@ -1389,6 +1414,13 @@
       "label": "Germany-Cote d'Ivoire",
       "accCum": 0.588,
       "brierCum": 0.535
+    },
+    {
+      "i": 35,
+      "et": "2026-06-20T20:00:00-04:00",
+      "label": "Ecuador-Curacao",
+      "accCum": 0.571,
+      "brierCum": 0.552
     }
   ],
   "calibration": [
@@ -1409,9 +1441,9 @@
     },
     {
       "range": "65–101%",
-      "n": 5,
-      "hitRate": 0.8
+      "n": 6,
+      "hitRate": 0.667
     }
   ],
-  "builtAt": "2026-06-21T01:46:51.140Z"
+  "builtAt": "2026-06-21T02:02:09.083Z"
 }
