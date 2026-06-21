@@ -15,15 +15,15 @@
           <text :class="{ on: boTab === 'history' }" @click="boTab = 'history'">历史战绩</text>
         </view>
 
+        <view class="plays">
+          <text v-for="p in PLAYS" :key="p.key" class="play" :class="{ on: play === p.key, dis: boTab !== 'history' && !bo.coverage[p.key] }" @click="(boTab === 'history' || bo.coverage[p.key]) && setPlay(p.key)">{{ p.label }}<text v-if="boTab !== 'history' && !bo.coverage[p.key]" class="lk"> 🔒</text></text>
+        </view>
+        <view class="risk">
+          <text :class="{ on: risk === 'steady' }" @click="setRisk('steady')">稳搏</text>
+          <text :class="{ on: risk === 'aggressive' }" @click="setRisk('aggressive')">激进搏</text>
+          <text class="rh">{{ risk === 'steady' ? '温和冷门·偏命中' : '长尾大赔·命中更低' }}</text>
+        </view>
         <block v-if="boTab !== 'history'">
-          <view class="plays">
-            <text v-for="p in PLAYS" :key="p.key" class="play" :class="{ on: play === p.key, dis: !bo.coverage[p.key] }" @click="bo.coverage[p.key] && setPlay(p.key)">{{ p.label }}<text v-if="!bo.coverage[p.key]" class="lk"> 🔒</text></text>
-          </view>
-          <view class="risk">
-            <text :class="{ on: risk === 'steady' }" @click="setRisk('steady')">稳搏</text>
-            <text :class="{ on: risk === 'aggressive' }" @click="setRisk('aggressive')">激进搏</text>
-            <text class="rh">{{ risk === 'steady' ? '温和冷门·偏命中' : '长尾大赔·命中更低' }}</text>
-          </view>
           <text v-if="play === 'hafu'" class="tiny dim">半全场无模型支持,仅市场盘口口径。</text>
           <text v-if="curVig" class="tiny dim">本玩法抽水约 {{ curVig }}%(国际盘 Bovada)。</text>
         </block>
@@ -77,19 +77,15 @@
           <view v-if="!sysParlays.length" class="empty">本档暂无系统注。</view>
         </block>
 
-        <!-- ── 历史战绩 ── -->
+        <!-- ── 历史战绩:每场·每玩法推荐单(按 玩法+风险+状态 筛) ── -->
         <block v-else>
-          <view v-if="hist" class="hsum">
+          <view class="hsum">
             <view class="hrow">
-              <view class="hcell"><text class="hv">{{ hist.overall.winRate != null ? pct(hist.overall.winRate) : '—' }}</text><text class="hk">总命中率</text></view>
-              <view class="hcell"><text class="hv">{{ hist.overall.win }}/{{ hist.overall.settled }}</text><text class="hk">已结算(中/总)</text></view>
-              <view class="hcell"><text class="hv">{{ hist.overall.pending }}</text><text class="hk">待开</text></view>
+              <view class="hcell"><text class="hv">{{ histStats.winRate != null ? pct(histStats.winRate) : '—' }}</text><text class="hk">命中率(本筛选)</text></view>
+              <view class="hcell"><text class="hv">{{ histStats.win }}/{{ histStats.settled }}</text><text class="hk">已结算(中/总)</text></view>
+              <view class="hcell"><text class="hv2" :class="roiCls(histStats.roi)">{{ roiTxt(histStats.roi) }}</text><text class="hk">ROI · 待开 {{ histStats.pending }}</text></view>
             </view>
-            <view class="hrow sub">
-              <view class="hcell"><text class="hv2" :class="roiCls(hist.byRisk.steady.roi)">{{ roiTxt(hist.byRisk.steady.roi) }}</text><text class="hk">稳搏ROI · {{ hist.byRisk.steady.winRate != null ? pct(hist.byRisk.steady.winRate) : '—' }}</text></view>
-              <view class="hcell"><text class="hv2" :class="roiCls(hist.byRisk.aggressive.roi)">{{ roiTxt(hist.byRisk.aggressive.roi) }}</text><text class="hk">激进ROI · {{ hist.byRisk.aggressive.winRate != null ? pct(hist.byRisk.aggressive.winRate) : '—' }}</text></view>
-            </view>
-            <text class="tiny dim">ROI=每注押1单位的净回报率(恒为娱乐参考);命中率为已结算注的实际命中。历史自上线起逐日累积。</text>
+            <text class="tiny dim">{{ playLabel }}·{{ risk === 'steady' ? '稳搏' : '激进搏' }}:每场推荐单逐日存档、按赛果结算。命中率/赔率仅娱乐参考,历史自有盘口起逐场累积。</text>
           </view>
 
           <view class="hseg">
@@ -98,17 +94,17 @@
 
           <view v-for="(it, i) in histItems" :key="'h' + i" class="card hcard" :class="'st-' + it.status">
             <view class="between">
-              <text class="strong">{{ riskZh(it.risk) }} · {{ it.tag }}</text>
-              <text class="hbadge" :class="'st-' + it.status">{{ statusZh(it.status) }}<text v-if="it.status !== 'pending'"> ×{{ it.odds }}</text></text>
+              <text class="strong">{{ nm(it.home) }} v {{ nm(it.away) }}</text>
+              <text class="hbadge" :class="'st-' + it.status">{{ statusZh(it.status) }}</text>
             </view>
-            <view v-for="(l, j) in it.legs" :key="j" class="hleg">
-              <text class="hlt">{{ nm(l.home) }} {{ l.selZh }}</text>
-              <text class="hlo">@{{ l.odds }}</text>
-              <text v-if="it.legResults" class="hlr" :class="it.legResults[j] && it.legResults[j].hit ? 'ok' : 'no'">{{ it.legResults[j] ? (it.legResults[j].hit ? '✓' : '✗') + ' ' + it.legResults[j].actualScore : '' }}</text>
+            <view class="hleg">
+              <text class="hlt">推荐 {{ it.selZh }}</text>
+              <text class="hlo">@{{ it.odds }}</text>
+              <text v-if="it.status !== 'pending'" class="hlr" :class="it.hit ? 'ok' : 'no'">{{ it.hit ? '✓' : '✗' }} 实{{ it.actualScore }}</text>
             </view>
-            <view class="between hfoot"><text class="muted">推荐 {{ it.firstSeen }}</text><text class="muted">连乘 ×{{ it.odds }}</text></view>
+            <view class="between hfoot"><text class="muted">{{ it.date }}</text><text class="muted">市场 {{ it.q != null ? pct(it.q) : '—' }}</text></view>
           </view>
-          <view v-if="!histItems.length" class="empty">暂无{{ hFilter === 'all' ? '' : (hFilter === 'pending' ? '待开' : hFilter === 'win' ? '命中' : '未中') }}记录(历史自上线起逐日累积)。</view>
+          <view v-if="!histItems.length" class="empty">本筛选暂无记录(历史自有盘口起逐场累积)。</view>
         </block>
       </block>
 
@@ -154,13 +150,24 @@ const sysParlays = computed(() => {
   return [...s.singles, ...s.parlays].map(pl => ({ ...pl, legs: pl.legs.slice().sort((a, b) => a.seq - b.seq) }))
 })
 
-// 历史战绩
-const hist = computed(() => bo.value && bo.value.history && bo.value.history.summary || null)
-const histItems = computed(() => {
-  const all = bo.value && bo.value.history && bo.value.history.items || []
-  return hFilter.value === 'all' ? all : all.filter(p => p.status === hFilter.value)
+// 历史战绩:每场·每玩法推荐单,按 当前玩法(play)+风险(risk)+状态(hFilter) 筛
+const playLabel = computed(() => (PLAYS.find(p => p.key === play.value) || {}).label || '')
+const histBase = computed(() => {
+  const items = bo.value && bo.value.history && bo.value.history.items || []
+  return items.filter(it => it.play === play.value && it.risk === risk.value)
 })
-const riskZh = (r) => r === 'aggressive' ? '激进' : '稳搏'
+const histStats = computed(() => {
+  const a = histBase.value
+  const settled = a.filter(p => p.status !== 'pending')
+  const win = settled.filter(p => p.status === 'win')
+  const ret = win.reduce((s, p) => s + p.odds, 0)
+  return {
+    total: a.length, settled: settled.length, pending: a.length - settled.length, win: win.length,
+    winRate: settled.length ? win.length / settled.length : null,
+    roi: settled.length ? (ret - settled.length) / settled.length : null,
+  }
+})
+const histItems = computed(() => hFilter.value === 'all' ? histBase.value : histBase.value.filter(p => p.status === hFilter.value))
 const statusZh = (s) => s === 'win' ? '命中' : s === 'lose' ? '未中' : '待开'
 const roiTxt = (v) => v == null ? '—' : (v > 0 ? '+' : '') + (v * 100).toFixed(0) + '%'
 const roiCls = (v) => v == null ? '' : v > 0 ? 'up' : v < 0 ? 'down' : ''

@@ -30,31 +30,26 @@ for (const { sha, date } of commits) {
   try { payload = JSON.parse(execSync(`git -C "${join(ROOT, '..')}" show ${sha}:${PAYLOAD}`, { encoding: 'utf-8', maxBuffer: 64 * 1024 * 1024 })); }
   catch { continue; }
   ok++;
-  const system = payload.bo && payload.bo.system;
-  if (!system) continue;
-  // 仅保留结构完整的注(legKeys/legs/tier),交给与线上同一套 archiveAndSettle
-  const clean = {};
-  for (const risk of Object.keys(system)) {
-    const s = system[risk] || {};
-    const f = (arr) => (arr || []).filter((p) => p.legKeys && p.legs && p.tier);
-    clean[risk] = { singles: f(s.singles), parlays: f(s.parlays) };
-  }
+  const lc = payload.bo && payload.bo.legCandidates;
+  if (!Array.isArray(lc) || !lc.length) continue;
+  // 只保留结构完整的候选腿(play/home/away/rec/options),交给与线上同一套 archiveAndSettle
+  const clean = lc.filter((c) => c.play && c.home && c.away && c.rec && Array.isArray(c.options));
+  if (!clean.length) continue;
   archiveAndSettle(clean, EMPTY, date);
   withSys++;
 }
-console.log(`成功读取 ${ok} 版,含系统注 ${withSys} 版`);
+console.log(`成功读取 ${ok} 版,含候选腿 ${withSys} 版`);
 
-// 3) 用当前赛果统一结算(传空 system → 只结算已存档的待结算注)
+// 3) 用当前赛果统一结算(传空 legCandidates → 只结算已存档的待结算单)
 const idx = JSON.parse(readFileSync(join(ROOT, 'output', 'index-data.json'), 'utf-8'));
 const resultsIndex = new Map();
-for (const m of idx.matches) if (m.result && m.result.hs != null) resultsIndex.set(`${m.home} vs ${m.away}`, { hs: m.result.hs, as: m.result.as });
+for (const m of idx.matches) if (m.result && m.result.hs != null) resultsIndex.set(`${m.home} vs ${m.away}`, { hs: m.result.hs, as: m.result.as, ht: m.result.ht });
 const today = new Date().toISOString().slice(0, 10);
-const out = archiveAndSettle({}, resultsIndex, today);
+const out = archiveAndSettle([], resultsIndex, today);
 
-const o = out.summary.overall;
-console.log(`\n✓ 回填完成:共 ${o.total} 注 · 已结算 ${o.settled}(中 ${o.win}/负 ${o.lose}) · 待开 ${o.pending} · 总命中率 ${o.winRate != null ? (o.winRate * 100).toFixed(1) + '%' : '—'}`);
-console.log(`  稳搏:命中率 ${pctOf(out.summary.byRisk.steady)} ROI ${roiOf(out.summary.byRisk.steady)} | 激进:命中率 ${pctOf(out.summary.byRisk.aggressive)} ROI ${roiOf(out.summary.byRisk.aggressive)}`);
+const o = out.overall;
+const byPlay = {};
+for (const it of out.items) { const k = it.play; (byPlay[k] ||= { s: 0, w: 0 }); if (it.status !== 'pending') { byPlay[k].s++; if (it.status === 'win') byPlay[k].w++; } }
+console.log(`\n✓ 回填完成:共 ${o.total} 单 · 已结算 ${o.settled}(中 ${o.win}/负 ${o.lose}) · 待开 ${o.pending} · 总命中率 ${o.winRate != null ? (o.winRate * 100).toFixed(1) + '%' : '—'}`);
+for (const [k, v] of Object.entries(byPlay)) console.log(`  ${k}: 已结算 ${v.s} 命中 ${v.w}${v.s ? ' (' + (v.w / v.s * 100).toFixed(0) + '%)' : ''}`);
 console.log('  下一步:重跑 build-bo.mjs + build-app-payload.mjs 让 payload 带上回填后的历史。');
-
-function pctOf(a) { return a.winRate != null ? (a.winRate * 100).toFixed(1) + '%' : '—'; }
-function roiOf(a) { return a.roi != null ? (a.roi > 0 ? '+' : '') + (a.roi * 100).toFixed(0) + '%' : '—'; }

@@ -116,11 +116,11 @@ for (const lc of legCandidates) {
   cs.push({ key: lc.key, seq: lc.seq, home: lc.home, away: lc.away, date: lc.date, time: lc.time, vigPct: lc.vigPct, market, model });
 }
 
-// —— 系统搏推荐历史:逐日存档 + 按赛果结算(胜率/赔率供前端查询)——
+// —— 搏推荐历史:逐日存档【每场·每玩法推荐单】 + 按赛果结算(胜率/赔率供前端查询)——
 const resultsIndex = new Map();
-for (const m of idx.matches) if (m.result && m.result.hs != null) resultsIndex.set(`${m.home} vs ${m.away}`, { hs: m.result.hs, as: m.result.as });
+for (const m of idx.matches) if (m.result && m.result.hs != null) resultsIndex.set(`${m.home} vs ${m.away}`, { hs: m.result.hs, as: m.result.as, ht: m.result.ht });
 const today = new Date().toISOString().slice(0, 10);
-const history = archiveAndSettle(system, resultsIndex, today);
+const history = archiveAndSettle(legCandidates, resultsIndex, today);
 
 const coverage = { had: future.length, crs: nCrs, ttg: nTtg, hafu: nHafu };
 const bo = {
