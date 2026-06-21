@@ -4,9 +4,9 @@
 //   - legCandidates:四玩法(胜平负had / 波胆crs / 进球数ttg / 半全场hafu)逐场全候选腿,每腿带
 //     市场去水 q、赔率、模型风味 modelP/lean、分档(稳搏/激进)、各档推荐项 rec —— 供前端"自选串关"现算 M串N。
 //   - system:1X2 系统荐彩自动注(稳搏/激进各一组,沿用旧 singles/parlays 字段向后兼容)。
-//   - cs:波胆单场展示卡(真实竞彩盘口 + 模型最可能比分)。
+//   - cs:波胆单场展示卡(真实国际盘口 + 模型最可能比分)。
 //   - coverage:各玩法覆盖场次(前端据此置灰)。
-//   诚实框架:命中率/EV 全用市场 q;模型仅 ⚑lean 风味(半全场无模型→null);EV 恒负如实;crs 抽水~35% 仅娱乐。
+//   诚实框架:命中率/EV 全用市场 q;模型仅 ⚑lean 风味(半全场无模型→null);EV 恒负如实;比分盘抽水~30% 仅娱乐。
 // 用法:先 build-html --json-only,再 node scripts/build-bo.mjs
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
@@ -14,9 +14,10 @@ import { join } from 'node:path';
 import { ROOT, loadJson } from '../src/util.mjs';
 import { predictMatch, goalGrid } from '../src/model.mjs';
 import { RISK_BANDS, devig, inBand, pickRec, selectPool, buildParlays } from '../src/parlay.mjs';
+import { archiveAndSettle } from '../src/bo-history.mjs';
 
 const idx = JSON.parse(readFileSync(join(ROOT, 'output', 'index-data.json'), 'utf-8'));
-const crsData = existsSync(join(ROOT, 'data', 'jingcai-crs.json')) ? loadJson('data/jingcai-crs.json') : { matches: {} };
+const crsData = existsSync(join(ROOT, 'data', 'bo-odds.json')) ? loadJson('data/bo-odds.json') : { matches: {} };
 
 const future = idx.matches.filter((m) => !m.result && Array.isArray(m.odds) && m.odds.length === 3);
 const baseOf = (m) => ({ key: `${m.home} vs ${m.away}`, seq: m.seq, home: m.home, away: m.away, group: m.g, date: m.date, time: m.time });
@@ -54,7 +55,7 @@ for (const m of future) {
   legCandidates.push(buildCandidate(b, 'had', 6, market, (sel) => mp[sel]));
 }
 
-// —— 波胆/进球数/半全场:仅竞彩覆盖场(朝向对齐到我们的赛程)——
+// —— 波胆/进球数/半全场:仅 Bovada 国际盘覆盖场(已在抓取侧对齐到我们的赛程朝向)——
 let nCrs = 0, nTtg = 0, nHafu = 0;
 for (const m of future) {
   const j = crsData.matches[`${m.home} vs ${m.away}`] || crsData.matches[`${m.away} vs ${m.home}`];
@@ -115,11 +116,17 @@ for (const lc of legCandidates) {
   cs.push({ key: lc.key, seq: lc.seq, home: lc.home, away: lc.away, date: lc.date, time: lc.time, vigPct: lc.vigPct, market, model });
 }
 
+// —— 系统搏推荐历史:逐日存档 + 按赛果结算(胜率/赔率供前端查询)——
+const resultsIndex = new Map();
+for (const m of idx.matches) if (m.result && m.result.hs != null) resultsIndex.set(`${m.home} vs ${m.away}`, { hs: m.result.hs, as: m.result.as });
+const today = new Date().toISOString().slice(0, 10);
+const history = archiveAndSettle(system, resultsIndex, today);
+
 const coverage = { had: future.length, crs: nCrs, ttg: nTtg, hafu: nHafu };
 const bo = {
-  note: '娱乐性串关 · 命中率/EV用市场去水q · 模型仅⚑风味 · EV恒负如实 · 竞彩抽水高(波胆~35%) · 小样本不可外推',
+  note: '娱乐性串关 · 命中率/EV用市场去水q · 模型仅⚑风味 · EV恒负如实 · 国际盘抽水高(波胆~30%) · 小样本不可外推',
   generatedAt: new Date().toISOString(),
-  coverage, legCandidates, system,
+  coverage, legCandidates, system, history,
   // 向后兼容当前前端(稳搏系统注 + 波胆卡):
   singles: system.steady.singles, parlays: system.steady.parlays, cs,
 };

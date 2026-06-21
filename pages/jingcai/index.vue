@@ -2,7 +2,7 @@
   <view class="wrap">
     <view class="hero">
       <view class="between"><text class="pill">娱乐玩法</text></view>
-      <text class="s">自选串关 · 系统荐彩 · 按赛程排序 · 竞彩盘口口径</text>
+      <text class="s">自选串关 · 系统荐彩 · 历史战绩 · 国际盘(Bovada)口径</text>
     </view>
 
     <view class="warn">⚠ 娱乐玩法。高赔=低概率,长期负 EV 是常态。命中率/EV 用市场盘口口径,模型仅作 ⚑ 风味参考,<text class="strong">非保本、非价值</text>。</view>
@@ -12,18 +12,21 @@
         <view class="seg2">
           <text :class="{ on: boTab === 'custom' }" @click="boTab = 'custom'">自选串关</text>
           <text :class="{ on: boTab === 'system' }" @click="boTab = 'system'">系统荐彩</text>
+          <text :class="{ on: boTab === 'history' }" @click="boTab = 'history'">历史战绩</text>
         </view>
 
-        <view class="plays">
-          <text v-for="p in PLAYS" :key="p.key" class="play" :class="{ on: play === p.key, dis: !bo.coverage[p.key] }" @click="bo.coverage[p.key] && setPlay(p.key)">{{ p.label }}<text v-if="!bo.coverage[p.key]" class="lk"> 🔒</text></text>
-        </view>
-        <view class="risk">
-          <text :class="{ on: risk === 'steady' }" @click="setRisk('steady')">稳搏</text>
-          <text :class="{ on: risk === 'aggressive' }" @click="setRisk('aggressive')">激进搏</text>
-          <text class="rh">{{ risk === 'steady' ? '温和冷门·偏命中' : '长尾大赔·命中更低' }}</text>
-        </view>
-        <text v-if="play === 'hafu'" class="tiny dim">半全场无模型支持,仅市场盘口口径。</text>
-        <text v-if="curVig" class="tiny dim">本玩法竞彩抽水约 {{ curVig }}%。</text>
+        <block v-if="boTab !== 'history'">
+          <view class="plays">
+            <text v-for="p in PLAYS" :key="p.key" class="play" :class="{ on: play === p.key, dis: !bo.coverage[p.key] }" @click="bo.coverage[p.key] && setPlay(p.key)">{{ p.label }}<text v-if="!bo.coverage[p.key]" class="lk"> 🔒</text></text>
+          </view>
+          <view class="risk">
+            <text :class="{ on: risk === 'steady' }" @click="setRisk('steady')">稳搏</text>
+            <text :class="{ on: risk === 'aggressive' }" @click="setRisk('aggressive')">激进搏</text>
+            <text class="rh">{{ risk === 'steady' ? '温和冷门·偏命中' : '长尾大赔·命中更低' }}</text>
+          </view>
+          <text v-if="play === 'hafu'" class="tiny dim">半全场无模型支持,仅市场盘口口径。</text>
+          <text v-if="curVig" class="tiny dim">本玩法抽水约 {{ curVig }}%(国际盘 Bovada)。</text>
+        </block>
 
         <!-- ── 自选串关 ── -->
         <block v-if="boTab === 'custom'">
@@ -60,7 +63,7 @@
         </block>
 
         <!-- ── 系统荐彩 ── -->
-        <block v-else>
+        <block v-else-if="boTab === 'system'">
           <view class="card" v-for="(pl, i) in sysParlays" :key="'s' + i">
             <view class="between"><text class="strong">{{ pl.tag }}</text><text class="ret">×{{ pl.odds }}</text></view>
             <view v-for="(l, j) in pl.legs" :key="j" class="leg">
@@ -73,9 +76,43 @@
           </view>
           <view v-if="!sysParlays.length" class="empty">本档暂无系统注。</view>
         </block>
+
+        <!-- ── 历史战绩 ── -->
+        <block v-else>
+          <view v-if="hist" class="hsum">
+            <view class="hrow">
+              <view class="hcell"><text class="hv">{{ hist.overall.winRate != null ? pct(hist.overall.winRate) : '—' }}</text><text class="hk">总命中率</text></view>
+              <view class="hcell"><text class="hv">{{ hist.overall.win }}/{{ hist.overall.settled }}</text><text class="hk">已结算(中/总)</text></view>
+              <view class="hcell"><text class="hv">{{ hist.overall.pending }}</text><text class="hk">待开</text></view>
+            </view>
+            <view class="hrow sub">
+              <view class="hcell"><text class="hv2" :class="roiCls(hist.byRisk.steady.roi)">{{ roiTxt(hist.byRisk.steady.roi) }}</text><text class="hk">稳搏ROI · {{ hist.byRisk.steady.winRate != null ? pct(hist.byRisk.steady.winRate) : '—' }}</text></view>
+              <view class="hcell"><text class="hv2" :class="roiCls(hist.byRisk.aggressive.roi)">{{ roiTxt(hist.byRisk.aggressive.roi) }}</text><text class="hk">激进ROI · {{ hist.byRisk.aggressive.winRate != null ? pct(hist.byRisk.aggressive.winRate) : '—' }}</text></view>
+            </view>
+            <text class="tiny dim">ROI=每注押1单位的净回报率(恒为娱乐参考);命中率为已结算注的实际命中。历史自上线起逐日累积。</text>
+          </view>
+
+          <view class="hseg">
+            <text v-for="f in HFILTERS" :key="f.key" :class="{ on: hFilter === f.key }" @click="hFilter = f.key">{{ f.label }}</text>
+          </view>
+
+          <view v-for="(it, i) in histItems" :key="'h' + i" class="card hcard" :class="'st-' + it.status">
+            <view class="between">
+              <text class="strong">{{ riskZh(it.risk) }} · {{ it.tag }}</text>
+              <text class="hbadge" :class="'st-' + it.status">{{ statusZh(it.status) }}<text v-if="it.status !== 'pending'"> ×{{ it.odds }}</text></text>
+            </view>
+            <view v-for="(l, j) in it.legs" :key="j" class="hleg">
+              <text class="hlt">{{ nm(l.home) }} {{ l.selZh }}</text>
+              <text class="hlo">@{{ l.odds }}</text>
+              <text v-if="it.legResults" class="hlr" :class="it.legResults[j] && it.legResults[j].hit ? 'ok' : 'no'">{{ it.legResults[j] ? (it.legResults[j].hit ? '✓' : '✗') + ' ' + it.legResults[j].actualScore : '' }}</text>
+            </view>
+            <view class="between hfoot"><text class="muted">推荐 {{ it.firstSeen }}</text><text class="muted">连乘 ×{{ it.odds }}</text></view>
+          </view>
+          <view v-if="!histItems.length" class="empty">暂无{{ hFilter === 'all' ? '' : (hFilter === 'pending' ? '待开' : hFilter === 'win' ? '命中' : '未中') }}记录(历史自上线起逐日累积)。</view>
+        </block>
       </block>
 
-    <view class="disclaimer">「串关」为本站模型/竞彩盘口生成的娱乐性组合,长期负 EV,非投注建议、非价值/保本方案。理性购彩,量力而行,未满 18 周岁禁止参与。</view>
+    <view class="disclaimer">「串关」为本站模型/国际盘口(Bovada)生成的娱乐性组合,长期负 EV,非投注建议、非价值/保本方案。理性购彩,量力而行,未满 18 周岁禁止参与。</view>
   </view>
 </template>
 
@@ -91,9 +128,11 @@ import { buildCombos } from '@/common/combo.js'
 onShow(() => setTabBarIndex(1))
 
 const PLAYS = [{ key: 'had', label: '胜平负' }, { key: 'crs', label: '波胆' }, { key: 'ttg', label: '进球数' }, { key: 'hafu', label: '半全场' }]
+const HFILTERS = [{ key: 'all', label: '全部' }, { key: 'pending', label: '待开' }, { key: 'win', label: '命中' }, { key: 'lose', label: '未中' }]
 const K_MAX = 4
 
 const boTab = ref('custom')
+const hFilter = ref('all')
 const play = ref('had')
 const risk = ref('steady')
 const bo = ref(null)
@@ -114,6 +153,17 @@ const sysParlays = computed(() => {
   // 每注内的腿按赛程(seq)排序
   return [...s.singles, ...s.parlays].map(pl => ({ ...pl, legs: pl.legs.slice().sort((a, b) => a.seq - b.seq) }))
 })
+
+// 历史战绩
+const hist = computed(() => bo.value && bo.value.history && bo.value.history.summary || null)
+const histItems = computed(() => {
+  const all = bo.value && bo.value.history && bo.value.history.items || []
+  return hFilter.value === 'all' ? all : all.filter(p => p.status === hFilter.value)
+})
+const riskZh = (r) => r === 'aggressive' ? '激进' : '稳搏'
+const statusZh = (s) => s === 'win' ? '命中' : s === 'lose' ? '未中' : '待开'
+const roiTxt = (v) => v == null ? '—' : (v > 0 ? '+' : '') + (v * 100).toFixed(0) + '%'
+const roiCls = (v) => v == null ? '' : v > 0 ? 'up' : v < 0 ? 'down' : ''
 
 const reset = () => { for (const k in picks) delete picks[k]; result.value = null }
 const setPlay = (k) => { if (play.value !== k) { play.value = k; reset() } }
@@ -182,4 +232,34 @@ const gen = () => { if (pickCount.value < 2) return; result.value = buildCombos(
 .mid .sc { display: block; font-size: 34rpx; font-weight: 800; color: #ffcf4a; }
 .mline { display: flex; align-items: center; justify-content: space-between; padding: 14rpx 0; border-bottom: 1rpx solid #20262f; }
 .mline:last-child { border-bottom: none; }
+/* 历史战绩 */
+.hsum { background: #14171f; border: 1rpx solid #252b38; border-radius: 16rpx; padding: 20rpx; margin-bottom: 16rpx; }
+.hrow { display: flex; }
+.hrow.sub { margin-top: 16rpx; padding-top: 16rpx; border-top: 1rpx solid #20262f; }
+.hcell { flex: 1; text-align: center; display: flex; flex-direction: column; }
+.hcell .hv { font-size: 38rpx; font-weight: 800; color: #4ea1ff; }
+.hcell .hv2 { font-size: 32rpx; font-weight: 800; color: #cfd4e0; }
+.hcell .hv2.up { color: #2fd07b; }
+.hcell .hv2.down { color: #e0795a; }
+.hcell .hk { font-size: 21rpx; color: #7c8597; margin-top: 6rpx; }
+.hseg { display: flex; gap: 12rpx; margin-bottom: 14rpx; }
+.hseg text { padding: 8rpx 24rpx; font-size: 23rpx; color: #9aa3b4; background: #1c2330; border: 1rpx solid #2c3445; border-radius: 999rpx; }
+.hseg text.on { color: #4ea1ff; border-color: rgba(78,161,255,.5); }
+.hcard { border-left: 4rpx solid #2c3445; }
+.hcard.st-win { border-left-color: #2fd07b; }
+.hcard.st-lose { border-left-color: #e0795a; }
+.hcard.st-pending { border-left-color: #4ea1ff; }
+.hbadge { font-size: 22rpx; font-weight: 700; padding: 4rpx 14rpx; border-radius: 999rpx; color: #9aa3b4; background: #1c2330; }
+.hbadge.st-win { color: #2fd07b; background: rgba(47,208,123,.12); }
+.hbadge.st-lose { color: #e0795a; background: rgba(224,121,90,.12); }
+.hbadge.st-pending { color: #4ea1ff; background: rgba(78,161,255,.12); }
+.hleg { display: flex; align-items: center; padding: 10rpx 0; border-bottom: 1rpx solid #20262f; }
+.hleg:last-of-type { border-bottom: none; }
+.hleg .hlt { flex: 1; font-size: 25rpx; color: #e8eaf0; }
+.hleg .hlo { font-size: 24rpx; font-weight: 700; color: #ffcf4a; width: 90rpx; text-align: right; }
+.hleg .hlr { width: 120rpx; text-align: right; font-size: 22rpx; }
+.hleg .hlr.ok { color: #2fd07b; }
+.hleg .hlr.no { color: #e0795a; }
+.hfoot { margin-top: 10rpx; }
+.hfoot .muted { font-size: 21rpx; color: #7c8597; }
 </style>
