@@ -63,5 +63,5 @@
   },
   "_goals": "治本比分（mode=xg）：λ主=att主·def客/leagueAvg、λ客=att客·def主/leagueAvg（data/team-xg.json 对手强度调整的真实攻防），再围绕 contrastCenter 做 contrast 拉开强弱、主场 homeBoost/awayDamp、胶着场 tightDamp 降总进球。base/spread 为缺 xG 时的 mu 反推回退。参数随 att/def(W_REAL=0.5) 重新网格搜索（原文12场一致 11/12）。",
   "_calibration": "特征主导(赔率融合 0.35) + 赛果驱动平局校准(draw.liveMult，见 _liveCalibration)。1X2/比分参数由真实联赛回测拟合，不拟合任何外部文章。",
-  "_liveCalibration": "赛果驱动·绝对标定：40 场网格搜最优(logloss 0.9585→0.9068)→ newMult 1.7；胜负命中闸门 21/27 vs 基准 23/27 → 否决，保留 1.347，liveMult 1.347→1.347（builtAt 2026-06-22T14:02:39.422Z）"
+  "_liveCalibration": "赛果驱动·绝对标定：40 场网格搜最优(logloss 0.9585→0.9068)→ newMult 1.7；胜负命中闸门 21/27 vs 基准 23/27 → 否决，保留 1.347，liveMult 1.347→1.347（builtAt 2026-06-22T14:17:18.028Z）"
 }
