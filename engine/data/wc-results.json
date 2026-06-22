@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-22T19:02:18.782Z",
-  "count": 40,
+  "_fetchedAt": "2026-06-22T19:16:44.875Z",
+  "count": 41,
   "results": [
     {
       "date": "2026-06-11",
@@ -1871,6 +1871,47 @@
       ],
       "status": "Full Time",
       "espnId": "760452"
+    },
+    {
+      "date": "2026-06-22",
+      "et": "2026-06-22T13:00:00-04:00",
+      "group": "J",
+      "home": "Argentina",
+      "away": "Austria",
+      "hs": 2,
+      "as": 0,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 12,
+          "sot": 5,
+          "poss": 53.6
+        },
+        "away": {
+          "shots": 6,
+          "sot": 1,
+          "poss": 46.4
+        }
+      },
+      "goals": [
+        {
+          "min": "38'",
+          "scorer": "Lionel Messi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+5'",
+          "scorer": "Lionel Messi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760456"
     }
   ]
 }
