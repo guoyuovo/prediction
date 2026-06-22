@@ -1,6 +1,6 @@
 {
   "_note": "双源真实赔率（ESPN + Bovada，免 key）。odds=两源共识(decimal)，供模型市场子模型。meta 含各源原值、让球线 ah、大小球线 ou、场地 venue、分歧标记 diverge。",
-  "_fetchedAt": "2026-06-22T13:30:41.494Z",
+  "_fetchedAt": "2026-06-22T13:45:32.235Z",
   "odds": {
     "Mexico vs South Africa": [
       1.4368,
@@ -193,43 +193,43 @@
       1.6228
     ],
     "Argentina vs Austria": [
-      1.4776,
-      4.2785,
-      7.3751
+      1.4789,
+      4.2743,
+      7.3728
     ],
     "France vs Iraq": [
-      1.0857,
-      11.2809,
-      29.6332
+      1.0859,
+      11.2559,
+      29.5946
     ],
     "Norway vs Senegal": [
-      2.1815,
-      3.4511,
-      3.3364
+      2.1816,
+      3.4507,
+      3.3375
     ],
     "Jordan vs Algeria": [
-      6.3449,
-      4.2299,
-      1.5276
+      6.3598,
+      4.2345,
+      1.5262
     ],
     "Portugal vs Uzbekistan": [
-      1.1849,
-      7.024,
-      15.8405
+      1.185,
+      7.0227,
+      15.8872
     ],
     "England vs Ghana": [
       1.2187,
-      6.3794,
+      6.3826,
       13.6336
     ],
     "Panama vs Croatia": [
-      6.6718,
-      4.0942,
-      1.5184
+      6.6735,
+      4.093,
+      1.5188
     ],
     "Colombia vs DR Congo": [
       1.5062,
-      4.0995,
+      4.0989,
       6.9305
     ],
     "Switzerland vs Canada": [
@@ -238,59 +238,59 @@
       3.1996
     ],
     "Morocco vs Haiti": [
-      1.1836,
-      6.9274,
-      16.0073
+      1.1835,
+      6.9298,
+      16.0251
     ],
     "Scotland vs Brazil": [
-      7.8076,
-      5.0321,
-      1.3736
+      7.8082,
+      5.0324,
+      1.3737
     ],
     "Czechia vs Mexico": [
-      3.6817,
-      3.7684,
-      1.9403
+      3.6829,
+      3.7696,
+      1.9398
     ],
     "South Africa vs South Korea": [
       5.517,
       3.8608,
-      1.6289
+      1.629
     ],
     "Curacao vs Cote d'Ivoire": [
-      17.5599,
-      7.8949,
+      17.5592,
+      7.8979,
       1.1524
     ],
     "Ecuador vs Germany": [
-      3.6718,
-      3.8798,
-      1.9329
+      3.6783,
+      3.8823,
+      1.9297
     ],
     "Japan vs Sweden": [
-      1.9397,
-      3.395,
+      1.9402,
+      3.3935,
       4.1102
     ],
     "Tunisia vs Netherlands": [
-      20.6333,
-      8.4518,
-      1.136
+      20.7758,
+      8.4615,
+      1.1353
     ],
     "Paraguay vs Australia": [
-      2.8424,
-      2.2514,
-      3.8434
+      2.8425,
+      2.2496,
+      3.848
     ],
     "Turkey vs USA": [
       3.4895,
       3.9564,
-      1.9485
+      1.9479
     ],
     "Norway vs France": [
-      4.2616,
-      3.8059,
-      1.7837
+      4.2607,
+      3.8065,
+      1.7838
     ],
     "Senegal vs Iraq": [
       1.301,
@@ -298,59 +298,59 @@
       10.414
     ],
     "Cape Verde vs Saudi Arabia": [
-      2.3615,
-      3.4611,
-      2.9152
+      2.3616,
+      3.4606,
+      2.9154
     ],
     "Uruguay vs Spain": [
-      6.8382,
-      4.238,
+      6.8391,
+      4.2366,
       1.4856
     ],
     "Egypt vs Iran": [
-      2.3909,
-      2.7312,
-      3.6943
+      2.3881,
+      2.7314,
+      3.6989
     ],
     "New Zealand vs Belgium": [
-      13.1155,
-      6.5199,
-      1.2121
+      13.2068,
+      6.544,
+      1.2105
     ],
     "Croatia vs Ghana": [
-      1.6056,
-      3.8092,
-      5.7586
+      1.6058,
+      3.8078,
+      5.7573
     ],
     "Panama vs England": [
-      11.3227,
+      11.3389,
       6.7006,
       1.2225
     ],
     "Colombia vs Portugal": [
-      3.6063,
-      3.4258,
-      2.0431
+      3.6064,
+      3.4259,
+      2.0429
     ],
     "DR Congo vs Uzbekistan": [
-      2.1017,
-      3.5606,
+      2.102,
+      3.5595,
       3.317
     ],
     "Algeria vs Austria": [
-      3.0477,
+      3.0475,
       3.0427,
-      2.4944
+      2.4947
     ],
     "Jordan vs Argentina": [
-      14.2143,
-      7.0403,
+      14.2176,
+      7.0383,
       1.1835
     ],
     "Bosnia vs Qatar": [
-      1.4336,
-      4.7876,
-      6.7575
+      1.4337,
+      4.7882,
+      6.7473
     ],
     "Canada vs Bosnia": [
       1.8289,
@@ -411,7 +411,13 @@
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2.5",
+          "lean": "小球",
+          "over": 0.96,
+          "under": 0.88,
+          "samples": 4528
+        }
       },
       "espnBovada": [
         1.43,
@@ -467,7 +473,13 @@
           "signal": 1,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "小球",
+          "over": 0.99,
+          "under": 0.86,
+          "samples": 3106
+        }
       },
       "espnBovada": [
         2.6,
@@ -530,7 +542,13 @@
           "signal": 0,
           "lean": "中性"
         },
-        "ou": null
+        "ou": {
+          "line": "2",
+          "lean": "小球",
+          "over": 0.95,
+          "under": 0.9,
+          "samples": 3320
+        }
       },
       "espnBovada": [
         2.05,
@@ -593,13 +611,7 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "3",
-          "lean": "小球",
-          "over": 0.98,
-          "under": 0.89,
-          "samples": 2067
-        }
+        "ou": null
       },
       "espnBovada": [
         16,
@@ -725,7 +737,13 @@
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2.5",
+          "lean": "中性",
+          "over": 0.95,
+          "under": 0.91,
+          "samples": 2331
+        }
       },
       "espnBovada": [
         5.25,
@@ -788,13 +806,7 @@
           "signal": -1.5,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "2.5",
-          "lean": "小球",
-          "over": 0.96,
-          "under": 0.89,
-          "samples": 2589
-        }
+        "ou": null
       },
       "espnBovada": [
         5.25,
@@ -982,13 +994,7 @@
           "signal": 1,
           "lean": "钱进主胜"
         },
-        "ou": {
-          "line": "2",
-          "lean": "大球",
-          "over": 0.92,
-          "under": 0.9,
-          "samples": 2683
-        }
+        "ou": null
       },
       "espnBovada": [
         3.25,
@@ -1189,7 +1195,13 @@
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2.5",
+          "lean": "小球",
+          "over": 0.95,
+          "under": 0.9,
+          "samples": 2865
+        }
       },
       "espnBovada": [
         1.5,
@@ -1384,7 +1396,13 @@
           "signal": -1,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2.5",
+          "lean": "中性",
+          "over": 0.94,
+          "under": 0.92,
+          "samples": 2718
+        }
       },
       "espnBovada": [
         1.5,
@@ -1447,7 +1465,13 @@
           "signal": -1.5,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "3",
+          "lean": "小球",
+          "over": 0.99,
+          "under": 0.86,
+          "samples": 2478
+        }
       },
       "espnBovada": [
         13,
@@ -1642,7 +1666,13 @@
           "signal": 1,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "3",
+          "lean": "小球",
+          "over": 0.96,
+          "under": 0.89,
+          "samples": 1842
+        }
       },
       "espnBovada": [
         1.29,
@@ -1705,13 +1735,7 @@
           "signal": 0.5,
           "lean": "钱进主胜"
         },
-        "ou": {
-          "line": "2.5",
-          "lean": "中性",
-          "over": 0.91,
-          "under": 0.91,
-          "samples": 5106
-        }
+        "ou": null
       },
       "espnBovada": [
         1.65,
@@ -1893,7 +1917,13 @@
           "signal": 1.5,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "中性",
+          "over": 0.95,
+          "under": 0.91,
+          "samples": 2305
+        }
       },
       "espnBovada": [
         1.87,
@@ -2025,13 +2055,7 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "2/2.5",
-          "lean": "小球",
-          "over": 0.98,
-          "under": 0.88,
-          "samples": 2740
-        }
+        "ou": null
       },
       "espnBovada": [
         2,
@@ -2163,7 +2187,13 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "小球",
+          "over": 0.97,
+          "under": 0.88,
+          "samples": 2434
+        }
       },
       "espnBovada": [
         5.25,
@@ -2226,13 +2256,7 @@
           "signal": -1.5,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "3.5",
-          "lean": "大球",
-          "over": 0.92,
-          "under": 0.92,
-          "samples": 3138
-        }
+        "ou": null
       },
       "espnBovada": [
         1.11,
@@ -2358,13 +2382,7 @@
           "signal": -0.5,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "2.5",
-          "lean": "中性",
-          "over": 0.94,
-          "under": 0.91,
-          "samples": 2196
-        }
+        "ou": null
       },
       "espnBovada": [
         1.71,
@@ -2427,7 +2445,13 @@
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "3",
+          "lean": "小球",
+          "over": 0.96,
+          "under": 0.91,
+          "samples": 2021
+        }
       },
       "espnBovada": [
         1.47,
@@ -2760,7 +2784,13 @@
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "中性",
+          "over": 0.95,
+          "under": 0.91,
+          "samples": 2688
+        }
       },
       "espnBovada": [
         1.4,
@@ -2892,14 +2922,14 @@
       },
       "diverge": false,
       "titan007": [
-        1.4776,
-        4.2785,
-        7.3751
+        1.4789,
+        4.2743,
+        7.3728
       ],
       "titan007Companies": 178,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0698,
+          "driftHomeProb": 0.0694,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -2908,7 +2938,7 @@
           "lean": "小球",
           "over": 0.95,
           "under": 0.89,
-          "samples": 1260
+          "samples": 1280
         }
       },
       "espnBovada": [
@@ -2972,14 +3002,14 @@
       },
       "diverge": false,
       "titan007": [
-        1.0857,
-        11.2809,
-        29.6332
+        1.0859,
+        11.2559,
+        29.5946
       ],
       "titan007Companies": 175,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0409,
+          "driftHomeProb": 0.0407,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -2988,7 +3018,7 @@
           "lean": "大球",
           "over": 0.9,
           "under": 0.93,
-          "samples": 1186
+          "samples": 1187
         }
       },
       "espnBovada": [
@@ -3040,9 +3070,9 @@
       },
       "diverge": false,
       "titan007": [
-        2.1815,
-        3.4511,
-        3.3364
+        2.1816,
+        3.4507,
+        3.3375
       ],
       "titan007Companies": 179,
       "titan007Market": {
@@ -3056,7 +3086,7 @@
           "lean": "中性",
           "over": 0.91,
           "under": 0.92,
-          "samples": 954
+          "samples": 959
         }
       },
       "espnBovada": [
@@ -3120,14 +3150,14 @@
       },
       "diverge": false,
       "titan007": [
-        6.3449,
-        4.2299,
-        1.5276
+        6.3598,
+        4.2345,
+        1.5262
       ],
       "titan007Companies": 172,
       "titan007Market": {
         "move": {
-          "driftHomeProb": -0.0176,
+          "driftHomeProb": -0.0179,
           "signal": -1.5,
           "lean": "钱进客胜"
         },
@@ -3136,7 +3166,7 @@
           "lean": "小球",
           "over": 0.94,
           "under": 0.89,
-          "samples": 740
+          "samples": 752
         }
       },
       "espnBovada": [
@@ -3200,24 +3230,18 @@
       },
       "diverge": false,
       "titan007": [
-        1.1849,
-        7.024,
-        15.8405
+        1.185,
+        7.0227,
+        15.8872
       ],
       "titan007Companies": 171,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0361,
+          "driftHomeProb": 0.0362,
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": {
-          "line": "3",
-          "lean": "小球",
-          "over": 0.94,
-          "under": 0.88,
-          "samples": 605
-        }
+        "ou": null
       },
       "espnBovada": [
         1.17,
@@ -3281,13 +3305,13 @@
       "diverge": false,
       "titan007": [
         1.2187,
-        6.3794,
+        6.3826,
         13.6336
       ],
       "titan007Companies": 171,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0632,
+          "driftHomeProb": 0.0633,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -3354,9 +3378,9 @@
       },
       "diverge": false,
       "titan007": [
-        6.6718,
-        4.0942,
-        1.5184
+        6.6735,
+        4.093,
+        1.5188
       ],
       "titan007Companies": 173,
       "titan007Market": {
@@ -3365,7 +3389,13 @@
           "signal": 0.5,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2.5",
+          "lean": "小球",
+          "over": 0.94,
+          "under": 0.88,
+          "samples": 626
+        }
       },
       "espnBovada": [
         6.5,
@@ -3429,7 +3459,7 @@
       "diverge": false,
       "titan007": [
         1.5062,
-        4.0995,
+        4.0989,
         6.9305
       ],
       "titan007Companies": 169,
@@ -3501,7 +3531,13 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "大球",
+          "over": 0.86,
+          "under": 0.96,
+          "samples": 288
+        }
       },
       "espnBovada": [
         2.49,
@@ -3564,24 +3600,18 @@
       },
       "diverge": false,
       "titan007": [
-        1.1836,
-        6.9274,
-        16.0073
+        1.1835,
+        6.9298,
+        16.0251
       ],
       "titan007Companies": 169,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0768,
+          "driftHomeProb": 0.0769,
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": {
-          "line": "3",
-          "lean": "小球",
-          "over": 0.94,
-          "under": 0.88,
-          "samples": 237
-        }
+        "ou": null
       },
       "espnBovada": [
         1.17,
@@ -3644,9 +3674,9 @@
       },
       "diverge": false,
       "titan007": [
-        7.8076,
-        5.0321,
-        1.3736
+        7.8082,
+        5.0324,
+        1.3737
       ],
       "titan007Companies": 174,
       "titan007Market": {
@@ -3718,9 +3748,9 @@
       },
       "diverge": false,
       "titan007": [
-        3.6817,
-        3.7684,
-        1.9403
+        3.6829,
+        3.7696,
+        1.9398
       ],
       "titan007Companies": 172,
       "titan007Market": {
@@ -3729,7 +3759,13 @@
           "signal": 1.5,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "大球",
+          "over": 0.89,
+          "under": 0.92,
+          "samples": 316
+        }
       },
       "espnBovada": [
         3.67,
@@ -3794,7 +3830,7 @@
       "titan007": [
         5.517,
         3.8608,
-        1.6289
+        1.629
       ],
       "titan007Companies": 164,
       "titan007Market": {
@@ -3803,7 +3839,13 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "大球",
+          "over": 0.9,
+          "under": 0.92,
+          "samples": 345
+        }
       },
       "espnBovada": [
         5.45,
@@ -3866,8 +3908,8 @@
       },
       "diverge": false,
       "titan007": [
-        17.5599,
-        7.8949,
+        17.5592,
+        7.8979,
         1.1524
       ],
       "titan007Companies": 165,
@@ -3877,13 +3919,7 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "3",
-          "lean": "中性",
-          "over": 0.9,
-          "under": 0.92,
-          "samples": 402
-        }
+        "ou": null
       },
       "espnBovada": [
         18,
@@ -3946,14 +3982,14 @@
       },
       "diverge": false,
       "titan007": [
-        3.6718,
-        3.8798,
-        1.9329
+        3.6783,
+        3.8823,
+        1.9297
       ],
       "titan007Companies": 163,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0712,
+          "driftHomeProb": 0.0707,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -4020,18 +4056,24 @@
       },
       "diverge": false,
       "titan007": [
-        1.9397,
-        3.395,
+        1.9402,
+        3.3935,
         4.1102
       ],
       "titan007Companies": 164,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0404,
+          "driftHomeProb": 0.0403,
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "大球",
+          "over": 0.84,
+          "under": 0.99,
+          "samples": 283
+        }
       },
       "espnBovada": [
         1.93,
@@ -4094,14 +4136,14 @@
       },
       "diverge": false,
       "titan007": [
-        20.6333,
-        8.4518,
-        1.136
+        20.7758,
+        8.4615,
+        1.1353
       ],
       "titan007Companies": 165,
       "titan007Market": {
         "move": {
-          "driftHomeProb": -0.0938,
+          "driftHomeProb": -0.0941,
           "signal": -2,
           "lean": "钱进客胜"
         },
@@ -4162,9 +4204,9 @@
       },
       "diverge": false,
       "titan007": [
-        2.8424,
-        2.2514,
-        3.8434
+        2.8425,
+        2.2496,
+        3.848
       ],
       "titan007Companies": 162,
       "titan007Market": {
@@ -4238,7 +4280,7 @@
       "titan007": [
         3.4895,
         3.9564,
-        1.9485
+        1.9479
       ],
       "titan007Companies": 155,
       "titan007Market": {
@@ -4247,13 +4289,7 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "2.5",
-          "lean": "大球",
-          "over": 0.88,
-          "under": 0.94,
-          "samples": 350
-        }
+        "ou": null
       },
       "espnBovada": [
         3.58,
@@ -4316,14 +4352,14 @@
       },
       "diverge": false,
       "titan007": [
-        4.2616,
-        3.8059,
-        1.7837
+        4.2607,
+        3.8065,
+        1.7838
       ],
       "titan007Companies": 153,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0164,
+          "driftHomeProb": 0.0165,
           "signal": 1.5,
           "lean": "钱进主胜"
         },
@@ -4458,14 +4494,14 @@
       },
       "diverge": false,
       "titan007": [
-        2.3615,
-        3.4611,
-        2.9152
+        2.3616,
+        3.4606,
+        2.9154
       ],
       "titan007Companies": 160,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0648,
+          "driftHomeProb": 0.0647,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -4538,8 +4574,8 @@
       },
       "diverge": false,
       "titan007": [
-        6.8382,
-        4.238,
+        6.8391,
+        4.2366,
         1.4856
       ],
       "titan007Companies": 162,
@@ -4549,13 +4585,7 @@
           "signal": -2,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "2.5",
-          "lean": "大球",
-          "over": 0.88,
-          "under": 0.94,
-          "samples": 381
-        }
+        "ou": null
       },
       "espnBovada": [
         7.38,
@@ -4613,14 +4643,14 @@
       },
       "diverge": false,
       "titan007": [
-        2.3909,
-        2.7312,
-        3.6943
+        2.3881,
+        2.7314,
+        3.6989
       ],
       "titan007Companies": 160,
       "titan007Market": {
         "move": {
-          "driftHomeProb": -0.0148,
+          "driftHomeProb": -0.0144,
           "signal": -1,
           "lean": "钱进客胜"
         },
@@ -4687,24 +4717,18 @@
       },
       "diverge": false,
       "titan007": [
-        13.1155,
-        6.5199,
-        1.2121
+        13.2068,
+        6.544,
+        1.2105
       ],
       "titan007Companies": 154,
       "titan007Market": {
         "move": {
-          "driftHomeProb": -0.0148,
+          "driftHomeProb": -0.0152,
           "signal": -1,
           "lean": "钱进客胜"
         },
-        "ou": {
-          "line": "3",
-          "lean": "小球",
-          "over": 1.01,
-          "under": 0.81,
-          "samples": 87
-        }
+        "ou": null
       },
       "espnBovada": [
         12.5,
@@ -4767,14 +4791,14 @@
       },
       "diverge": false,
       "titan007": [
-        1.6056,
-        3.8092,
-        5.7586
+        1.6058,
+        3.8078,
+        5.7573
       ],
       "titan007Companies": 153,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0397,
+          "driftHomeProb": 0.0396,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -4847,16 +4871,16 @@
       },
       "diverge": false,
       "titan007": [
-        11.3227,
+        11.3389,
         6.7006,
         1.2225
       ],
       "titan007Companies": 154,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0032,
-          "signal": 0.5,
-          "lean": "钱进主胜"
+          "driftHomeProb": 0.0031,
+          "signal": 0,
+          "lean": "中性"
         },
         "ou": {
           "line": "3",
@@ -4927,9 +4951,9 @@
       },
       "diverge": false,
       "titan007": [
-        3.6063,
-        3.4258,
-        2.0431
+        3.6064,
+        3.4259,
+        2.0429
       ],
       "titan007Companies": 153,
       "titan007Market": {
@@ -4938,7 +4962,13 @@
           "signal": -1,
           "lean": "钱进客胜"
         },
-        "ou": null
+        "ou": {
+          "line": "2/2.5",
+          "lean": "大球",
+          "over": 0.84,
+          "under": 0.96,
+          "samples": 186
+        }
       },
       "espnBovada": [
         3.63,
@@ -4989,14 +5019,14 @@
       },
       "diverge": false,
       "titan007": [
-        2.1017,
-        3.5606,
+        2.102,
+        3.5595,
         3.317
       ],
       "titan007Companies": 151,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0445,
+          "driftHomeProb": 0.0444,
           "signal": 2,
           "lean": "钱进主胜"
         },
@@ -5051,9 +5081,9 @@
       },
       "diverge": false,
       "titan007": [
-        3.0477,
+        3.0475,
         3.0427,
-        2.4944
+        2.4947
       ],
       "titan007Companies": 154,
       "titan007Market": {
@@ -5125,8 +5155,8 @@
       },
       "diverge": false,
       "titan007": [
-        14.2143,
-        7.0403,
+        14.2176,
+        7.0383,
         1.1835
       ],
       "titan007Companies": 151,
@@ -5136,7 +5166,13 @@
           "signal": 0,
           "lean": "中性"
         },
-        "ou": null
+        "ou": {
+          "line": "3",
+          "lean": "小球",
+          "over": 0.95,
+          "under": 0.86,
+          "samples": 295
+        }
       },
       "espnBovada": [
         15.5,
@@ -5176,24 +5212,18 @@
         "read": "市场看好让球方"
       },
       "titan007": [
-        1.4336,
-        4.7876,
-        6.7575
+        1.4337,
+        4.7882,
+        6.7473
       ],
       "titan007Companies": 169,
       "titan007Market": {
         "move": {
-          "driftHomeProb": 0.0917,
+          "driftHomeProb": 0.0915,
           "signal": 2,
           "lean": "钱进主胜"
         },
-        "ou": {
-          "line": "2/2.5",
-          "lean": "大球",
-          "over": 0.88,
-          "under": 0.94,
-          "samples": 516
-        }
+        "ou": null
       },
       "espnBovada": [
         1.43,
@@ -5203,6 +5233,6 @@
       "oddsSource": "titan007"
     }
   },
-  "_titan007MergedAt": "2026-06-22T13:32:10.661Z",
+  "_titan007MergedAt": "2026-06-22T13:47:05.482Z",
   "_oddsPriority": "Titan007 共识优先（合并自 titan007-odds.json）；缺失场次回退 ESPN+Bovada"
 }
