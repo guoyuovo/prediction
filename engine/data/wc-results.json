@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-22T02:47:15.009Z",
-  "count": 39,
+  "_fetchedAt": "2026-06-22T03:02:16.657Z",
+  "count": 40,
   "results": [
     {
       "date": "2026-06-11",
@@ -1816,6 +1816,61 @@
       ],
       "status": "Full Time",
       "espnId": "760450"
+    },
+    {
+      "date": "2026-06-21",
+      "et": "2026-06-21T21:00:00-04:00",
+      "group": "G",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "hs": 1,
+      "as": 3,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 11,
+          "sot": 5,
+          "poss": 44.3
+        },
+        "away": {
+          "shots": 19,
+          "sot": 7,
+          "poss": 55.7
+        }
+      },
+      "goals": [
+        {
+          "min": "15'",
+          "scorer": "Finn Surman",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "58'",
+          "scorer": "Mostafa Zico",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "67'",
+          "scorer": "Mohamed Salah",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "82'",
+          "scorer": "Trézéguet",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760452"
     }
   ]
 }

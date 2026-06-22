@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 39,
-    "accuracy1X2": 0.564,
-    "brierAvg": 0.549,
-    "loglossAvg": 0.926,
-    "scoreHit": 0.103,
-    "dirHit": 0.564,
+    "matches": 40,
+    "accuracy1X2": 0.575,
+    "brierAvg": 0.544,
+    "loglossAvg": 0.919,
+    "scoreHit": 0.1,
+    "dirHit": 0.575,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -984,6 +984,31 @@
       "eloHomeAfter": 1817.8,
       "eloAwayBefore": 1652,
       "eloAwayAfter": 1666.3
+    },
+    {
+      "et": "2026-06-21T21:00:00-04:00",
+      "group": "G",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "hs": 1,
+      "as": 3,
+      "ht": "1-0",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.218,
+      "pDraw": 0.266,
+      "pAway": 0.516,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.352,
+      "logloss": 0.661,
+      "homeAdv": false,
+      "eloDelta": -28.8,
+      "eloHomeBefore": 1592.8,
+      "eloHomeAfter": 1564,
+      "eloAwayBefore": 1723.8,
+      "eloAwayAfter": 1752.6
     }
   ],
   "eloChanges": [
@@ -992,6 +1017,12 @@
       "before": 1820,
       "after": 1898.1,
       "delta": 78.1
+    },
+    {
+      "team": "Egypt",
+      "before": 1711,
+      "after": 1752.6,
+      "delta": 41.6
     },
     {
       "team": "Cape Verde",
@@ -1066,12 +1097,6 @@
       "delta": 17
     },
     {
-      "team": "New Zealand",
-      "before": 1578,
-      "after": 1592.8,
-      "delta": 14.8
-    },
-    {
       "team": "Japan",
       "before": 1925,
       "after": 1939.7,
@@ -1088,12 +1113,6 @@
       "before": 1929,
       "after": 1942.2,
       "delta": 13.2
-    },
-    {
-      "team": "Egypt",
-      "before": 1711,
-      "after": 1723.8,
-      "delta": 12.8
     },
     {
       "team": "Saudi Arabia",
@@ -1196,6 +1215,12 @@
       "before": 1698,
       "after": 1684.4,
       "delta": -13.6
+    },
+    {
+      "team": "New Zealand",
+      "before": 1578,
+      "after": 1564,
+      "delta": -14
     },
     {
       "team": "Senegal",
@@ -1549,6 +1574,13 @@
       "label": "Uruguay-Cape Verde",
       "accCum": 0.564,
       "brierCum": 0.549
+    },
+    {
+      "i": 40,
+      "et": "2026-06-21T21:00:00-04:00",
+      "label": "New Zealand-Egypt",
+      "accCum": 0.575,
+      "brierCum": 0.544
     }
   ],
   "calibration": [
@@ -1559,8 +1591,8 @@
     },
     {
       "range": "45–55%",
-      "n": 13,
-      "hitRate": 0.615
+      "n": 14,
+      "hitRate": 0.643
     },
     {
       "range": "55–65%",
@@ -1573,5 +1605,5 @@
       "hitRate": 0.714
     }
   ],
-  "builtAt": "2026-06-22T02:47:15.060Z"
+  "builtAt": "2026-06-22T03:02:16.707Z"
 }
