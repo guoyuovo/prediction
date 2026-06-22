@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 38,
-    "accuracy1X2": 0.579,
-    "brierAvg": 0.54,
-    "loglossAvg": 0.914,
-    "scoreHit": 0.105,
-    "dirHit": 0.579,
+    "matches": 39,
+    "accuracy1X2": 0.564,
+    "brierAvg": 0.55,
+    "loglossAvg": 0.926,
+    "scoreHit": 0.103,
+    "dirHit": 0.564,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -959,6 +959,31 @@
       "eloHomeAfter": 1847.4,
       "eloAwayBefore": 1751.2,
       "eloAwayAfter": 1760
+    },
+    {
+      "et": "2026-06-21T18:00:00-04:00",
+      "group": "H",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "hs": 2,
+      "as": 2,
+      "ht": "2-1",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.548,
+      "pDraw": 0.251,
+      "pAway": 0.201,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.902,
+      "logloss": 1.383,
+      "homeAdv": false,
+      "eloDelta": -16.6,
+      "eloHomeBefore": 1850.1,
+      "eloHomeAfter": 1833.5,
+      "eloAwayBefore": 1633.3,
+      "eloAwayAfter": 1649.9
     }
   ],
   "eloChanges": [
@@ -967,6 +992,12 @@
       "before": 1820,
       "after": 1898.1,
       "delta": 78.1
+    },
+    {
+      "team": "Cape Verde",
+      "before": 1606,
+      "after": 1649.9,
+      "delta": 43.9
     },
     {
       "team": "Ghana",
@@ -979,12 +1010,6 @@
       "before": 1866,
       "after": 1897.9,
       "delta": 31.9
-    },
-    {
-      "team": "Cape Verde",
-      "before": 1606,
-      "after": 1633.3,
-      "delta": 27.3
     },
     {
       "team": "Cote d'Ivoire",
@@ -1185,12 +1210,6 @@
       "delta": -18.9
     },
     {
-      "team": "Uruguay",
-      "before": 1870,
-      "after": 1850.1,
-      "delta": -19.9
-    },
-    {
       "team": "Portugal",
       "before": 1967,
       "after": 1946.4,
@@ -1225,6 +1244,12 @@
       "before": 1696,
       "after": 1660,
       "delta": -36
+    },
+    {
+      "team": "Uruguay",
+      "before": 1870,
+      "after": 1833.5,
+      "delta": -36.5
     },
     {
       "team": "Panama",
@@ -1517,6 +1542,13 @@
       "label": "Belgium-Iran",
       "accCum": 0.579,
       "brierCum": 0.54
+    },
+    {
+      "i": 39,
+      "et": "2026-06-21T18:00:00-04:00",
+      "label": "Uruguay-Cape Verde",
+      "accCum": 0.564,
+      "brierCum": 0.55
     }
   ],
   "calibration": [
@@ -1527,8 +1559,8 @@
     },
     {
       "range": "45–55%",
-      "n": 12,
-      "hitRate": 0.667
+      "n": 13,
+      "hitRate": 0.615
     },
     {
       "range": "55–65%",
@@ -1541,5 +1573,5 @@
       "hitRate": 0.714
     }
   ],
-  "builtAt": "2026-06-22T00:02:12.833Z"
+  "builtAt": "2026-06-22T00:16:46.987Z"
 }

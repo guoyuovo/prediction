@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-22T00:02:12.784Z",
-  "count": 38,
+  "_fetchedAt": "2026-06-22T00:16:46.940Z",
+  "count": 39,
   "results": [
     {
       "date": "2026-06-11",
@@ -1750,17 +1750,72 @@
         "home": {
           "shots": 23,
           "sot": 7,
-          "poss": 70.3
+          "poss": 70.1
         },
         "away": {
           "shots": 7,
           "sot": 3,
-          "poss": 29.7
+          "poss": 29.9
         }
       },
       "goals": [],
       "status": "Full Time",
       "espnId": "760451"
+    },
+    {
+      "date": "2026-06-21",
+      "et": "2026-06-21T18:00:00-04:00",
+      "group": "H",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "hs": 2,
+      "as": 2,
+      "htHome": 2,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 17,
+          "sot": 2,
+          "poss": 65.3
+        },
+        "away": {
+          "shots": 12,
+          "sot": 4,
+          "poss": 34.7
+        }
+      },
+      "goals": [
+        {
+          "min": "21'",
+          "scorer": "Kevin Pina",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "44'",
+          "scorer": "Maxi Araújo",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "45'+6'",
+          "scorer": "Agustín Cano",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "61'",
+          "scorer": "Hélio Varela",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760450"
     }
   ]
 }
