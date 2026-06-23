@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 45,
-    "accuracy1X2": 0.622,
-    "brierAvg": 0.518,
-    "loglossAvg": 0.882,
-    "scoreHit": 0.133,
-    "dirHit": 0.622,
+    "matches": 46,
+    "accuracy1X2": 0.609,
+    "brierAvg": 0.531,
+    "loglossAvg": 0.9,
+    "scoreHit": 0.13,
+    "dirHit": 0.609,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1134,6 +1134,31 @@
       "eloHomeAfter": 1984.5,
       "eloAwayBefore": 1664.7,
       "eloAwayAfter": 1646.7
+    },
+    {
+      "et": "2026-06-23T16:00:00-04:00",
+      "group": "L",
+      "home": "England",
+      "away": "Ghana",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.676,
+      "pDraw": 0.181,
+      "pAway": 0.144,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 1.149,
+      "logloss": 1.712,
+      "homeAdv": false,
+      "eloDelta": -26.5,
+      "eloHomeBefore": 2079.2,
+      "eloHomeAfter": 2052.7,
+      "eloAwayBefore": 1597.4,
+      "eloAwayAfter": 1623.9
     }
   ],
   "eloChanges": [
@@ -1144,16 +1169,16 @@
       "delta": 78.1
     },
     {
+      "team": "Ghana",
+      "before": 1557,
+      "after": 1623.9,
+      "delta": 66.9
+    },
+    {
       "team": "Cape Verde",
       "before": 1625,
       "after": 1666.3,
       "delta": 41.3
-    },
-    {
-      "team": "Ghana",
-      "before": 1557,
-      "after": 1597.4,
-      "delta": 40.4
     },
     {
       "team": "Egypt",
@@ -1184,12 +1209,6 @@
       "before": 2144,
       "after": 2169.5,
       "delta": 25.5
-    },
-    {
-      "team": "England",
-      "before": 2055,
-      "after": 2079.2,
-      "delta": 24.2
     },
     {
       "team": "Mexico",
@@ -1286,6 +1305,12 @@
       "before": 1527,
       "after": 1532.4,
       "delta": 5.4
+    },
+    {
+      "team": "England",
+      "before": 2055,
+      "after": 2052.7,
+      "delta": -2.3
     },
     {
       "team": "Bosnia",
@@ -1741,6 +1766,13 @@
       "label": "Portugal-Uzbekistan",
       "accCum": 0.622,
       "brierCum": 0.517
+    },
+    {
+      "i": 46,
+      "et": "2026-06-23T16:00:00-04:00",
+      "label": "England-Ghana",
+      "accCum": 0.609,
+      "brierCum": 0.531
     }
   ],
   "calibration": [
@@ -1761,9 +1793,9 @@
     },
     {
       "range": "65–101%",
-      "n": 9,
-      "hitRate": 0.778
+      "n": 10,
+      "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-23T21:46:53.790Z"
+  "builtAt": "2026-06-23T22:02:20.058Z"
 }
