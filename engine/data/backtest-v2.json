@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 44,
-    "accuracy1X2": 0.614,
-    "brierAvg": 0.525,
-    "loglossAvg": 0.893,
-    "scoreHit": 0.136,
-    "dirHit": 0.614,
+    "matches": 45,
+    "accuracy1X2": 0.622,
+    "brierAvg": 0.518,
+    "loglossAvg": 0.883,
+    "scoreHit": 0.133,
+    "dirHit": 0.622,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1109,6 +1109,31 @@
       "eloHomeAfter": 1593.9,
       "eloAwayBefore": 1768.5,
       "eloAwayAfter": 1785.8
+    },
+    {
+      "et": "2026-06-23T13:00:00-04:00",
+      "group": "K",
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "hs": 5,
+      "as": 0,
+      "ht": "3-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.646,
+      "pDraw": 0.189,
+      "pAway": 0.165,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.189,
+      "logloss": 0.437,
+      "homeAdv": false,
+      "eloDelta": 21.7,
+      "eloHomeBefore": 1946.4,
+      "eloHomeAfter": 1968.1,
+      "eloAwayBefore": 1684.4,
+      "eloAwayAfter": 1662.7
     }
   ],
   "eloChanges": [
@@ -1263,6 +1288,12 @@
       "delta": 5.4
     },
     {
+      "team": "Portugal",
+      "before": 1967,
+      "after": 1968.1,
+      "delta": 1.1
+    },
+    {
       "team": "Bosnia",
       "before": 1596,
       "after": 1593.4,
@@ -1311,12 +1342,6 @@
       "delta": -13.5
     },
     {
-      "team": "Uzbekistan",
-      "before": 1698,
-      "after": 1684.4,
-      "delta": -13.6
-    },
-    {
       "team": "Iraq",
       "before": 1586,
       "after": 1569.9,
@@ -1333,12 +1358,6 @@
       "before": 1869,
       "after": 1849.2,
       "delta": -19.8
-    },
-    {
-      "team": "Portugal",
-      "before": 1967,
-      "after": 1946.4,
-      "delta": -20.6
     },
     {
       "team": "Spain",
@@ -1363,6 +1382,12 @@
       "before": 1851,
       "after": 1817.8,
       "delta": -33.2
+    },
+    {
+      "team": "Uzbekistan",
+      "before": 1698,
+      "after": 1662.7,
+      "delta": -35.3
     },
     {
       "team": "Czechia",
@@ -1709,6 +1734,13 @@
       "label": "Jordan-Algeria",
       "accCum": 0.614,
       "brierCum": 0.525
+    },
+    {
+      "i": 45,
+      "et": "2026-06-23T13:00:00-04:00",
+      "label": "Portugal-Uzbekistan",
+      "accCum": 0.622,
+      "brierCum": 0.518
     }
   ],
   "calibration": [
@@ -1724,8 +1756,8 @@
     },
     {
       "range": "55–65%",
-      "n": 10,
-      "hitRate": 0.7
+      "n": 11,
+      "hitRate": 0.727
     },
     {
       "range": "65–101%",
@@ -1733,5 +1765,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-23T18:46:56.311Z"
+  "builtAt": "2026-06-23T19:02:31.980Z"
 }
