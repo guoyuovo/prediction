@@ -2,8 +2,8 @@
   "summary": {
     "matches": 45,
     "accuracy1X2": 0.622,
-    "brierAvg": 0.518,
-    "loglossAvg": 0.883,
+    "brierAvg": 0.517,
+    "loglossAvg": 0.882,
     "scoreHit": 0.133,
     "dirHit": 0.622,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -521,19 +521,19 @@
       "actual": "D",
       "predOutcome": "H",
       "correct": false,
-      "pHome": 0.599,
-      "pDraw": 0.221,
-      "pAway": 0.181,
+      "pHome": 0.601,
+      "pDraw": 0.219,
+      "pAway": 0.179,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 0.999,
-      "logloss": 1.512,
+      "brier": 1.003,
+      "logloss": 1.517,
       "homeAdv": false,
-      "eloDelta": -20.6,
-      "eloHomeBefore": 1967,
-      "eloHomeAfter": 1946.4,
+      "eloDelta": -21.5,
+      "eloHomeBefore": 1988,
+      "eloHomeAfter": 1966.5,
       "eloAwayBefore": 1674,
-      "eloAwayAfter": 1694.6
+      "eloAwayAfter": 1695.5
     },
     {
       "et": "2026-06-17T16:00:00-04:00",
@@ -596,19 +596,19 @@
       "actual": "A",
       "predOutcome": "A",
       "correct": true,
-      "pHome": 0.187,
-      "pDraw": 0.231,
-      "pAway": 0.582,
+      "pHome": 0.185,
+      "pDraw": 0.23,
+      "pAway": 0.585,
       "predScore": "0-2",
       "scoreHit": false,
-      "brier": 0.263,
-      "logloss": 0.541,
+      "brier": 0.259,
+      "logloss": 0.536,
       "homeAdv": false,
-      "eloDelta": -13.6,
-      "eloHomeBefore": 1698,
-      "eloHomeAfter": 1684.4,
+      "eloDelta": -12.3,
+      "eloHomeBefore": 1677,
+      "eloHomeAfter": 1664.7,
       "eloAwayBefore": 1998,
-      "eloAwayAfter": 2011.6
+      "eloAwayAfter": 2010.3
     },
     {
       "et": "2026-06-18T12:00:00-04:00",
@@ -1121,19 +1121,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.646,
-      "pDraw": 0.189,
-      "pAway": 0.165,
-      "predScore": "1-0",
+      "pHome": 0.651,
+      "pDraw": 0.187,
+      "pAway": 0.162,
+      "predScore": "2-0",
       "scoreHit": false,
-      "brier": 0.189,
-      "logloss": 0.437,
+      "brier": 0.183,
+      "logloss": 0.429,
       "homeAdv": false,
-      "eloDelta": 21.7,
-      "eloHomeBefore": 1946.4,
-      "eloHomeAfter": 1968.1,
-      "eloAwayBefore": 1684.4,
-      "eloAwayAfter": 1662.7
+      "eloDelta": 18,
+      "eloHomeBefore": 1966.5,
+      "eloHomeAfter": 1984.5,
+      "eloAwayBefore": 1664.7,
+      "eloAwayAfter": 1646.7
     }
   ],
   "eloChanges": [
@@ -1212,8 +1212,8 @@
     {
       "team": "DR Congo",
       "before": 1674,
-      "after": 1694.6,
-      "delta": 20.6
+      "after": 1695.5,
+      "delta": 21.5
     },
     {
       "team": "France",
@@ -1234,16 +1234,16 @@
       "delta": 14.7
     },
     {
-      "team": "Colombia",
-      "before": 1998,
-      "after": 2011.6,
-      "delta": 13.6
-    },
-    {
       "team": "Saudi Arabia",
       "before": 1593,
       "after": 1605.7,
       "delta": 12.7
+    },
+    {
+      "team": "Colombia",
+      "before": 1998,
+      "after": 2010.3,
+      "delta": 12.3
     },
     {
       "team": "Australia",
@@ -1288,12 +1288,6 @@
       "delta": 5.4
     },
     {
-      "team": "Portugal",
-      "before": 1967,
-      "after": 1968.1,
-      "delta": 1.1
-    },
-    {
       "team": "Bosnia",
       "before": 1596,
       "after": 1593.4,
@@ -1304,6 +1298,12 @@
       "before": 1986,
       "after": 1982.9,
       "delta": -3.1
+    },
+    {
+      "team": "Portugal",
+      "before": 1988,
+      "after": 1984.5,
+      "delta": -3.5
     },
     {
       "team": "Canada",
@@ -1372,6 +1372,12 @@
       "delta": -24.2
     },
     {
+      "team": "Uzbekistan",
+      "before": 1677,
+      "after": 1646.7,
+      "delta": -30.3
+    },
+    {
       "team": "Senegal",
       "before": 1817,
       "after": 1784.5,
@@ -1382,12 +1388,6 @@
       "before": 1851,
       "after": 1817.8,
       "delta": -33.2
-    },
-    {
-      "team": "Uzbekistan",
-      "before": 1698,
-      "after": 1662.7,
-      "delta": -35.3
     },
     {
       "team": "Czechia",
@@ -1586,7 +1586,7 @@
       "et": "2026-06-17T19:00:00-04:00",
       "label": "Ghana-Panama",
       "accCum": 0.478,
-      "brierCum": 0.611
+      "brierCum": 0.612
     },
     {
       "i": 24,
@@ -1740,7 +1740,7 @@
       "et": "2026-06-23T13:00:00-04:00",
       "label": "Portugal-Uzbekistan",
       "accCum": 0.622,
-      "brierCum": 0.518
+      "brierCum": 0.517
     }
   ],
   "calibration": [
@@ -1756,14 +1756,14 @@
     },
     {
       "range": "55–65%",
-      "n": 11,
-      "hitRate": 0.727
+      "n": 10,
+      "hitRate": 0.7
     },
     {
       "range": "65–101%",
-      "n": 8,
-      "hitRate": 0.75
+      "n": 9,
+      "hitRate": 0.778
     }
   ],
-  "builtAt": "2026-06-23T19:32:19.404Z"
+  "builtAt": "2026-06-23T19:47:03.968Z"
 }
