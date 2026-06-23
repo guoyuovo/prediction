@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-23T01:46:59.029Z",
-  "count": 42,
+  "_fetchedAt": "2026-06-23T02:01:59.996Z",
+  "count": 43,
   "results": [
     {
       "date": "2026-06-11",
@@ -1960,6 +1960,68 @@
       ],
       "status": "Full Time",
       "espnId": "760457"
+    },
+    {
+      "date": "2026-06-22",
+      "et": "2026-06-22T20:00:00-04:00",
+      "group": "I",
+      "home": "Norway",
+      "away": "Senegal",
+      "hs": 3,
+      "as": 2,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 13,
+          "sot": 7,
+          "poss": 41.7
+        },
+        "away": {
+          "shots": 16,
+          "sot": 4,
+          "poss": 58.3
+        }
+      },
+      "goals": [
+        {
+          "min": "43'",
+          "scorer": "Marcus Holmgren Pedersen",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "48'",
+          "scorer": "Erling Haaland",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "53'",
+          "scorer": "Ismaïla Sarr",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "58'",
+          "scorer": "Erling Haaland",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+3'",
+          "scorer": "Ismaïla Sarr",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760454"
     }
   ]
 }

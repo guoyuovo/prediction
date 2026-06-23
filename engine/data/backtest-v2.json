@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 42,
-    "accuracy1X2": 0.595,
-    "brierAvg": 0.528,
-    "loglossAvg": 0.897,
-    "scoreHit": 0.143,
-    "dirHit": 0.595,
+    "matches": 43,
+    "accuracy1X2": 0.605,
+    "brierAvg": 0.53,
+    "loglossAvg": 0.9,
+    "scoreHit": 0.14,
+    "dirHit": 0.605,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1059,6 +1059,31 @@
       "eloHomeAfter": 2106.6,
       "eloAwayBefore": 1578.8,
       "eloAwayAfter": 1573.9
+    },
+    {
+      "et": "2026-06-22T20:00:00-04:00",
+      "group": "I",
+      "home": "Norway",
+      "away": "Senegal",
+      "hs": 3,
+      "as": 2,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.363,
+      "pDraw": 0.329,
+      "pAway": 0.308,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.609,
+      "logloss": 1.013,
+      "homeAdv": false,
+      "eloDelta": 20,
+      "eloHomeBefore": 1942.2,
+      "eloHomeAfter": 1962.2,
+      "eloAwayBefore": 1821.3,
+      "eloAwayAfter": 1801.3
     }
   ],
   "eloChanges": [
@@ -1085,6 +1110,12 @@
       "before": 1740,
       "after": 1773.8,
       "delta": 33.8
+    },
+    {
+      "team": "Norway",
+      "before": 1929,
+      "after": 1962.2,
+      "delta": 33.2
     },
     {
       "team": "Morocco",
@@ -1157,12 +1188,6 @@
       "before": 1998,
       "after": 2011.6,
       "delta": 13.6
-    },
-    {
-      "team": "Norway",
-      "before": 1929,
-      "after": 1942.2,
-      "delta": 13.2
     },
     {
       "team": "Saudi Arabia",
@@ -1267,12 +1292,6 @@
       "delta": -13.6
     },
     {
-      "team": "Senegal",
-      "before": 1839,
-      "after": 1821.3,
-      "delta": -17.7
-    },
-    {
       "team": "Iraq",
       "before": 1592,
       "after": 1573.9,
@@ -1325,6 +1344,12 @@
       "before": 1696,
       "after": 1660,
       "delta": -36
+    },
+    {
+      "team": "Senegal",
+      "before": 1839,
+      "after": 1801.3,
+      "delta": -37.7
     },
     {
       "team": "Panama",
@@ -1645,13 +1670,20 @@
       "label": "France-Iraq",
       "accCum": 0.595,
       "brierCum": 0.528
+    },
+    {
+      "i": 43,
+      "et": "2026-06-22T20:00:00-04:00",
+      "label": "Norway-Senegal",
+      "accCum": 0.605,
+      "brierCum": 0.53
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 9,
-      "hitRate": 0.222
+      "n": 10,
+      "hitRate": 0.3
     },
     {
       "range": "45–55%",
@@ -1669,5 +1701,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-23T01:46:59.086Z"
+  "builtAt": "2026-06-23T02:02:00.037Z"
 }
