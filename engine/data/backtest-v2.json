@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 41,
-    "accuracy1X2": 0.585,
-    "brierAvg": 0.538,
-    "loglossAvg": 0.911,
-    "scoreHit": 0.122,
-    "dirHit": 0.585,
+    "matches": 42,
+    "accuracy1X2": 0.595,
+    "brierAvg": 0.528,
+    "loglossAvg": 0.897,
+    "scoreHit": 0.143,
+    "dirHit": 0.595,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1034,6 +1034,31 @@
       "eloHomeAfter": 2168.5,
       "eloAwayBefore": 1863.8,
       "eloAwayAfter": 1849.6
+    },
+    {
+      "et": "2026-06-22T17:00:00-04:00",
+      "group": "I",
+      "home": "France",
+      "away": "Iraq",
+      "hs": 3,
+      "as": 0,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.711,
+      "pDraw": 0.155,
+      "pAway": 0.135,
+      "predScore": "3-0",
+      "scoreHit": true,
+      "brier": 0.126,
+      "logloss": 0.342,
+      "homeAdv": false,
+      "eloDelta": 4.9,
+      "eloHomeBefore": 2101.7,
+      "eloHomeAfter": 2106.6,
+      "eloAwayBefore": 1578.8,
+      "eloAwayAfter": 1573.9
     }
   ],
   "eloChanges": [
@@ -1092,6 +1117,12 @@
       "delta": 23.5
     },
     {
+      "team": "France",
+      "before": 2084,
+      "after": 2106.6,
+      "delta": 22.6
+    },
+    {
       "team": "Netherlands",
       "before": 1972,
       "after": 1994,
@@ -1108,12 +1139,6 @@
       "before": 1674,
       "after": 1694.6,
       "delta": 20.6
-    },
-    {
-      "team": "France",
-      "before": 2084,
-      "after": 2101.7,
-      "delta": 17.7
     },
     {
       "team": "Curacao",
@@ -1230,12 +1255,6 @@
       "delta": -10.3
     },
     {
-      "team": "Iraq",
-      "before": 1592,
-      "after": 1578.8,
-      "delta": -13.2
-    },
-    {
       "team": "Paraguay",
       "before": 1816,
       "after": 1802.5,
@@ -1252,6 +1271,12 @@
       "before": 1839,
       "after": 1821.3,
       "delta": -17.7
+    },
+    {
+      "team": "Iraq",
+      "before": 1592,
+      "after": 1573.9,
+      "delta": -18.1
     },
     {
       "team": "Haiti",
@@ -1613,6 +1638,13 @@
       "label": "Argentina-Austria",
       "accCum": 0.585,
       "brierCum": 0.538
+    },
+    {
+      "i": 42,
+      "et": "2026-06-22T17:00:00-04:00",
+      "label": "France-Iraq",
+      "accCum": 0.595,
+      "brierCum": 0.528
     }
   ],
   "calibration": [
@@ -1633,9 +1665,9 @@
     },
     {
       "range": "65–101%",
-      "n": 7,
-      "hitRate": 0.714
+      "n": 8,
+      "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-23T00:47:02.083Z"
+  "builtAt": "2026-06-23T01:01:58.712Z"
 }
