@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-23T04:47:02.892Z",
-  "count": 43,
+  "_fetchedAt": "2026-06-23T05:02:19.154Z",
+  "count": 44,
   "results": [
     {
       "date": "2026-06-11",
@@ -2022,6 +2022,54 @@
       ],
       "status": "Full Time",
       "espnId": "760454"
+    },
+    {
+      "date": "2026-06-22",
+      "et": "2026-06-22T23:00:00-04:00",
+      "group": "J",
+      "home": "Jordan",
+      "away": "Algeria",
+      "hs": 1,
+      "as": 2,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 8,
+          "sot": 4,
+          "poss": 28
+        },
+        "away": {
+          "shots": 17,
+          "sot": 8,
+          "poss": 72
+        }
+      },
+      "goals": [
+        {
+          "min": "36'",
+          "scorer": "Nizar Al-Rashdan",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "69'",
+          "scorer": "Nadhir Benbouali",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "82'",
+          "scorer": "Amine Gouiri",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760455"
     }
   ]
 }

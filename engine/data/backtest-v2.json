@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 43,
-    "accuracy1X2": 0.605,
-    "brierAvg": 0.53,
-    "loglossAvg": 0.9,
-    "scoreHit": 0.14,
-    "dirHit": 0.605,
+    "matches": 44,
+    "accuracy1X2": 0.614,
+    "brierAvg": 0.526,
+    "loglossAvg": 0.894,
+    "scoreHit": 0.136,
+    "dirHit": 0.614,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1084,6 +1084,31 @@
       "eloHomeAfter": 1962.2,
       "eloAwayBefore": 1821.3,
       "eloAwayAfter": 1801.3
+    },
+    {
+      "et": "2026-06-22T23:00:00-04:00",
+      "group": "J",
+      "home": "Jordan",
+      "away": "Algeria",
+      "hs": 1,
+      "as": 2,
+      "ht": "1-0",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.214,
+      "pDraw": 0.256,
+      "pAway": 0.529,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.333,
+      "logloss": 0.636,
+      "homeAdv": false,
+      "eloDelta": -20.1,
+      "eloHomeBefore": 1630.2,
+      "eloHomeAfter": 1610.1,
+      "eloAwayBefore": 1748.7,
+      "eloAwayAfter": 1768.8
     }
   ],
   "eloChanges": [
@@ -1208,6 +1233,12 @@
       "delta": 11.3
     },
     {
+      "team": "Algeria",
+      "before": 1759,
+      "after": 1768.8,
+      "delta": 9.8
+    },
+    {
       "team": "Austria",
       "before": 1841,
       "after": 1849.6,
@@ -1274,12 +1305,6 @@
       "delta": -9.9
     },
     {
-      "team": "Algeria",
-      "before": 1759,
-      "after": 1748.7,
-      "delta": -10.3
-    },
-    {
       "team": "Paraguay",
       "before": 1816,
       "after": 1802.5,
@@ -1322,12 +1347,6 @@
       "delta": -20.8
     },
     {
-      "team": "Jordan",
-      "before": 1653,
-      "after": 1630.2,
-      "delta": -22.8
-    },
-    {
       "team": "Croatia",
       "before": 1881,
       "after": 1856.8,
@@ -1356,6 +1375,12 @@
       "before": 1683,
       "after": 1642.6,
       "delta": -40.4
+    },
+    {
+      "team": "Jordan",
+      "before": 1653,
+      "after": 1610.1,
+      "delta": -42.9
     },
     {
       "team": "Tunisia",
@@ -1677,6 +1702,13 @@
       "label": "Norway-Senegal",
       "accCum": 0.605,
       "brierCum": 0.53
+    },
+    {
+      "i": 44,
+      "et": "2026-06-22T23:00:00-04:00",
+      "label": "Jordan-Algeria",
+      "accCum": 0.614,
+      "brierCum": 0.526
     }
   ],
   "calibration": [
@@ -1687,8 +1719,8 @@
     },
     {
       "range": "45–55%",
-      "n": 15,
-      "hitRate": 0.667
+      "n": 16,
+      "hitRate": 0.688
     },
     {
       "range": "55–65%",
@@ -1701,5 +1733,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-23T04:47:02.942Z"
+  "builtAt": "2026-06-23T05:02:19.202Z"
 }
