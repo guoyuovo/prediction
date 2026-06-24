@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 48,
-    "accuracy1X2": 0.625,
-    "brierAvg": 0.523,
-    "loglossAvg": 0.889,
-    "scoreHit": 0.146,
-    "dirHit": 0.625,
+    "matches": 50,
+    "accuracy1X2": 0.64,
+    "brierAvg": 0.521,
+    "loglossAvg": 0.886,
+    "scoreHit": 0.14,
+    "dirHit": 0.64,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1209,6 +1209,56 @@
       "eloHomeAfter": 2025.6,
       "eloAwayBefore": 1687.9,
       "eloAwayAfter": 1680.1
+    },
+    {
+      "et": "2026-06-24T15:00:00-04:00",
+      "group": "B",
+      "home": "Bosnia",
+      "away": "Qatar",
+      "hs": 3,
+      "as": 1,
+      "ht": "2-1",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.507,
+      "pDraw": 0.261,
+      "pAway": 0.232,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.365,
+      "logloss": 0.679,
+      "homeAdv": false,
+      "eloDelta": 27.2,
+      "eloHomeBefore": 1593.4,
+      "eloHomeAfter": 1620.6,
+      "eloAwayBefore": 1448.3,
+      "eloAwayAfter": 1421.1
+    },
+    {
+      "et": "2026-06-24T15:00:00-04:00",
+      "group": "B",
+      "home": "Switzerland",
+      "away": "Canada",
+      "hs": 2,
+      "as": 1,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.378,
+      "pDraw": 0.333,
+      "pAway": 0.288,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.581,
+      "logloss": 0.972,
+      "homeAdv": false,
+      "eloDelta": 21.1,
+      "eloHomeBefore": 1879.8,
+      "eloHomeAfter": 1900.9,
+      "eloAwayBefore": 1773.5,
+      "eloAwayAfter": 1752.4
     }
   ],
   "eloChanges": [
@@ -1261,6 +1311,12 @@
       "delta": 25.5
     },
     {
+      "team": "Bosnia",
+      "before": 1596,
+      "after": 1620.6,
+      "delta": 24.6
+    },
+    {
       "team": "Mexico",
       "before": 1896,
       "after": 1919.5,
@@ -1297,6 +1353,12 @@
       "delta": 17
     },
     {
+      "team": "Switzerland",
+      "before": 1885,
+      "after": 1900.9,
+      "delta": 15.9
+    },
+    {
       "team": "Japan",
       "before": 1925,
       "after": 1939.7,
@@ -1319,12 +1381,6 @@
       "before": 1799,
       "after": 1810.6,
       "delta": 11.6
-    },
-    {
-      "team": "Qatar",
-      "before": 1437,
-      "after": 1448.3,
-      "delta": 11.3
     },
     {
       "team": "South Korea",
@@ -1363,34 +1419,16 @@
       "delta": 3.2
     },
     {
-      "team": "Bosnia",
-      "before": 1596,
-      "after": 1593.4,
-      "delta": -2.6
-    },
-    {
       "team": "Brazil",
       "before": 1986,
       "after": 1982.9,
       "delta": -3.1
     },
     {
-      "team": "Canada",
-      "before": 1777,
-      "after": 1773.5,
-      "delta": -3.5
-    },
-    {
       "team": "Portugal",
       "before": 1988,
       "after": 1984.1,
       "delta": -3.9
-    },
-    {
-      "team": "Switzerland",
-      "before": 1885,
-      "after": 1879.8,
-      "delta": -5.2
     },
     {
       "team": "New Zealand",
@@ -1415,6 +1453,12 @@
       "before": 1816,
       "after": 1802.5,
       "delta": -13.5
+    },
+    {
+      "team": "Qatar",
+      "before": 1437,
+      "after": 1421.1,
+      "delta": -15.9
     },
     {
       "team": "Iraq",
@@ -1445,6 +1489,12 @@
       "before": 2134,
       "after": 2113.2,
       "delta": -20.8
+    },
+    {
+      "team": "Canada",
+      "before": 1777,
+      "after": 1752.4,
+      "delta": -24.6
     },
     {
       "team": "Uzbekistan",
@@ -1837,18 +1887,32 @@
       "label": "Colombia-DR Congo",
       "accCum": 0.625,
       "brierCum": 0.523
+    },
+    {
+      "i": 49,
+      "et": "2026-06-24T15:00:00-04:00",
+      "label": "Bosnia-Qatar",
+      "accCum": 0.633,
+      "brierCum": 0.519
+    },
+    {
+      "i": 50,
+      "et": "2026-06-24T15:00:00-04:00",
+      "label": "Switzerland-Canada",
+      "accCum": 0.64,
+      "brierCum": 0.521
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 10,
-      "hitRate": 0.3
+      "n": 11,
+      "hitRate": 0.364
     },
     {
       "range": "45–55%",
-      "n": 18,
-      "hitRate": 0.722
+      "n": 19,
+      "hitRate": 0.737
     },
     {
       "range": "55–65%",
@@ -1861,5 +1925,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-24T20:47:02.022Z"
+  "builtAt": "2026-06-24T21:02:05.653Z"
 }
