@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 46,
-    "accuracy1X2": 0.609,
-    "brierAvg": 0.531,
-    "loglossAvg": 0.9,
-    "scoreHit": 0.13,
-    "dirHit": 0.609,
+    "matches": 47,
+    "accuracy1X2": 0.617,
+    "brierAvg": 0.527,
+    "loglossAvg": 0.894,
+    "scoreHit": 0.149,
+    "dirHit": 0.617,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -546,19 +546,19 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.467,
-      "pDraw": 0.291,
-      "pAway": 0.243,
+      "pHome": 0.465,
+      "pDraw": 0.292,
+      "pAway": 0.244,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.427,
-      "logloss": 0.762,
+      "brier": 0.431,
+      "logloss": 0.766,
       "homeAdv": false,
-      "eloDelta": 27,
+      "eloDelta": 28.7,
       "eloHomeBefore": 2028,
-      "eloHomeAfter": 2055,
-      "eloAwayBefore": 1881,
-      "eloAwayAfter": 1854
+      "eloHomeAfter": 2056.7,
+      "eloAwayBefore": 1896,
+      "eloAwayAfter": 1867.3
     },
     {
       "et": "2026-06-17T19:00:00-04:00",
@@ -571,19 +571,19 @@
       "actual": "H",
       "predOutcome": "A",
       "correct": false,
-      "pHome": 0.328,
-      "pDraw": 0.326,
-      "pAway": 0.346,
+      "pHome": 0.329,
+      "pDraw": 0.327,
+      "pAway": 0.344,
       "predScore": "0-1",
       "scoreHit": false,
-      "brier": 0.678,
-      "logloss": 1.115,
+      "brier": 0.675,
+      "logloss": 1.112,
       "homeAdv": false,
-      "eloDelta": 38.3,
+      "eloDelta": 37.1,
       "eloHomeBefore": 1584,
-      "eloHomeAfter": 1622.3,
-      "eloAwayBefore": 1683,
-      "eloAwayAfter": 1644.7
+      "eloHomeAfter": 1621.1,
+      "eloAwayBefore": 1668,
+      "eloAwayAfter": 1630.9
     },
     {
       "et": "2026-06-17T22:00:00-04:00",
@@ -1147,18 +1147,43 @@
       "predOutcome": "H",
       "correct": false,
       "pHome": 0.671,
-      "pDraw": 0.183,
+      "pDraw": 0.182,
       "pAway": 0.147,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 1.139,
-      "logloss": 1.7,
+      "brier": 1.14,
+      "logloss": 1.701,
       "homeAdv": false,
-      "eloDelta": -25.4,
-      "eloHomeBefore": 2055,
-      "eloHomeAfter": 2029.6,
-      "eloAwayBefore": 1622.3,
-      "eloAwayAfter": 1647.7
+      "eloDelta": -25.5,
+      "eloHomeBefore": 2056.7,
+      "eloHomeAfter": 2031.2,
+      "eloAwayBefore": 1621.1,
+      "eloAwayAfter": 1646.6
+    },
+    {
+      "et": "2026-06-23T19:00:00-04:00",
+      "group": "L",
+      "home": "Panama",
+      "away": "Croatia",
+      "hs": 0,
+      "as": 1,
+      "ht": "0-0",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.208,
+      "pDraw": 0.251,
+      "pAway": 0.54,
+      "predScore": "0-1",
+      "scoreHit": true,
+      "brier": 0.318,
+      "logloss": 0.616,
+      "homeAdv": false,
+      "eloDelta": -12.2,
+      "eloHomeBefore": 1630.9,
+      "eloHomeAfter": 1618.7,
+      "eloAwayBefore": 1867.3,
+      "eloAwayAfter": 1879.5
     }
   ],
   "eloChanges": [
@@ -1171,8 +1196,8 @@
     {
       "team": "Ghana",
       "before": 1584,
-      "after": 1647.7,
-      "delta": 63.7
+      "after": 1646.6,
+      "delta": 62.6
     },
     {
       "team": "Cape Verde",
@@ -1309,8 +1334,8 @@
     {
       "team": "England",
       "before": 2028,
-      "after": 2029.6,
-      "delta": 1.6
+      "after": 2031.2,
+      "delta": 3.2
     },
     {
       "team": "Bosnia",
@@ -1373,6 +1398,12 @@
       "delta": -16.1
     },
     {
+      "team": "Croatia",
+      "before": 1896,
+      "after": 1879.5,
+      "delta": -16.5
+    },
+    {
       "team": "Haiti",
       "before": 1528,
       "after": 1509.1,
@@ -1389,12 +1420,6 @@
       "before": 2134,
       "after": 2113.2,
       "delta": -20.8
-    },
-    {
-      "team": "Croatia",
-      "before": 1881,
-      "after": 1854,
-      "delta": -27
     },
     {
       "team": "Uzbekistan",
@@ -1427,16 +1452,16 @@
       "delta": -38.1
     },
     {
-      "team": "Panama",
-      "before": 1683,
-      "after": 1644.7,
-      "delta": -38.3
-    },
-    {
       "team": "Tunisia",
       "before": 1570,
       "after": 1526.9,
       "delta": -43.1
+    },
+    {
+      "team": "Panama",
+      "before": 1668,
+      "after": 1618.7,
+      "delta": -49.3
     },
     {
       "team": "Ecuador",
@@ -1773,6 +1798,13 @@
       "label": "England-Ghana",
       "accCum": 0.609,
       "brierCum": 0.531
+    },
+    {
+      "i": 47,
+      "et": "2026-06-23T19:00:00-04:00",
+      "label": "Panama-Croatia",
+      "accCum": 0.617,
+      "brierCum": 0.527
     }
   ],
   "calibration": [
@@ -1783,8 +1815,8 @@
     },
     {
       "range": "45–55%",
-      "n": 16,
-      "hitRate": 0.688
+      "n": 17,
+      "hitRate": 0.706
     },
     {
       "range": "55–65%",
@@ -1797,5 +1829,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-24T00:47:10.603Z"
+  "builtAt": "2026-06-24T01:01:59.729Z"
 }
