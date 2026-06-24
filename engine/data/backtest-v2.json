@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 47,
-    "accuracy1X2": 0.617,
-    "brierAvg": 0.527,
-    "loglossAvg": 0.894,
-    "scoreHit": 0.149,
-    "dirHit": 0.617,
+    "matches": 48,
+    "accuracy1X2": 0.625,
+    "brierAvg": 0.523,
+    "loglossAvg": 0.889,
+    "scoreHit": 0.146,
+    "dirHit": 0.625,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1184,6 +1184,31 @@
       "eloHomeAfter": 1618.7,
       "eloAwayBefore": 1867.3,
       "eloAwayAfter": 1879.5
+    },
+    {
+      "et": "2026-06-23T22:00:00-04:00",
+      "group": "K",
+      "home": "Colombia",
+      "away": "DR Congo",
+      "hs": 1,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.533,
+      "pDraw": 0.261,
+      "pAway": 0.206,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 0.329,
+      "logloss": 0.63,
+      "homeAdv": false,
+      "eloDelta": 8.4,
+      "eloHomeBefore": 2010.3,
+      "eloHomeAfter": 2018.7,
+      "eloAwayBefore": 1695.5,
+      "eloAwayAfter": 1687.1
     }
   ],
   "eloChanges": [
@@ -1254,10 +1279,10 @@
       "delta": 21.8
     },
     {
-      "team": "DR Congo",
-      "before": 1674,
-      "after": 1695.5,
-      "delta": 21.5
+      "team": "Colombia",
+      "before": 1998,
+      "after": 2018.7,
+      "delta": 20.7
     },
     {
       "team": "France",
@@ -1278,16 +1303,16 @@
       "delta": 14.7
     },
     {
+      "team": "DR Congo",
+      "before": 1674,
+      "after": 1687.1,
+      "delta": 13.1
+    },
+    {
       "team": "Saudi Arabia",
       "before": 1593,
       "after": 1605.7,
       "delta": 12.7
-    },
-    {
-      "team": "Colombia",
-      "before": 1998,
-      "after": 2010.3,
-      "delta": 12.3
     },
     {
       "team": "Australia",
@@ -1805,6 +1830,13 @@
       "label": "Panama-Croatia",
       "accCum": 0.617,
       "brierCum": 0.527
+    },
+    {
+      "i": 48,
+      "et": "2026-06-23T22:00:00-04:00",
+      "label": "Colombia-DR Congo",
+      "accCum": 0.625,
+      "brierCum": 0.522
     }
   ],
   "calibration": [
@@ -1815,8 +1847,8 @@
     },
     {
       "range": "45–55%",
-      "n": 17,
-      "hitRate": 0.706
+      "n": 18,
+      "hitRate": 0.722
     },
     {
       "range": "55–65%",
@@ -1829,5 +1861,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-24T03:46:55.913Z"
+  "builtAt": "2026-06-24T04:02:13.929Z"
 }
