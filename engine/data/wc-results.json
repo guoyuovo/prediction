@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-25T00:02:11.874Z",
-  "count": 51,
+  "_fetchedAt": "2026-06-25T00:16:49.548Z",
+  "count": 52,
   "results": [
     {
       "date": "2026-06-11",
@@ -2333,7 +2333,7 @@
           "poss": 69
         },
         "away": {
-          "shots": 10,
+          "shots": 9,
           "sot": 2,
           "poss": 31
         }
@@ -2377,6 +2377,54 @@
       ],
       "status": "Full Time",
       "espnId": "760464"
+    },
+    {
+      "date": "2026-06-24",
+      "et": "2026-06-24T18:00:00-04:00",
+      "group": "C",
+      "home": "Scotland",
+      "away": "Brazil",
+      "hs": 0,
+      "as": 3,
+      "htHome": 0,
+      "htAway": 2,
+      "stats": {
+        "home": {
+          "shots": 14,
+          "sot": 5,
+          "poss": 45.9
+        },
+        "away": {
+          "shots": 21,
+          "sot": 9,
+          "poss": 54.1
+        }
+      },
+      "goals": [
+        {
+          "min": "7'",
+          "scorer": "Vinícius Júnior",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "45'+3'",
+          "scorer": "Vinícius Júnior",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "60'",
+          "scorer": "Matheus Cunha",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760465"
     }
   ]
 }
