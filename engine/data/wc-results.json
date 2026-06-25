@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-25T21:58:02.252Z",
-  "count": 55,
+  "_fetchedAt": "2026-06-25T22:02:16.559Z",
+  "count": 56,
   "results": [
     {
       "date": "2026-06-11",
@@ -2522,12 +2522,12 @@
         "home": {
           "shots": 11,
           "sot": 2,
-          "poss": 36.8
+          "poss": 36.6
         },
         "away": {
           "shots": 7,
           "sot": 3,
-          "poss": 63.2
+          "poss": 63.4
         }
       },
       "goals": [
@@ -2548,6 +2548,54 @@
       ],
       "status": "Full Time",
       "espnId": "760473"
+    },
+    {
+      "date": "2026-06-25",
+      "et": "2026-06-25T16:00:00-04:00",
+      "group": "E",
+      "home": "Ecuador",
+      "away": "Germany",
+      "hs": 2,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 7,
+          "sot": 3,
+          "poss": 38.9
+        },
+        "away": {
+          "shots": 11,
+          "sot": 3,
+          "poss": 61.1
+        }
+      },
+      "goals": [
+        {
+          "min": "2'",
+          "scorer": "Leroy Sané",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "9'",
+          "scorer": "Nilson Angulo",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "77'",
+          "scorer": "Gonzalo Plata",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760468"
     }
   ]
 }

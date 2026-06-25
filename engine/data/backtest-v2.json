@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 55,
-    "accuracy1X2": 0.636,
-    "brierAvg": 0.508,
-    "loglossAvg": 0.871,
-    "scoreHit": 0.127,
-    "dirHit": 0.636,
+    "matches": 56,
+    "accuracy1X2": 0.625,
+    "brierAvg": 0.515,
+    "loglossAvg": 0.88,
+    "scoreHit": 0.125,
+    "dirHit": 0.625,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.35,
@@ -1384,6 +1384,31 @@
       "eloHomeAfter": 1455.3,
       "eloAwayBefore": 1754.2,
       "eloAwayAfter": 1768.9
+    },
+    {
+      "et": "2026-06-25T16:00:00-04:00",
+      "group": "E",
+      "home": "Ecuador",
+      "away": "Germany",
+      "hs": 2,
+      "as": 1,
+      "ht": "1-1",
+      "actual": "H",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.244,
+      "pDraw": 0.264,
+      "pAway": 0.492,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.882,
+      "logloss": 1.409,
+      "homeAdv": false,
+      "eloDelta": 44.1,
+      "eloHomeBefore": 1799,
+      "eloHomeAfter": 1843.1,
+      "eloAwayBefore": 1975.8,
+      "eloAwayAfter": 1931.7
     }
   ],
   "eloChanges": [
@@ -1452,12 +1477,6 @@
       "before": 1972,
       "after": 1994,
       "delta": 22
-    },
-    {
-      "team": "Germany",
-      "before": 1954,
-      "after": 1975.8,
-      "delta": 21.8
     },
     {
       "team": "France",
@@ -1604,6 +1623,18 @@
       "delta": -20.8
     },
     {
+      "team": "Ecuador",
+      "before": 1864,
+      "after": 1843.1,
+      "delta": -20.9
+    },
+    {
+      "team": "Germany",
+      "before": 1954,
+      "after": 1931.7,
+      "delta": -22.3
+    },
+    {
       "team": "Scotland",
       "before": 1745,
       "after": 1719.7,
@@ -1662,12 +1693,6 @@
       "before": 1680,
       "after": 1629.4,
       "delta": -50.6
-    },
-    {
-      "team": "Ecuador",
-      "before": 1864,
-      "after": 1799,
-      "delta": -65
     },
     {
       "team": "Turkey",
@@ -2061,6 +2086,13 @@
       "label": "Curacao-Cote d'Ivoire",
       "accCum": 0.636,
       "brierCum": 0.508
+    },
+    {
+      "i": 56,
+      "et": "2026-06-25T16:00:00-04:00",
+      "label": "Ecuador-Germany",
+      "accCum": 0.625,
+      "brierCum": 0.515
     }
   ],
   "calibration": [
@@ -2071,8 +2103,8 @@
     },
     {
       "range": "45–55%",
-      "n": 21,
-      "hitRate": 0.714
+      "n": 22,
+      "hitRate": 0.682
     },
     {
       "range": "55–65%",
@@ -2085,5 +2117,5 @@
       "hitRate": 0.727
     }
   ],
-  "builtAt": "2026-06-25T21:58:02.300Z"
+  "builtAt": "2026-06-25T22:02:16.611Z"
 }
