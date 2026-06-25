@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 54,
-    "accuracy1X2": 0.63,
-    "brierAvg": 0.514,
-    "loglossAvg": 0.878,
-    "scoreHit": 0.13,
-    "dirHit": 0.63,
+    "matches": 55,
+    "accuracy1X2": 0.636,
+    "brierAvg": 0.508,
+    "loglossAvg": 0.871,
+    "scoreHit": 0.127,
+    "dirHit": 0.636,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.35,
@@ -221,13 +221,13 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.739,
+      "pHome": 0.737,
       "pDraw": 0.137,
-      "pAway": 0.125,
+      "pAway": 0.126,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 0.103,
-      "logloss": 0.303,
+      "brier": 0.104,
+      "logloss": 0.305,
       "homeAdv": false,
       "eloDelta": 6.8,
       "eloHomeBefore": 1954,
@@ -271,13 +271,13 @@
       "actual": "H",
       "predOutcome": "A",
       "correct": false,
-      "pHome": 0.295,
-      "pDraw": 0.352,
-      "pAway": 0.353,
+      "pHome": 0.293,
+      "pDraw": 0.35,
+      "pAway": 0.357,
       "predScore": "0-1",
       "scoreHit": false,
-      "brier": 0.746,
-      "logloss": 1.221,
+      "brier": 0.749,
+      "logloss": 1.226,
       "homeAdv": false,
       "eloDelta": 41.2,
       "eloHomeBefore": 1728,
@@ -846,13 +846,13 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.529,
-      "pDraw": 0.252,
-      "pAway": 0.219,
+      "pHome": 0.526,
+      "pDraw": 0.253,
+      "pAway": 0.221,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.333,
-      "logloss": 0.636,
+      "brier": 0.338,
+      "logloss": 0.643,
       "homeAdv": false,
       "eloDelta": 15,
       "eloHomeBefore": 1960.8,
@@ -871,13 +871,13 @@
       "actual": "D",
       "predOutcome": "H",
       "correct": false,
-      "pHome": 0.654,
-      "pDraw": 0.185,
-      "pAway": 0.161,
+      "pHome": 0.657,
+      "pDraw": 0.184,
+      "pAway": 0.16,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 1.118,
-      "logloss": 1.689,
+      "brier": 1.123,
+      "logloss": 1.695,
       "homeAdv": false,
       "eloDelta": -23.8,
       "eloHomeBefore": 1822.8,
@@ -1359,6 +1359,31 @@
       "eloHomeAfter": 1617.2,
       "eloAwayBefore": 1736.7,
       "eloAwayAfter": 1693.6
+    },
+    {
+      "et": "2026-06-25T16:00:00-04:00",
+      "group": "E",
+      "home": "Curacao",
+      "away": "Cote d'Ivoire",
+      "hs": 0,
+      "as": 2,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.171,
+      "pDraw": 0.196,
+      "pAway": 0.633,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.202,
+      "logloss": 0.457,
+      "homeAdv": false,
+      "eloDelta": -14.7,
+      "eloHomeBefore": 1470,
+      "eloHomeAfter": 1455.3,
+      "eloAwayBefore": 1754.2,
+      "eloAwayAfter": 1768.9
     }
   ],
   "eloChanges": [
@@ -1387,6 +1412,12 @@
       "delta": 41.3
     },
     {
+      "team": "Cote d'Ivoire",
+      "before": 1728,
+      "after": 1768.9,
+      "delta": 40.9
+    },
+    {
       "team": "Morocco",
       "before": 1877,
       "after": 1915,
@@ -1409,12 +1440,6 @@
       "before": 1951,
       "after": 1979.4,
       "delta": 28.4
-    },
-    {
-      "team": "Cote d'Ivoire",
-      "before": 1728,
-      "after": 1754.2,
-      "delta": 26.2
     },
     {
       "team": "Argentina",
@@ -1445,12 +1470,6 @@
       "before": 2006,
       "after": 2025.6,
       "delta": 19.6
-    },
-    {
-      "team": "Curacao",
-      "before": 1453,
-      "after": 1470,
-      "delta": 17
     },
     {
       "team": "Bosnia",
@@ -1517,6 +1536,12 @@
       "before": 2028,
       "after": 2031.2,
       "delta": 3.2
+    },
+    {
+      "team": "Curacao",
+      "before": 1453,
+      "after": 1455.3,
+      "delta": 2.3
     },
     {
       "team": "Portugal",
@@ -1734,7 +1759,7 @@
       "et": "2026-06-14T22:00:00-04:00",
       "label": "Sweden-Tunisia",
       "accCum": 0.417,
-      "brierCum": 0.589
+      "brierCum": 0.59
     },
     {
       "i": 13,
@@ -1748,14 +1773,14 @@
       "et": "2026-06-15T18:00:00-04:00",
       "label": "Belgium-Egypt",
       "accCum": 0.357,
-      "brierCum": 0.653
+      "brierCum": 0.654
     },
     {
       "i": 15,
       "et": "2026-06-15T18:00:00-04:00",
       "label": "Saudi Arabia-Uruguay",
       "accCum": 0.333,
-      "brierCum": 0.669
+      "brierCum": 0.67
     },
     {
       "i": 16,
@@ -1790,7 +1815,7 @@
       "et": "2026-06-17T00:00:00-04:00",
       "label": "Austria-Jordan",
       "accCum": 0.45,
-      "brierCum": 0.599
+      "brierCum": 0.6
     },
     {
       "i": 21,
@@ -1853,7 +1878,7 @@
       "et": "2026-06-19T15:00:00-04:00",
       "label": "USA-Australia",
       "accCum": 0.517,
-      "brierCum": 0.555
+      "brierCum": 0.556
     },
     {
       "i": 30,
@@ -1867,7 +1892,7 @@
       "et": "2026-06-19T21:00:00-04:00",
       "label": "Brazil-Haiti",
       "accCum": 0.548,
-      "brierCum": 0.536
+      "brierCum": 0.537
     },
     {
       "i": 32,
@@ -1916,21 +1941,21 @@
       "et": "2026-06-21T15:00:00-04:00",
       "label": "Belgium-Iran",
       "accCum": 0.553,
-      "brierCum": 0.539
+      "brierCum": 0.54
     },
     {
       "i": 39,
       "et": "2026-06-21T18:00:00-04:00",
       "label": "Uruguay-Cape Verde",
       "accCum": 0.538,
-      "brierCum": 0.548
+      "brierCum": 0.549
     },
     {
       "i": 40,
       "et": "2026-06-21T21:00:00-04:00",
       "label": "New Zealand-Egypt",
       "accCum": 0.55,
-      "brierCum": 0.543
+      "brierCum": 0.544
     },
     {
       "i": 41,
@@ -1951,7 +1976,7 @@
       "et": "2026-06-22T20:00:00-04:00",
       "label": "Norway-Senegal",
       "accCum": 0.581,
-      "brierCum": 0.529
+      "brierCum": 0.53
     },
     {
       "i": 44,
@@ -1965,7 +1990,7 @@
       "et": "2026-06-23T13:00:00-04:00",
       "label": "Portugal-Uzbekistan",
       "accCum": 0.6,
-      "brierCum": 0.517
+      "brierCum": 0.518
     },
     {
       "i": 46,
@@ -1979,7 +2004,7 @@
       "et": "2026-06-23T19:00:00-04:00",
       "label": "Panama-Croatia",
       "accCum": 0.596,
-      "brierCum": 0.526
+      "brierCum": 0.527
     },
     {
       "i": 48,
@@ -2029,6 +2054,13 @@
       "label": "South Africa-South Korea",
       "accCum": 0.63,
       "brierCum": 0.514
+    },
+    {
+      "i": 55,
+      "et": "2026-06-25T16:00:00-04:00",
+      "label": "Curacao-Cote d'Ivoire",
+      "accCum": 0.636,
+      "brierCum": 0.508
     }
   ],
   "calibration": [
@@ -2044,8 +2076,8 @@
     },
     {
       "range": "55–65%",
-      "n": 11,
-      "hitRate": 0.727
+      "n": 12,
+      "hitRate": 0.75
     },
     {
       "range": "65–101%",
@@ -2053,5 +2085,5 @@
       "hitRate": 0.727
     }
   ],
-  "builtAt": "2026-06-25T21:32:03.269Z"
+  "builtAt": "2026-06-25T21:58:02.300Z"
 }
