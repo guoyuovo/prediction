@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 52,
-    "accuracy1X2": 0.635,
-    "brierAvg": 0.511,
-    "loglossAvg": 0.87,
-    "scoreHit": 0.135,
-    "dirHit": 0.635,
+    "matches": 54,
+    "accuracy1X2": 0.63,
+    "brierAvg": 0.517,
+    "loglossAvg": 0.879,
+    "scoreHit": 0.13,
+    "dirHit": 0.63,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.45,
@@ -1309,6 +1309,56 @@
       "eloHomeAfter": 1719.7,
       "eloAwayBefore": 2003.9,
       "eloAwayAfter": 2022.6
+    },
+    {
+      "et": "2026-06-24T21:00:00-04:00",
+      "group": "A",
+      "home": "Czechia",
+      "away": "Mexico",
+      "hs": 0,
+      "as": 3,
+      "ht": "0-0",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.241,
+      "pDraw": 0.298,
+      "pAway": 0.461,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.437,
+      "logloss": 0.774,
+      "homeAdv": false,
+      "eloDelta": -19.3,
+      "eloHomeBefore": 1660,
+      "eloHomeAfter": 1640.7,
+      "eloAwayBefore": 1919.5,
+      "eloAwayAfter": 1938.8
+    },
+    {
+      "et": "2026-06-24T21:00:00-04:00",
+      "group": "A",
+      "home": "South Africa",
+      "away": "South Korea",
+      "hs": 1,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "H",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.226,
+      "pDraw": 0.304,
+      "pAway": 0.47,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.912,
+      "logloss": 1.486,
+      "homeAdv": false,
+      "eloDelta": 48.3,
+      "eloHomeBefore": 1532.4,
+      "eloHomeAfter": 1580.7,
+      "eloAwayBefore": 1778.1,
+      "eloAwayAfter": 1729.8
     }
   ],
   "eloChanges": [
@@ -1323,6 +1373,18 @@
       "before": 1584,
       "after": 1646.6,
       "delta": 62.6
+    },
+    {
+      "team": "South Africa",
+      "before": 1527,
+      "after": 1580.7,
+      "delta": 53.7
+    },
+    {
+      "team": "Mexico",
+      "before": 1896,
+      "after": 1938.8,
+      "delta": 42.8
     },
     {
       "team": "Cape Verde",
@@ -1359,12 +1421,6 @@
       "before": 2144,
       "after": 2169.5,
       "delta": 25.5
-    },
-    {
-      "team": "Mexico",
-      "before": 1896,
-      "after": 1919.5,
-      "delta": 23.5
     },
     {
       "team": "Netherlands",
@@ -1439,12 +1495,6 @@
       "delta": 10.3
     },
     {
-      "team": "South Korea",
-      "before": 1771,
-      "after": 1778.1,
-      "delta": 7.1
-    },
-    {
       "team": "Austria",
       "before": 1841,
       "after": 1847.8,
@@ -1461,12 +1511,6 @@
       "before": 1780,
       "after": 1785.8,
       "delta": 5.8
-    },
-    {
-      "team": "South Africa",
-      "before": 1527,
-      "after": 1532.4,
-      "delta": 5.4
     },
     {
       "team": "England",
@@ -1565,16 +1609,16 @@
       "delta": -33.2
     },
     {
-      "team": "Czechia",
-      "before": 1696,
-      "after": 1660,
-      "delta": -36
-    },
-    {
       "team": "Jordan",
       "before": 1632,
       "after": 1593.9,
       "delta": -38.1
+    },
+    {
+      "team": "South Korea",
+      "before": 1771,
+      "after": 1729.8,
+      "delta": -41.2
     },
     {
       "team": "Tunisia",
@@ -1587,6 +1631,12 @@
       "before": 1668,
       "after": 1618.7,
       "delta": -49.3
+    },
+    {
+      "team": "Czechia",
+      "before": 1696,
+      "after": 1640.7,
+      "delta": -55.3
     },
     {
       "team": "Ecuador",
@@ -1965,6 +2015,20 @@
       "label": "Scotland-Brazil",
       "accCum": 0.635,
       "brierCum": 0.511
+    },
+    {
+      "i": 53,
+      "et": "2026-06-24T21:00:00-04:00",
+      "label": "Czechia-Mexico",
+      "accCum": 0.642,
+      "brierCum": 0.509
+    },
+    {
+      "i": 54,
+      "et": "2026-06-24T21:00:00-04:00",
+      "label": "South Africa-South Korea",
+      "accCum": 0.63,
+      "brierCum": 0.517
     }
   ],
   "calibration": [
@@ -1975,8 +2039,8 @@
     },
     {
       "range": "45–55%",
-      "n": 21,
-      "hitRate": 0.762
+      "n": 23,
+      "hitRate": 0.739
     },
     {
       "range": "55–65%",
@@ -1989,5 +2053,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-25T02:46:59.298Z"
+  "builtAt": "2026-06-25T03:02:14.090Z"
 }
