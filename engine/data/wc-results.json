@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-24T23:46:50.295Z",
-  "count": 50,
+  "_fetchedAt": "2026-06-25T00:02:11.874Z",
+  "count": 51,
   "results": [
     {
       "date": "2026-06-11",
@@ -2315,6 +2315,68 @@
       ],
       "status": "Full Time",
       "espnId": "760463"
+    },
+    {
+      "date": "2026-06-24",
+      "et": "2026-06-24T18:00:00-04:00",
+      "group": "C",
+      "home": "Morocco",
+      "away": "Haiti",
+      "hs": 4,
+      "as": 2,
+      "htHome": 2,
+      "htAway": 2,
+      "stats": {
+        "home": {
+          "shots": 22,
+          "sot": 11,
+          "poss": 69
+        },
+        "away": {
+          "shots": 10,
+          "sot": 2,
+          "poss": 31
+        }
+      },
+      "goals": [
+        {
+          "min": "39'",
+          "scorer": "Achraf Hakimi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "43'",
+          "scorer": "Wilson Isidor",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "45'+1'",
+          "scorer": "Ismael Saibari",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "78'",
+          "scorer": "Soufiane Rahimi",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "89'",
+          "scorer": "Gessime Yassine",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760464"
     }
   ]
 }

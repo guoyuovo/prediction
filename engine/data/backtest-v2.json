@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 50,
-    "accuracy1X2": 0.64,
-    "brierAvg": 0.52,
-    "loglossAvg": 0.886,
-    "scoreHit": 0.14,
-    "dirHit": 0.64,
+    "matches": 51,
+    "accuracy1X2": 0.647,
+    "brierAvg": 0.513,
+    "loglossAvg": 0.877,
+    "scoreHit": 0.137,
+    "dirHit": 0.647,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.347,
@@ -1259,6 +1259,31 @@
       "eloHomeAfter": 1924.3,
       "eloAwayBefore": 1747.9,
       "eloAwayAfter": 1730.8
+    },
+    {
+      "et": "2026-06-24T18:00:00-04:00",
+      "group": "C",
+      "home": "Morocco",
+      "away": "Haiti",
+      "hs": 4,
+      "as": 2,
+      "ht": "2-2",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.649,
+      "pDraw": 0.196,
+      "pAway": 0.156,
+      "predScore": "2-0",
+      "scoreHit": false,
+      "brier": 0.186,
+      "logloss": 0.433,
+      "homeAdv": false,
+      "eloDelta": 8.7,
+      "eloHomeBefore": 1897.9,
+      "eloHomeAfter": 1906.6,
+      "eloAwayBefore": 1509.1,
+      "eloAwayAfter": 1500.4
     }
   ],
   "eloChanges": [
@@ -1281,16 +1306,16 @@
       "delta": 41.3
     },
     {
+      "team": "Morocco",
+      "before": 1866,
+      "after": 1906.6,
+      "delta": 40.6
+    },
+    {
       "team": "Egypt",
       "before": 1740,
       "after": 1773.8,
       "delta": 33.8
-    },
-    {
-      "team": "Morocco",
-      "before": 1866,
-      "after": 1897.9,
-      "delta": 31.9
     },
     {
       "team": "Norway",
@@ -1479,12 +1504,6 @@
       "delta": -17.2
     },
     {
-      "team": "Haiti",
-      "before": 1528,
-      "after": 1509.1,
-      "delta": -18.9
-    },
-    {
       "team": "Belgium",
       "before": 1869,
       "after": 1849.2,
@@ -1495,6 +1514,12 @@
       "before": 2134,
       "after": 2113.2,
       "delta": -20.8
+    },
+    {
+      "team": "Haiti",
+      "before": 1528,
+      "after": 1500.4,
+      "delta": -27.6
     },
     {
       "team": "Uzbekistan",
@@ -1901,6 +1926,13 @@
       "label": "Switzerland-Canada",
       "accCum": 0.64,
       "brierCum": 0.52
+    },
+    {
+      "i": 51,
+      "et": "2026-06-24T18:00:00-04:00",
+      "label": "Morocco-Haiti",
+      "accCum": 0.647,
+      "brierCum": 0.513
     }
   ],
   "calibration": [
@@ -1916,8 +1948,8 @@
     },
     {
       "range": "55–65%",
-      "n": 10,
-      "hitRate": 0.7
+      "n": 11,
+      "hitRate": 0.727
     },
     {
       "range": "65–101%",
@@ -1925,5 +1957,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-24T23:46:50.343Z"
+  "builtAt": "2026-06-25T00:02:11.927Z"
 }
