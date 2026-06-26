@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 61,
-    "accuracy1X2": 0.623,
-    "brierAvg": 0.515,
-    "loglossAvg": 0.88,
-    "scoreHit": 0.131,
-    "dirHit": 0.623,
+    "matches": 62,
+    "accuracy1X2": 0.629,
+    "brierAvg": 0.511,
+    "loglossAvg": 0.874,
+    "scoreHit": 0.129,
+    "dirHit": 0.629,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1534,6 +1534,31 @@
       "eloHomeAfter": 1945.8,
       "eloAwayBefore": 2110.2,
       "eloAwayAfter": 2143.8
+    },
+    {
+      "et": "2026-06-26T15:00:00-04:00",
+      "group": "I",
+      "home": "Senegal",
+      "away": "Iraq",
+      "hs": 5,
+      "as": 0,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.585,
+      "pDraw": 0.224,
+      "pAway": 0.191,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.259,
+      "logloss": 0.536,
+      "homeAdv": false,
+      "eloDelta": 27,
+      "eloHomeBefore": 1784.5,
+      "eloHomeAfter": 1811.5,
+      "eloAwayBefore": 1569.9,
+      "eloAwayAfter": 1542.9
     }
   ],
   "eloChanges": [
@@ -1694,6 +1719,12 @@
       "delta": -5.2
     },
     {
+      "team": "Senegal",
+      "before": 1817,
+      "after": 1811.5,
+      "delta": -5.5
+    },
+    {
       "team": "New Zealand",
       "before": 1549,
       "after": 1542.5,
@@ -1722,12 +1753,6 @@
       "before": 1815,
       "after": 1800.4,
       "delta": -14.6
-    },
-    {
-      "team": "Iraq",
-      "before": 1586,
-      "after": 1569.9,
-      "delta": -16.1
     },
     {
       "team": "Croatia",
@@ -1784,12 +1809,6 @@
       "delta": -29.8
     },
     {
-      "team": "Senegal",
-      "before": 1817,
-      "after": 1784.5,
-      "delta": -32.5
-    },
-    {
       "team": "Uruguay",
       "before": 1851,
       "after": 1817.8,
@@ -1800,6 +1819,12 @@
       "before": 1632,
       "after": 1593.9,
       "delta": -38.1
+    },
+    {
+      "team": "Iraq",
+      "before": 1586,
+      "after": 1542.9,
+      "delta": -43.1
     },
     {
       "team": "Turkey",
@@ -2253,6 +2278,13 @@
       "label": "Norway-France",
       "accCum": 0.623,
       "brierCum": 0.515
+    },
+    {
+      "i": 62,
+      "et": "2026-06-26T15:00:00-04:00",
+      "label": "Senegal-Iraq",
+      "accCum": 0.629,
+      "brierCum": 0.511
     }
   ],
   "calibration": [
@@ -2268,8 +2300,8 @@
     },
     {
       "range": "55–65%",
-      "n": 14,
-      "hitRate": 0.786
+      "n": 15,
+      "hitRate": 0.8
     },
     {
       "range": "65–101%",
@@ -2277,5 +2309,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-26T21:02:05.667Z"
+  "builtAt": "2026-06-26T21:16:50.670Z"
 }
