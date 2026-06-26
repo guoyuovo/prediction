@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 58,
-    "accuracy1X2": 0.621,
+    "matches": 59,
+    "accuracy1X2": 0.627,
     "brierAvg": 0.514,
     "loglossAvg": 0.878,
-    "scoreHit": 0.138,
-    "dirHit": 0.621,
+    "scoreHit": 0.136,
+    "dirHit": 0.627,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1459,6 +1459,31 @@
       "eloHomeAfter": 1516,
       "eloAwayBefore": 2000.7,
       "eloAwayAfter": 2006.1
+    },
+    {
+      "et": "2026-06-25T22:00:00-04:00",
+      "group": "D",
+      "home": "Paraguay",
+      "away": "Australia",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "D",
+      "correct": true,
+      "pHome": 0.316,
+      "pDraw": 0.414,
+      "pAway": 0.27,
+      "predScore": "1-1",
+      "scoreHit": false,
+      "brier": 0.516,
+      "logloss": 0.881,
+      "homeAdv": false,
+      "eloDelta": 0.7,
+      "eloHomeBefore": 1802.5,
+      "eloHomeAfter": 1803.2,
+      "eloAwayBefore": 1810.6,
+      "eloAwayAfter": 1809.9
     }
   ],
   "eloChanges": [
@@ -1573,8 +1598,8 @@
     {
       "team": "Australia",
       "before": 1799,
-      "after": 1810.6,
-      "delta": 11.6
+      "after": 1809.9,
+      "delta": 10.9
     },
     {
       "team": "Switzerland",
@@ -1645,8 +1670,8 @@
     {
       "team": "Paraguay",
       "before": 1816,
-      "after": 1802.5,
-      "delta": -13.5
+      "after": 1803.2,
+      "delta": -12.8
     },
     {
       "team": "Iraq",
@@ -2157,13 +2182,20 @@
       "label": "Tunisia-Netherlands",
       "accCum": 0.621,
       "brierCum": 0.514
+    },
+    {
+      "i": 59,
+      "et": "2026-06-25T22:00:00-04:00",
+      "label": "Paraguay-Australia",
+      "accCum": 0.627,
+      "brierCum": 0.514
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 12,
-      "hitRate": 0.25
+      "n": 13,
+      "hitRate": 0.308
     },
     {
       "range": "45–55%",
@@ -2181,5 +2213,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-26T03:46:51.912Z"
+  "builtAt": "2026-06-26T04:02:10.121Z"
 }
