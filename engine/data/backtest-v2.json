@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 60,
-    "accuracy1X2": 0.617,
-    "brierAvg": 0.518,
-    "loglossAvg": 0.884,
-    "scoreHit": 0.133,
-    "dirHit": 0.617,
+    "matches": 61,
+    "accuracy1X2": 0.623,
+    "brierAvg": 0.515,
+    "loglossAvg": 0.88,
+    "scoreHit": 0.131,
+    "dirHit": 0.623,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1509,6 +1509,31 @@
       "eloHomeAfter": 1806,
       "eloAwayBefore": 1869.7,
       "eloAwayAfter": 1831.1
+    },
+    {
+      "et": "2026-06-26T15:00:00-04:00",
+      "group": "I",
+      "home": "Norway",
+      "away": "France",
+      "hs": 1,
+      "as": 4,
+      "ht": "1-3",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.219,
+      "pDraw": 0.253,
+      "pAway": 0.528,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.335,
+      "logloss": 0.639,
+      "homeAdv": false,
+      "eloDelta": -33.6,
+      "eloHomeBefore": 1979.4,
+      "eloHomeAfter": 1945.8,
+      "eloAwayBefore": 2110.2,
+      "eloAwayAfter": 2143.8
     }
   ],
   "eloChanges": [
@@ -1517,6 +1542,12 @@
       "before": 1584,
       "after": 1646.6,
       "delta": 62.6
+    },
+    {
+      "team": "France",
+      "before": 2090,
+      "after": 2143.8,
+      "delta": 53.8
     },
     {
       "team": "USA",
@@ -1561,12 +1592,6 @@
       "delta": 33.8
     },
     {
-      "team": "Norway",
-      "before": 1951,
-      "after": 1979.4,
-      "delta": 28.4
-    },
-    {
       "team": "Netherlands",
       "before": 1980,
       "after": 2006.1,
@@ -1577,12 +1602,6 @@
       "before": 2144,
       "after": 2169.5,
       "delta": 25.5
-    },
-    {
-      "team": "France",
-      "before": 2090,
-      "after": 2110.2,
-      "delta": 20.2
     },
     {
       "team": "Colombia",
@@ -1667,6 +1686,12 @@
       "before": 1988,
       "after": 1984.1,
       "delta": -3.9
+    },
+    {
+      "team": "Norway",
+      "before": 1951,
+      "after": 1945.8,
+      "delta": -5.2
     },
     {
       "team": "New Zealand",
@@ -2221,6 +2246,13 @@
       "label": "Turkey-USA",
       "accCum": 0.617,
       "brierCum": 0.518
+    },
+    {
+      "i": 61,
+      "et": "2026-06-26T15:00:00-04:00",
+      "label": "Norway-France",
+      "accCum": 0.623,
+      "brierCum": 0.515
     }
   ],
   "calibration": [
@@ -2231,8 +2263,8 @@
     },
     {
       "range": "45–55%",
-      "n": 22,
-      "hitRate": 0.682
+      "n": 23,
+      "hitRate": 0.696
     },
     {
       "range": "55–65%",
@@ -2245,5 +2277,5 @@
       "hitRate": 0.7
     }
   ],
-  "builtAt": "2026-06-26T20:58:49.510Z"
+  "builtAt": "2026-06-26T21:02:05.667Z"
 }

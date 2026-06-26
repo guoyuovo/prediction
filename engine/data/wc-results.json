@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-26T20:58:49.466Z",
-  "count": 60,
+  "_fetchedAt": "2026-06-26T21:02:05.615Z",
+  "count": 61,
   "results": [
     {
       "date": "2026-06-11",
@@ -2773,6 +2773,68 @@
       ],
       "status": "Full Time",
       "espnId": "760470"
+    },
+    {
+      "date": "2026-06-26",
+      "et": "2026-06-26T15:00:00-04:00",
+      "group": "I",
+      "home": "Norway",
+      "away": "France",
+      "hs": 1,
+      "as": 4,
+      "htHome": 1,
+      "htAway": 3,
+      "stats": {
+        "home": {
+          "shots": 10,
+          "sot": 4,
+          "poss": 43.2
+        },
+        "away": {
+          "shots": 18,
+          "sot": 9,
+          "poss": 56.8
+        }
+      },
+      "goals": [
+        {
+          "min": "7'",
+          "scorer": "Ousmane Dembélé",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "20'",
+          "scorer": "Ousmane Dembélé",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "21'",
+          "scorer": "Thelo Aasgaard",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "32'",
+          "scorer": "Ousmane Dembélé",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "90'+4'",
+          "scorer": "Désiré Doué",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760475"
     }
   ]
 }
