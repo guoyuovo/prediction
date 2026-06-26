@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-26T04:02:10.068Z",
-  "count": 59,
+  "_fetchedAt": "2026-06-26T04:17:33.415Z",
+  "count": 60,
   "results": [
     {
       "date": "2026-06-11",
@@ -2711,6 +2711,68 @@
       "goals": [],
       "status": "Full Time",
       "espnId": "760469"
+    },
+    {
+      "date": "2026-06-25",
+      "et": "2026-06-25T22:00:00-04:00",
+      "group": "D",
+      "home": "Turkey",
+      "away": "USA",
+      "hs": 3,
+      "as": 2,
+      "htHome": 2,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 9,
+          "sot": 3,
+          "poss": 47.5
+        },
+        "away": {
+          "shots": 18,
+          "sot": 7,
+          "poss": 52.5
+        }
+      },
+      "goals": [
+        {
+          "min": "3'",
+          "scorer": "Auston Trusty",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "10'",
+          "scorer": "Arda Güler",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "31'",
+          "scorer": "Baris Alper Yilmaz",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "49'",
+          "scorer": "Sebastian Berhalter",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "90'+8'",
+          "scorer": "Kaan Ayhan",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760470"
     }
   ]
 }
