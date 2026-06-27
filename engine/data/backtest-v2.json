@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 62,
-    "accuracy1X2": 0.629,
+    "matches": 64,
+    "accuracy1X2": 0.625,
     "brierAvg": 0.51,
     "loglossAvg": 0.874,
-    "scoreHit": 0.129,
-    "dirHit": 0.629,
+    "scoreHit": 0.125,
+    "dirHit": 0.625,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.35,
@@ -1559,6 +1559,56 @@
       "eloHomeAfter": 1827.7,
       "eloAwayBefore": 1545.7,
       "eloAwayAfter": 1523.7
+    },
+    {
+      "et": "2026-06-26T20:00:00-04:00",
+      "group": "H",
+      "home": "Cape Verde",
+      "away": "Saudi Arabia",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "H",
+      "correct": false,
+      "pHome": 0.349,
+      "pDraw": 0.333,
+      "pAway": 0.318,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.668,
+      "logloss": 1.099,
+      "homeAdv": false,
+      "eloDelta": -5.2,
+      "eloHomeBefore": 1666.3,
+      "eloHomeAfter": 1661.1,
+      "eloAwayBefore": 1605.7,
+      "eloAwayAfter": 1610.9
+    },
+    {
+      "et": "2026-06-26T20:00:00-04:00",
+      "group": "H",
+      "home": "Uruguay",
+      "away": "Spain",
+      "hs": 0,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.21,
+      "pDraw": 0.267,
+      "pAway": 0.523,
+      "predScore": "0-2",
+      "scoreHit": false,
+      "brier": 0.343,
+      "logloss": 0.648,
+      "homeAdv": false,
+      "eloDelta": -9.3,
+      "eloHomeBefore": 1817.8,
+      "eloHomeAfter": 1808.5,
+      "eloAwayBefore": 2113.2,
+      "eloAwayAfter": 2122.5
     }
   ],
   "eloChanges": [
@@ -1587,12 +1637,6 @@
       "delta": 42.2
     },
     {
-      "team": "Cape Verde",
-      "before": 1625,
-      "after": 1666.3,
-      "delta": 41.3
-    },
-    {
       "team": "Morocco",
       "before": 1877,
       "after": 1915,
@@ -1609,6 +1653,12 @@
       "before": 1743,
       "after": 1779.9,
       "delta": 36.9
+    },
+    {
+      "team": "Cape Verde",
+      "before": 1625,
+      "after": 1661.1,
+      "delta": 36.1
     },
     {
       "team": "Egypt",
@@ -1635,6 +1685,12 @@
       "delta": 19.6
     },
     {
+      "team": "Saudi Arabia",
+      "before": 1593,
+      "after": 1610.9,
+      "delta": 17.9
+    },
+    {
       "team": "Sweden",
       "before": 1742,
       "after": 1759.2,
@@ -1657,12 +1713,6 @@
       "before": 2009,
       "after": 2022.6,
       "delta": 13.6
-    },
-    {
-      "team": "Saudi Arabia",
-      "before": 1593,
-      "after": 1605.7,
-      "delta": 12.7
     },
     {
       "team": "Australia",
@@ -1737,6 +1787,12 @@
       "delta": -10
     },
     {
+      "team": "Spain",
+      "before": 2134,
+      "after": 2122.5,
+      "delta": -11.5
+    },
+    {
       "team": "Germany",
       "before": 1916,
       "after": 1903.2,
@@ -1773,12 +1829,6 @@
       "delta": -19.8
     },
     {
-      "team": "Spain",
-      "before": 2134,
-      "after": 2113.2,
-      "delta": -20.8
-    },
-    {
       "team": "Scotland",
       "before": 1745,
       "after": 1719.7,
@@ -1809,12 +1859,6 @@
       "delta": -29.8
     },
     {
-      "team": "Uruguay",
-      "before": 1851,
-      "after": 1817.8,
-      "delta": -33.2
-    },
-    {
       "team": "Iraq",
       "before": 1561,
       "after": 1523.7,
@@ -1825,6 +1869,12 @@
       "before": 1632,
       "after": 1593.9,
       "delta": -38.1
+    },
+    {
+      "team": "Uruguay",
+      "before": 1851,
+      "after": 1808.5,
+      "delta": -42.5
     },
     {
       "team": "Turkey",
@@ -2285,18 +2335,32 @@
       "label": "Senegal-Iraq",
       "accCum": 0.629,
       "brierCum": 0.51
+    },
+    {
+      "i": 63,
+      "et": "2026-06-26T20:00:00-04:00",
+      "label": "Cape Verde-Saudi Arabia",
+      "accCum": 0.619,
+      "brierCum": 0.513
+    },
+    {
+      "i": 64,
+      "et": "2026-06-26T20:00:00-04:00",
+      "label": "Uruguay-Spain",
+      "accCum": 0.625,
+      "brierCum": 0.51
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 13,
-      "hitRate": 0.308
+      "n": 14,
+      "hitRate": 0.286
     },
     {
       "range": "45–55%",
-      "n": 24,
-      "hitRate": 0.667
+      "n": 25,
+      "hitRate": 0.68
     },
     {
       "range": "55–65%",
@@ -2309,5 +2373,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-27T01:47:00.289Z"
+  "builtAt": "2026-06-27T02:02:21.733Z"
 }

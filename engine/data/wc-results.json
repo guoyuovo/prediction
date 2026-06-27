@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-27T01:47:00.238Z",
-  "count": 62,
+  "_fetchedAt": "2026-06-27T02:02:21.682Z",
+  "count": 64,
   "results": [
     {
       "date": "2026-06-11",
@@ -2897,6 +2897,66 @@
       ],
       "status": "Full Time",
       "espnId": "760474"
+    },
+    {
+      "date": "2026-06-26",
+      "et": "2026-06-26T20:00:00-04:00",
+      "group": "H",
+      "home": "Cape Verde",
+      "away": "Saudi Arabia",
+      "hs": 0,
+      "as": 0,
+      "htHome": 0,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 15,
+          "sot": 2,
+          "poss": 51.1
+        },
+        "away": {
+          "shots": 7,
+          "sot": 3,
+          "poss": 48.9
+        }
+      },
+      "goals": [],
+      "status": "Full Time",
+      "espnId": "760478"
+    },
+    {
+      "date": "2026-06-26",
+      "et": "2026-06-26T20:00:00-04:00",
+      "group": "H",
+      "home": "Uruguay",
+      "away": "Spain",
+      "hs": 0,
+      "as": 1,
+      "htHome": 0,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 5,
+          "sot": 1,
+          "poss": 33
+        },
+        "away": {
+          "shots": 6,
+          "sot": 1,
+          "poss": 67
+        }
+      },
+      "goals": [
+        {
+          "min": "42'",
+          "scorer": "Álex Baena",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760479"
     }
   ]
 }
