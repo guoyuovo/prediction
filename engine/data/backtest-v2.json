@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 64,
-    "accuracy1X2": 0.641,
-    "brierAvg": 0.511,
-    "loglossAvg": 0.874,
-    "scoreHit": 0.125,
-    "dirHit": 0.641,
+    "matches": 65,
+    "accuracy1X2": 0.646,
+    "brierAvg": 0.505,
+    "loglossAvg": 0.867,
+    "scoreHit": 0.123,
+    "dirHit": 0.646,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1609,6 +1609,31 @@
       "eloHomeAfter": 1800.4,
       "eloAwayBefore": 2122.7,
       "eloAwayAfter": 2131.2
+    },
+    {
+      "et": "2026-06-26T23:00:00-04:00",
+      "group": "G",
+      "home": "New Zealand",
+      "away": "Belgium",
+      "hs": 1,
+      "as": 5,
+      "ht": "0-1",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.155,
+      "pDraw": 0.187,
+      "pAway": 0.658,
+      "predScore": "0-2",
+      "scoreHit": false,
+      "brier": 0.176,
+      "logloss": 0.419,
+      "homeAdv": false,
+      "eloDelta": -16.4,
+      "eloHomeBefore": 1542.5,
+      "eloHomeAfter": 1526.1,
+      "eloAwayBefore": 1849.2,
+      "eloAwayAfter": 1865.6
     }
   ],
   "eloChanges": [
@@ -1763,16 +1788,16 @@
       "delta": 2.7
     },
     {
+      "team": "Belgium",
+      "before": 1869,
+      "after": 1865.6,
+      "delta": -3.4
+    },
+    {
       "team": "Portugal",
       "before": 1988,
       "after": 1984.1,
       "delta": -3.9
-    },
-    {
-      "team": "New Zealand",
-      "before": 1549,
-      "after": 1542.5,
-      "delta": -6.5
     },
     {
       "team": "Iran",
@@ -1823,10 +1848,10 @@
       "delta": -17.2
     },
     {
-      "team": "Belgium",
-      "before": 1869,
-      "after": 1849.2,
-      "delta": -19.8
+      "team": "New Zealand",
+      "before": 1549,
+      "after": 1526.1,
+      "delta": -22.9
     },
     {
       "team": "Scotland",
@@ -2349,6 +2374,13 @@
       "label": "Uruguay-Spain",
       "accCum": 0.641,
       "brierCum": 0.511
+    },
+    {
+      "i": 65,
+      "et": "2026-06-26T23:00:00-04:00",
+      "label": "New Zealand-Belgium",
+      "accCum": 0.646,
+      "brierCum": 0.505
     }
   ],
   "calibration": [
@@ -2369,9 +2401,9 @@
     },
     {
       "range": "65–101%",
-      "n": 10,
-      "hitRate": 0.7
+      "n": 11,
+      "hitRate": 0.727
     }
   ],
-  "builtAt": "2026-06-27T04:47:15.886Z"
+  "builtAt": "2026-06-27T05:02:21.638Z"
 }

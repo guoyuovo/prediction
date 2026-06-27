@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-27T04:47:15.844Z",
-  "count": 64,
+  "_fetchedAt": "2026-06-27T05:02:21.589Z",
+  "count": 65,
   "results": [
     {
       "date": "2026-06-11",
@@ -2957,6 +2957,75 @@
       ],
       "status": "Full Time",
       "espnId": "760479"
+    },
+    {
+      "date": "2026-06-26",
+      "et": "2026-06-26T23:00:00-04:00",
+      "group": "G",
+      "home": "New Zealand",
+      "away": "Belgium",
+      "hs": 1,
+      "as": 5,
+      "htHome": 0,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 6,
+          "sot": 2,
+          "poss": 45.4
+        },
+        "away": {
+          "shots": 35,
+          "sot": 10,
+          "poss": 54.6
+        }
+      },
+      "goals": [
+        {
+          "min": "28'",
+          "scorer": "Leandro Trossard",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "50'",
+          "scorer": "Leandro Trossard",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "66'",
+          "scorer": "Kevin De Bruyne",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "84'",
+          "scorer": "Elijah Just",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "86'",
+          "scorer": "Romelu Lukaku",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "90'+4'",
+          "scorer": "Alexis Saelemaekers",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760477"
     }
   ]
 }
