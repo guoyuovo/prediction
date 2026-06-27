@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-27T22:46:44.536Z",
-  "count": 66,
+  "_fetchedAt": "2026-06-27T23:02:08.887Z",
+  "count": 68,
   "results": [
     {
       "date": "2026-06-11",
@@ -3067,6 +3067,95 @@
       ],
       "status": "Full Time",
       "espnId": "760477"
+    },
+    {
+      "date": "2026-06-27",
+      "et": "2026-06-27T17:00:00-04:00",
+      "group": "L",
+      "home": "Croatia",
+      "away": "Ghana",
+      "hs": 2,
+      "as": 1,
+      "htHome": 1,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 8,
+          "sot": 4,
+          "poss": 53.3
+        },
+        "away": {
+          "shots": 6,
+          "sot": 1,
+          "poss": 46.7
+        }
+      },
+      "goals": [
+        {
+          "min": "31'",
+          "scorer": "Petar Sucic",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "73'",
+          "scorer": "Derrick Luckassen",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "83'",
+          "scorer": "Nikola Vlasic",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760480"
+    },
+    {
+      "date": "2026-06-27",
+      "et": "2026-06-27T17:00:00-04:00",
+      "group": "L",
+      "home": "Panama",
+      "away": "England",
+      "hs": 0,
+      "as": 2,
+      "htHome": 0,
+      "htAway": 0,
+      "stats": {
+        "home": {
+          "shots": 13,
+          "sot": 2,
+          "poss": 32.8
+        },
+        "away": {
+          "shots": 17,
+          "sot": 6,
+          "poss": 67.2
+        }
+      },
+      "goals": [
+        {
+          "min": "62'",
+          "scorer": "Jude Bellingham",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "67'",
+          "scorer": "Harry Kane",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760485"
     }
   ]
 }

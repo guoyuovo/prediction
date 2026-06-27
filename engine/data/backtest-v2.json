@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 66,
-    "accuracy1X2": 0.652,
-    "brierAvg": 0.506,
-    "loglossAvg": 0.868,
-    "scoreHit": 0.136,
-    "dirHit": 0.652,
+    "matches": 68,
+    "accuracy1X2": 0.662,
+    "brierAvg": 0.499,
+    "loglossAvg": 0.859,
+    "scoreHit": 0.147,
+    "dirHit": 0.662,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1659,14 +1659,64 @@
       "eloHomeAfter": 1515.5,
       "eloAwayBefore": 1862,
       "eloAwayAfter": 1876.5
+    },
+    {
+      "et": "2026-06-27T17:00:00-04:00",
+      "group": "L",
+      "home": "Croatia",
+      "away": "Ghana",
+      "hs": 2,
+      "as": 1,
+      "ht": "1-0",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.504,
+      "pDraw": 0.292,
+      "pAway": 0.204,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.373,
+      "logloss": 0.686,
+      "homeAdv": false,
+      "eloDelta": 12.4,
+      "eloHomeBefore": 1879.5,
+      "eloHomeAfter": 1891.9,
+      "eloAwayBefore": 1646.6,
+      "eloAwayAfter": 1634.2
+    },
+    {
+      "et": "2026-06-27T17:00:00-04:00",
+      "group": "L",
+      "home": "Panama",
+      "away": "England",
+      "hs": 0,
+      "as": 2,
+      "ht": "0-0",
+      "actual": "A",
+      "predOutcome": "A",
+      "correct": true,
+      "pHome": 0.158,
+      "pDraw": 0.189,
+      "pAway": 0.653,
+      "predScore": "0-2",
+      "scoreHit": true,
+      "brier": 0.181,
+      "logloss": 0.426,
+      "homeAdv": false,
+      "eloDelta": -7.7,
+      "eloHomeBefore": 1618.7,
+      "eloHomeAfter": 1611,
+      "eloAwayBefore": 2031.2,
+      "eloAwayAfter": 2038.9
     }
   ],
   "eloChanges": [
     {
       "team": "Ghana",
       "before": 1584,
-      "after": 1646.6,
-      "delta": 62.6
+      "after": 1634.2,
+      "delta": 50.2
     },
     {
       "team": "USA",
@@ -1765,6 +1815,12 @@
       "delta": 13.6
     },
     {
+      "team": "England",
+      "before": 2028,
+      "after": 2038.9,
+      "delta": 10.9
+    },
+    {
       "team": "Australia",
       "before": 1800,
       "after": 1810.5,
@@ -1801,12 +1857,6 @@
       "delta": 4.9
     },
     {
-      "team": "England",
-      "before": 2028,
-      "after": 2031.2,
-      "delta": 3.2
-    },
-    {
       "team": "Japan",
       "before": 1910,
       "after": 1912.7,
@@ -1817,6 +1867,12 @@
       "before": 1988,
       "after": 1984.1,
       "delta": -3.9
+    },
+    {
+      "team": "Croatia",
+      "before": 1896,
+      "after": 1891.9,
+      "delta": -4.1
     },
     {
       "team": "Iran",
@@ -1859,12 +1915,6 @@
       "before": 1815,
       "after": 1800.4,
       "delta": -14.6
-    },
-    {
-      "team": "Croatia",
-      "before": 1896,
-      "after": 1879.5,
-      "delta": -16.5
     },
     {
       "team": "Canada",
@@ -1939,16 +1989,16 @@
       "delta": -46
     },
     {
-      "team": "Panama",
-      "before": 1668,
-      "after": 1618.7,
-      "delta": -49.3
-    },
-    {
       "team": "Czechia",
       "before": 1680,
       "after": 1629.4,
       "delta": -50.6
+    },
+    {
+      "team": "Panama",
+      "before": 1668,
+      "after": 1611,
+      "delta": -57
     }
   ],
   "timeline": [
@@ -2413,6 +2463,20 @@
       "label": "New Zealand-Belgium",
       "accCum": 0.652,
       "brierCum": 0.506
+    },
+    {
+      "i": 67,
+      "et": "2026-06-27T17:00:00-04:00",
+      "label": "Croatia-Ghana",
+      "accCum": 0.657,
+      "brierCum": 0.504
+    },
+    {
+      "i": 68,
+      "et": "2026-06-27T17:00:00-04:00",
+      "label": "Panama-England",
+      "accCum": 0.662,
+      "brierCum": 0.499
     }
   ],
   "calibration": [
@@ -2423,8 +2487,8 @@
     },
     {
       "range": "45–55%",
-      "n": 24,
-      "hitRate": 0.708
+      "n": 25,
+      "hitRate": 0.72
     },
     {
       "range": "55–65%",
@@ -2433,9 +2497,9 @@
     },
     {
       "range": "65–101%",
-      "n": 11,
-      "hitRate": 0.727
+      "n": 12,
+      "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-27T22:46:44.591Z"
+  "builtAt": "2026-06-27T23:02:08.939Z"
 }
