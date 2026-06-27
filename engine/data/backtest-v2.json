@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 65,
-    "accuracy1X2": 0.646,
-    "brierAvg": 0.505,
-    "loglossAvg": 0.867,
-    "scoreHit": 0.123,
-    "dirHit": 0.646,
+    "matches": 66,
+    "accuracy1X2": 0.652,
+    "brierAvg": 0.506,
+    "loglossAvg": 0.868,
+    "scoreHit": 0.136,
+    "dirHit": 0.652,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1613,6 +1613,31 @@
     {
       "et": "2026-06-26T23:00:00-04:00",
       "group": "G",
+      "home": "Egypt",
+      "away": "Iran",
+      "hs": 1,
+      "as": 1,
+      "ht": "1-1",
+      "actual": "D",
+      "predOutcome": "D",
+      "correct": true,
+      "pHome": 0.319,
+      "pDraw": 0.393,
+      "pAway": 0.288,
+      "predScore": "1-1",
+      "scoreHit": true,
+      "brier": 0.554,
+      "logloss": 0.935,
+      "homeAdv": false,
+      "eloDelta": -1.3,
+      "eloHomeBefore": 1773.8,
+      "eloHomeAfter": 1772.5,
+      "eloAwayBefore": 1758.5,
+      "eloAwayAfter": 1759.8
+    },
+    {
+      "et": "2026-06-26T23:00:00-04:00",
+      "group": "G",
       "home": "New Zealand",
       "away": "Belgium",
       "hs": 1,
@@ -1688,8 +1713,8 @@
     {
       "team": "Egypt",
       "before": 1740,
-      "after": 1773.8,
-      "delta": 33.8
+      "after": 1772.5,
+      "delta": 32.5
     },
     {
       "team": "Netherlands",
@@ -1802,8 +1827,8 @@
     {
       "team": "Iran",
       "before": 1766,
-      "after": 1758.5,
-      "delta": -7.5
+      "after": 1759.8,
+      "delta": -6.2
     },
     {
       "team": "Qatar",
@@ -2378,16 +2403,23 @@
     {
       "i": 65,
       "et": "2026-06-26T23:00:00-04:00",
-      "label": "New Zealand-Belgium",
+      "label": "Egypt-Iran",
       "accCum": 0.646,
-      "brierCum": 0.505
+      "brierCum": 0.511
+    },
+    {
+      "i": 66,
+      "et": "2026-06-26T23:00:00-04:00",
+      "label": "New Zealand-Belgium",
+      "accCum": 0.652,
+      "brierCum": 0.506
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 15,
-      "hitRate": 0.333
+      "n": 16,
+      "hitRate": 0.375
     },
     {
       "range": "45–55%",
@@ -2405,5 +2437,5 @@
       "hitRate": 0.727
     }
   ],
-  "builtAt": "2026-06-27T05:02:21.638Z"
+  "builtAt": "2026-06-27T05:17:11.110Z"
 }
