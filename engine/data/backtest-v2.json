@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 69,
-    "accuracy1X2": 0.652,
+    "matches": 70,
+    "accuracy1X2": 0.657,
     "brierAvg": 0.502,
     "loglossAvg": 0.862,
-    "scoreHit": 0.145,
-    "dirHit": 0.652,
+    "scoreHit": 0.143,
+    "dirHit": 0.657,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1734,9 +1734,40 @@
       "eloHomeAfter": 2022,
       "eloAwayBefore": 1984.1,
       "eloAwayAfter": 1987.7
+    },
+    {
+      "et": "2026-06-27T19:30:00-04:00",
+      "group": "K",
+      "home": "DR Congo",
+      "away": "Uzbekistan",
+      "hs": 3,
+      "as": 1,
+      "ht": "0-1",
+      "actual": "H",
+      "predOutcome": "H",
+      "correct": true,
+      "pHome": 0.426,
+      "pDraw": 0.318,
+      "pAway": 0.256,
+      "predScore": "1-0",
+      "scoreHit": false,
+      "brier": 0.497,
+      "logloss": 0.854,
+      "homeAdv": false,
+      "eloDelta": 40.8,
+      "eloHomeBefore": 1680.1,
+      "eloHomeAfter": 1720.9,
+      "eloAwayBefore": 1647.2,
+      "eloAwayAfter": 1606.4
     }
   ],
   "eloChanges": [
+    {
+      "team": "DR Congo",
+      "before": 1666,
+      "after": 1720.9,
+      "delta": 54.9
+    },
     {
       "team": "Ghana",
       "before": 1575,
@@ -1826,12 +1857,6 @@
       "before": 2006,
       "after": 2022,
       "delta": 16
-    },
-    {
-      "team": "DR Congo",
-      "before": 1666,
-      "after": 1680.1,
-      "delta": 14.1
     },
     {
       "team": "Brazil",
@@ -1978,12 +2003,6 @@
       "delta": -29.4
     },
     {
-      "team": "Uzbekistan",
-      "before": 1677,
-      "after": 1647.2,
-      "delta": -29.8
-    },
-    {
       "team": "Iraq",
       "before": 1561,
       "after": 1523.7,
@@ -2024,6 +2043,12 @@
       "before": 1658,
       "after": 1602.8,
       "delta": -55.2
+    },
+    {
+      "team": "Uzbekistan",
+      "before": 1677,
+      "after": 1606.4,
+      "delta": -70.6
     }
   ],
   "timeline": [
@@ -2509,13 +2534,20 @@
       "label": "Colombia-Portugal",
       "accCum": 0.652,
       "brierCum": 0.502
+    },
+    {
+      "i": 70,
+      "et": "2026-06-27T19:30:00-04:00",
+      "label": "DR Congo-Uzbekistan",
+      "accCum": 0.657,
+      "brierCum": 0.502
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 17,
-      "hitRate": 0.353
+      "n": 18,
+      "hitRate": 0.389
     },
     {
       "range": "45–55%",
@@ -2533,5 +2565,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-28T01:32:03.162Z"
+  "builtAt": "2026-06-28T01:39:22.171Z"
 }

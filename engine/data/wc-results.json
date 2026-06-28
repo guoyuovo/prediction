@@ -1,8 +1,8 @@
 {
   "_note": "2026 世界杯已完赛真实比分（ESPN fifa.world scoreboard，state=post）。v2 模型逐场滚动 Elo + 验证的数据入口。半场 best-effort，缺失记 null。",
   "_source": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
-  "_fetchedAt": "2026-06-28T01:32:03.114Z",
-  "count": 69,
+  "_fetchedAt": "2026-06-28T01:39:22.122Z",
+  "count": 70,
   "results": [
     {
       "date": "2026-06-11",
@@ -3182,6 +3182,61 @@
       "goals": [],
       "status": "Full Time",
       "espnId": "760481"
+    },
+    {
+      "date": "2026-06-27",
+      "et": "2026-06-27T19:30:00-04:00",
+      "group": "K",
+      "home": "DR Congo",
+      "away": "Uzbekistan",
+      "hs": 3,
+      "as": 1,
+      "htHome": 0,
+      "htAway": 1,
+      "stats": {
+        "home": {
+          "shots": 19,
+          "sot": 4,
+          "poss": 57.6
+        },
+        "away": {
+          "shots": 3,
+          "sot": 1,
+          "poss": 42.4
+        }
+      },
+      "goals": [
+        {
+          "min": "10'",
+          "scorer": "Eldor Shomurodov",
+          "own": false,
+          "pen": false,
+          "side": "away"
+        },
+        {
+          "min": "68'",
+          "scorer": "Yoane Wissa",
+          "own": false,
+          "pen": true,
+          "side": "home"
+        },
+        {
+          "min": "78'",
+          "scorer": "Fiston Mayele",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        },
+        {
+          "min": "90'+1'",
+          "scorer": "Yoane Wissa",
+          "own": false,
+          "pen": false,
+          "side": "home"
+        }
+      ],
+      "status": "Full Time",
+      "espnId": "760482"
     }
   ]
 }
