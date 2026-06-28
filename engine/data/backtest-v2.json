@@ -1,11 +1,11 @@
 {
   "summary": {
-    "matches": 68,
-    "accuracy1X2": 0.662,
-    "brierAvg": 0.499,
-    "loglossAvg": 0.858,
-    "scoreHit": 0.147,
-    "dirHit": 0.662,
+    "matches": 69,
+    "accuracy1X2": 0.652,
+    "brierAvg": 0.502,
+    "loglossAvg": 0.862,
+    "scoreHit": 0.145,
+    "dirHit": 0.652,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
   },
   "bakedLiveMult": 1.4,
@@ -1709,6 +1709,31 @@
       "eloHomeAfter": 1602.8,
       "eloAwayBefore": 2040.7,
       "eloAwayAfter": 2047.7
+    },
+    {
+      "et": "2026-06-27T19:30:00-04:00",
+      "group": "K",
+      "home": "Colombia",
+      "away": "Portugal",
+      "hs": 0,
+      "as": 0,
+      "ht": "0-0",
+      "actual": "D",
+      "predOutcome": "A",
+      "correct": false,
+      "pHome": 0.281,
+      "pDraw": 0.324,
+      "pAway": 0.395,
+      "predScore": "0-1",
+      "scoreHit": false,
+      "brier": 0.691,
+      "logloss": 1.126,
+      "homeAdv": false,
+      "eloDelta": -3.6,
+      "eloHomeBefore": 2025.6,
+      "eloHomeAfter": 2022,
+      "eloAwayBefore": 1984.1,
+      "eloAwayAfter": 1987.7
     }
   ],
   "eloChanges": [
@@ -1779,12 +1804,6 @@
       "delta": 25.5
     },
     {
-      "team": "Colombia",
-      "before": 2006,
-      "after": 2025.6,
-      "delta": 19.6
-    },
-    {
       "team": "Sweden",
       "before": 1742,
       "after": 1759.2,
@@ -1801,6 +1820,12 @@
       "before": 1622,
       "after": 1638.9,
       "delta": 16.9
+    },
+    {
+      "team": "Colombia",
+      "before": 2006,
+      "after": 2022,
+      "delta": 16
     },
     {
       "team": "DR Congo",
@@ -1865,8 +1890,8 @@
     {
       "team": "Portugal",
       "before": 1988,
-      "after": 1984.1,
-      "delta": -3.9
+      "after": 1987.7,
+      "delta": -0.3
     },
     {
       "team": "Iran",
@@ -2477,13 +2502,20 @@
       "label": "Panama-England",
       "accCum": 0.662,
       "brierCum": 0.499
+    },
+    {
+      "i": 69,
+      "et": "2026-06-27T19:30:00-04:00",
+      "label": "Colombia-Portugal",
+      "accCum": 0.652,
+      "brierCum": 0.502
     }
   ],
   "calibration": [
     {
       "range": "0–45%",
-      "n": 16,
-      "hitRate": 0.375
+      "n": 17,
+      "hitRate": 0.353
     },
     {
       "range": "45–55%",
@@ -2501,5 +2533,5 @@
       "hitRate": 0.75
     }
   ],
-  "builtAt": "2026-06-28T01:17:14.001Z"
+  "builtAt": "2026-06-28T01:32:03.162Z"
 }
