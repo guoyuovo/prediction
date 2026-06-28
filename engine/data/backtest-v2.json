@@ -2,8 +2,8 @@
   "summary": {
     "matches": 70,
     "accuracy1X2": 0.657,
-    "brierAvg": 0.502,
-    "loglossAvg": 0.862,
+    "brierAvg": 0.501,
+    "loglossAvg": 0.861,
     "scoreHit": 0.157,
     "dirHit": 0.657,
     "note": "样本外（赛前预测 vs 实际完赛）。样本量小，仅作滚动起点；随赛程推进自动累积。Brier 越低越好(0~2)，三路盲猜≈0.667。"
@@ -471,13 +471,13 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.549,
-      "pDraw": 0.257,
-      "pAway": 0.194,
+      "pHome": 0.554,
+      "pDraw": 0.255,
+      "pAway": 0.191,
       "predScore": "2-0",
       "scoreHit": false,
-      "brier": 0.308,
-      "logloss": 0.6,
+      "brier": 0.301,
+      "logloss": 0.591,
       "homeAdv": false,
       "eloDelta": 11.5,
       "eloHomeBefore": 2144,
@@ -496,13 +496,13 @@
       "actual": "H",
       "predOutcome": "H",
       "correct": true,
-      "pHome": 0.56,
-      "pDraw": 0.247,
-      "pAway": 0.194,
+      "pHome": 0.566,
+      "pDraw": 0.244,
+      "pAway": 0.191,
       "predScore": "1-0",
       "scoreHit": false,
-      "brier": 0.292,
-      "logloss": 0.58,
+      "brier": 0.284,
+      "logloss": 0.57,
       "homeAdv": false,
       "eloDelta": 20.8,
       "eloHomeBefore": 1841,
@@ -2183,14 +2183,14 @@
       "et": "2026-06-16T21:00:00-04:00",
       "label": "Argentina-Algeria",
       "accCum": 0.421,
-      "brierCum": 0.615
+      "brierCum": 0.614
     },
     {
       "i": 20,
       "et": "2026-06-17T00:00:00-04:00",
       "label": "Austria-Jordan",
       "accCum": 0.45,
-      "brierCum": 0.599
+      "brierCum": 0.598
     },
     {
       "i": 21,
@@ -2211,21 +2211,21 @@
       "et": "2026-06-17T19:00:00-04:00",
       "label": "Ghana-Panama",
       "accCum": 0.435,
-      "brierCum": 0.612
+      "brierCum": 0.611
     },
     {
       "i": 24,
       "et": "2026-06-17T22:00:00-04:00",
       "label": "Uzbekistan-Colombia",
       "accCum": 0.458,
-      "brierCum": 0.597
+      "brierCum": 0.596
     },
     {
       "i": 25,
       "et": "2026-06-18T12:00:00-04:00",
       "label": "Czechia-South Africa",
       "accCum": 0.44,
-      "brierCum": 0.602
+      "brierCum": 0.601
     },
     {
       "i": 26,
@@ -2260,14 +2260,14 @@
       "et": "2026-06-19T18:00:00-04:00",
       "label": "Scotland-Morocco",
       "accCum": 0.533,
-      "brierCum": 0.55
+      "brierCum": 0.549
     },
     {
       "i": 31,
       "et": "2026-06-19T21:00:00-04:00",
       "label": "Brazil-Haiti",
       "accCum": 0.548,
-      "brierCum": 0.537
+      "brierCum": 0.536
     },
     {
       "i": 32,
@@ -2295,7 +2295,7 @@
       "et": "2026-06-20T20:00:00-04:00",
       "label": "Ecuador-Curacao",
       "accCum": 0.543,
-      "brierCum": 0.552
+      "brierCum": 0.551
     },
     {
       "i": 36,
@@ -2309,7 +2309,7 @@
       "et": "2026-06-21T12:00:00-04:00",
       "label": "Spain-Saudi Arabia",
       "accCum": 0.568,
-      "brierCum": 0.533
+      "brierCum": 0.532
     },
     {
       "i": 38,
@@ -2337,7 +2337,7 @@
       "et": "2026-06-22T13:00:00-04:00",
       "label": "Argentina-Austria",
       "accCum": 0.561,
-      "brierCum": 0.539
+      "brierCum": 0.538
     },
     {
       "i": 42,
@@ -2372,7 +2372,7 @@
       "et": "2026-06-23T16:00:00-04:00",
       "label": "England-Ghana",
       "accCum": 0.587,
-      "brierCum": 0.533
+      "brierCum": 0.532
     },
     {
       "i": 47,
@@ -2421,14 +2421,14 @@
       "et": "2026-06-24T21:00:00-04:00",
       "label": "Czechia-Mexico",
       "accCum": 0.642,
-      "brierCum": 0.51
+      "brierCum": 0.509
     },
     {
       "i": 54,
       "et": "2026-06-24T21:00:00-04:00",
       "label": "South Africa-South Korea",
       "accCum": 0.63,
-      "brierCum": 0.517
+      "brierCum": 0.516
     },
     {
       "i": 55,
@@ -2540,7 +2540,7 @@
       "et": "2026-06-27T19:30:00-04:00",
       "label": "DR Congo-Uzbekistan",
       "accCum": 0.657,
-      "brierCum": 0.502
+      "brierCum": 0.501
     }
   ],
   "calibration": [
@@ -2551,13 +2551,13 @@
     },
     {
       "range": "45–55%",
-      "n": 26,
-      "hitRate": 0.731
+      "n": 25,
+      "hitRate": 0.72
     },
     {
       "range": "55–65%",
-      "n": 13,
-      "hitRate": 0.769
+      "n": 14,
+      "hitRate": 0.786
     },
     {
       "range": "65–101%",
@@ -2565,5 +2565,5 @@
       "hitRate": 0.769
     }
   ],
-  "builtAt": "2026-06-28T02:16:53.822Z"
+  "builtAt": "2026-06-28T02:32:07.775Z"
 }
