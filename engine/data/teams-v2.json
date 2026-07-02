@@ -2,7 +2,7 @@
   "_note": "2026 世界杯 48 强。elo/form 由 build-elo.mjs 从 ~4.9 万场国际比赛历史按标准 Elo 真算；fifa 由 fetch-fifa-ranking.mjs 抓 FIFA 官方实时接口（真实）；value 为 Transfermarkt 衍生身价快照（真实，人工录入，£M×1.17 折 €M）。",
   "teams": {
     "Spain": {
-      "elo": 2131.2,
+      "elo": 2144.9,
       "fifa": 1892,
       "value": 1275,
       "form": 0.582,
@@ -10,7 +10,7 @@
       "squad": 87.02
     },
     "Argentina": {
-      "elo": 2176,
+      "elo": 2175.1,
       "fifa": 1907,
       "value": 828,
       "form": 0.873,
@@ -90,7 +90,7 @@
       "squad": 80.93
     },
     "Uruguay": {
-      "elo": 1800.4,
+      "elo": 1801.1,
       "fifa": 1635,
       "value": 411,
       "form": 0.127,
@@ -154,7 +154,7 @@
       "squad": 81.19
     },
     "Austria": {
-      "elo": 1838.9,
+      "elo": 1827.3,
       "fifa": 1599,
       "value": 275,
       "form": 0.691,
@@ -218,7 +218,7 @@
       "squad": 76.27
     },
     "Algeria": {
-      "elo": 1794.6,
+      "elo": 1793.4,
       "fifa": 1577,
       "value": 261,
       "form": 0.618,
@@ -306,7 +306,7 @@
       "squad": 76.4
     },
     "Saudi Arabia": {
-      "elo": 1613,
+      "elo": 1613.5,
       "fifa": 1426,
       "value": 38,
       "form": -0.236,
@@ -330,7 +330,7 @@
       "squad": 73.34
     },
     "Jordan": {
-      "elo": 1587.5,
+      "elo": 1586.2,
       "fifa": 1350,
       "value": 20,
       "form": -0.182,
@@ -362,7 +362,7 @@
       "squad": 74.39
     },
     "Cape Verde": {
-      "elo": 1658.4,
+      "elo": 1658.5,
       "fifa": 1403,
       "value": 57,
       "form": -0.018,
@@ -387,10 +387,10 @@
     }
   },
   "_builtAt": "2026-06-12T08:17:19.296Z",
-  "_eloSource": "eloratings.net 官方 Elo（World.tsv），抓取于 2026-07-02T22:15:26.943Z",
+  "_eloSource": "eloratings.net 官方 Elo（World.tsv），抓取于 2026-07-02T22:30:45.292Z",
   "_fifaSource": "api.fifa.com/v3 fifarankings/live（实时官方真实）",
   "_valueSource": "Transfermarkt 衍生快照 2026-06-12（https://www.givemesport.com/every-squad-at-2026-world-cup-ranked-by-combined-player-value/ （基于 transfermarkt.com 市值））",
-  "_extrasFetchedAt": "2026-07-02T22:15:27.225Z",
+  "_extrasFetchedAt": "2026-07-02T22:30:45.637Z",
   "_squadSource": "阵容评分：24 队为文章公布的真实 EA FC 评分；24 队由真实官方 Elo 经标定映射 squad=0.02489·elo+33.34（在前 24 队上拟合，R²=0.73）估算。",
   "_squadFit": {
     "a": 0.024885,
@@ -400,9 +400,9 @@
   },
   "_v2meta": {
     "note": "v2：基础官方真实 Elo 起点 + 已完赛比赛标准 Elo 滚动更新（K=60，MOV 修正，东道主本土 +60）。其余字段（fifa/value/form/squad）沿用基础真实值。",
-    "basedOn": "eloratings.net 官方 Elo（World.tsv），抓取于 2026-07-02T22:15:26.943Z",
+    "basedOn": "eloratings.net 官方 Elo（World.tsv），抓取于 2026-07-02T22:30:45.292Z",
     "scoresFrom": "site.api.espn.com fifa.world scoreboard/summary（名义源 Sailing MCP，未接入时回退 ESPN）",
     "matchesApplied": 72,
-    "builtAt": "2026-07-02T22:17:02.647Z"
+    "builtAt": "2026-07-02T22:32:21.668Z"
   }
 }
